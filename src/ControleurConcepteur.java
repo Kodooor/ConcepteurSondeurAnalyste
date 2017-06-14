@@ -1,6 +1,7 @@
 import java.awt.event.*;
 import javax.swing.JOptionPane;
-
+import java.awt.*;
+import javax.swing.*;
 /**
  * Controleur du bouton passer du chargement
  * @author Sofiane et Lucas
@@ -24,7 +25,6 @@ public class ControleurConcepteur implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		EasySond fenetrePrincipale=(EasySond) vueAccueilConcepteur.getRootPane().getParent();
-		JOptionPane.showMessageDialog(fenetrePrincipale, "HAHAHHAHAHAHHAHA");
+		vueAccueilConcepteur.afficherVueInfoQuestionnaire(Integer.parseInt(((JButton) arg0.getSource()).getName()));
 	}
 }

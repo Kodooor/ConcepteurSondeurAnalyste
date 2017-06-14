@@ -7,7 +7,9 @@ import java.awt.GridLayout;
 import java.awt.List;
 import java.awt.ScrollPane;
 import java.util.ArrayList;
+import java.awt.*;
 
+import javax.swing.*;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -25,6 +27,7 @@ public class VueAccueilConcepteur extends JPanel {
 	ControleurConcepteur cc;
 	ArrayList<Questionnaire> listequestionnaire;
 	EasySond sond;
+	//VueCreationConcepteur vuecreationConcepteur;
 	public VueAccueilConcepteur(EasySond sond) {
 		super();
 		this.setLayout(new BorderLayout());
@@ -33,9 +36,17 @@ public class VueAccueilConcepteur extends JPanel {
 		this.listequestionnaire = this.sond.basededonnes.BDConcepteur.listeDesQuestionnaires();
 		enTete();
 		body();
-		System.out.println(listequestionnaire);
 	}
-
+	void afficherVueInfoQuestionnaire(int num){
+		System.out.println(num);
+		/*Container cont=this.sond.getContentPane();
+		cont.removeAll();
+		this.vuecreationConcepteur = new VueCreationConcepteur(num);
+		cont.add(vuecreationConcepteur);
+		cont.setBackground(new Color(78,217,255));
+		cont.validate();
+		cont.repaint();*/
+	}
 	private void enTete(){
 		VueEnTete haut=new VueEnTete("Accueil Concepteur","Concepteur",this.sond.Nom,this.sond.Prenom);
 		this.add(haut,"North");
@@ -48,15 +59,16 @@ public class VueAccueilConcepteur extends JPanel {
 		VueScrollPan scroll2=new VueScrollPan("En cours");
 		principal.add(scroll1);
 		principal.add(scroll2);
-
-        // Test
-        scroll(scroll1.getPanel(),"salut","créer");
+		for(Questionnaire q:listequestionnaire){
+			scroll(scroll1.getPanel(),q.getTitreQuestionnaire(),"créer");
+		}
+        /* Test
         scroll(scroll1.getPanel(),"Test","créer");
 
 
         // Test
         scroll(scroll2.getPanel(),"salut","créer");
-        scroll(scroll2.getPanel(),"Test","créer");
+        scroll(scroll2.getPanel(),"Test","créer");*/
 
         this.add(principal,"Center");
     }
