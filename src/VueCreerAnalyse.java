@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -19,10 +20,13 @@ public class VueCreerAnalyse extends JPanel{
 	VueAccueilAnalyste vaa;
 	String idQ;
 	ArrayList<Question> listeQuestion;
+	//VueEtudeQuestion vueEtudeQuestion;
+	ControleurEtudeQuestion ceq;
 	VueCreerAnalyse(String idQ,VueAccueilAnalyste vaa){
 		super();
 		this.idQ=idQ;
 		this.vaa=vaa;
+		this.ceq=new ControleurEtudeQuestion(this);
 		this.modele=new ModeleAnalyste(this.vaa.sond.basededonnes);
 		this.listeQuestion=this.modele.listeDesQuestion(Integer.parseInt(this.idQ));
 		this.setLayout(new BorderLayout());
@@ -59,8 +63,9 @@ public class VueCreerAnalyse extends JPanel{
 			cQuestion.setLayout(new BoxLayout(cQuestion,BoxLayout.Y_AXIS));cGeneral.setLayout(new GridLayout(1,2));
 			cBoutons.setLayout(new FlowLayout(FlowLayout.CENTER));
 			
-			JButton boutton1 = new JButton("modifier");
-			JButton boutton2 = new JButton("supprimer");
+			JButton boutton1 = new JButton("Selectionner");
+			boutton1.addActionListener(this.ceq);
+			boutton1.setName(""+q.getIdQuestion());
 
 			cQuestion.add(new JLabel(" "));
 			cQuestion.add(new JLabel("       Question "+i));
@@ -70,8 +75,6 @@ public class VueCreerAnalyse extends JPanel{
 			cQuestion.add(new JLabel("  "));
 			cBoutons.add(new JLabel("            "));
 			cBoutons.add(boutton1);
-			cBoutons.add(new JLabel("            "));
-			cBoutons.add(boutton2);
 			conteneurGeneral.add(new JLabel("      "));
 			cGeneral.add(cQuestion);
 			cGeneral.add(cBoutons);
@@ -86,21 +89,24 @@ public class VueCreerAnalyse extends JPanel{
 	
 	private Component boutonsBas(){
 		JPanel conteneurBoutons = new JPanel();
-		JPanel contB1 = new JPanel();
 		JPanel contB2 = new JPanel();
-		JPanel contB3 = new JPanel();
 		JPanel contB4 = new JPanel();
 		
 		
-		contB1.add(new JButton("Annuler"));
 		contB2.add(new JButton("Quitter"));
-		contB3.add(new JButton("Enregistrer"));
 		contB4.add(new JButton("Envoyer"));
 		
-		conteneurBoutons.add(contB1);
 		conteneurBoutons.add(contB2);
-		conteneurBoutons.add(contB3);
 		conteneurBoutons.add(contB4);
 		return conteneurBoutons;
+	}
+	public void afficherVueEtudeQuestion(String nom) {
+		Container cont = this.vaa.sond.getContentPane();
+		cont.removeAll();
+		//Question temp =this.modele.getQuestion(Integer.parseInt(idQ), Integer.parseInt(nom));
+		//vueEtudeQuestion = new VueEtudeQuestion(this.vaa.sond,temp);
+		//cont.add(vueEtudeQuestion);
+		cont.validate();
+		cont.repaint();
 	}
 }

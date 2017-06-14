@@ -38,6 +38,7 @@ public class VueAccueilConcepteur extends JPanel {
 		body();
 	}
 	void afficherVueInfoQuestionnaire(int num){
+		System.out.println(num);
 		Container cont=this.sond.getContentPane();
 		cont.removeAll();
 		this.vuecreationConcepteur = new VueCreationConcepteur(this.sond,num);
@@ -58,7 +59,7 @@ public class VueAccueilConcepteur extends JPanel {
 		principal.add(scroll1);
 		principal.add(scroll2);
 		for(Questionnaire q:listequestionnaire){
-			scroll(scroll1.getPanel(),q.getTitreQuestionnaire(), q.getNumeroQuestionnaire(),"créer");
+			scroll(scroll1.getPanel(),q.getTitreQuestionnaire(),"créer");
 		}
         /* Test
         scroll(scroll1.getPanel(),"Test","créer");
@@ -70,13 +71,12 @@ public class VueAccueilConcepteur extends JPanel {
 
         this.add(principal,"Center");
     }
-	private void scroll(JPanel p,String label, int numero,String bouton){
+	private void scroll(JPanel p,String label,String bouton){
 		JPanel c=new JPanel();
 		c.setPreferredSize(new Dimension(50,50));
     	c.setLayout(new GridLayout(1,2));
     	c.add(new JPanel().add(new JLabel(label)));
     	JButton jbouton = new JButton(bouton);
-			jbouton.setName("" + numero);
     	jbouton.addActionListener(this.cc);
     	c.add(new JPanel().add(jbouton));
         p.add(c);

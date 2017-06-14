@@ -55,4 +55,18 @@ public class ModeleAnalyste {
 	  }
 	  return null;
 	  }
+	public Question getQuestion(int idQ,int numQ){
+		Question questionC = null;
+		try{
+			ResultSet rs = st.executeQuery("Select * from QUESTION where idQ = " + idQ +" and numQ = "+ numQ  );
+		    while(rs.next()){
+		      questionC = new Question(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getInt(4),rs.getString(5).charAt(0));
+		    }
+			return questionC;
+		}
+		catch(SQLException e){
+			System.out.println(e);
+		}
+		return null;
+	}
 }
