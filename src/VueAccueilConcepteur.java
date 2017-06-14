@@ -37,7 +37,7 @@ public class VueAccueilConcepteur extends JPanel {
 	}
 
 	private void enTete(){
-		VueEnTete haut=new VueEnTete("Accueil Concepteur","Concepteur","COUCOUHIBOU","LUCAS");
+		VueEnTete haut=new VueEnTete("Accueil Concepteur","Concepteur",this.sond.Nom,this.sond.Prenom);
 		this.add(haut,"North");
 	}
 

@@ -34,7 +34,14 @@ public class EasySond extends JFrame {
 	 * vue qui gere la page d'accueil
 	 */
 	VueAccueil vueAccueil;
-
+  /**
+	 * Nom de l'utilisateur
+	 */
+	String Nom;
+  /**
+   * Prenom de l'utilisateur
+   */
+  String Prenom;
 	/**
 	 * Constructeur qui va creer une vue pour le chargement et les modeles dont on a besoin
 	 *
@@ -84,11 +91,13 @@ public class EasySond extends JFrame {
 		cont.validate();
 		cont.repaint();
 	}
-	void afficherVueModule(int role){
+	void afficherVueModule(int role, String nom, String prenom){
+    this.Nom = nom;
+    this.Prenom = prenom;
 		if(role == 1){
 			Container cont=this.getContentPane();
 			cont.removeAll();
-			vueAccueilConcepteur = new VueAccueilConcepteur();
+			vueAccueilConcepteur = new VueAccueilConcepteur(this);
 			cont.add(vueAccueilConcepteur);
 			cont.setBackground(new Color(78,217,255));
 			cont.validate();

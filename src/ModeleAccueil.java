@@ -24,13 +24,29 @@ public class ModeleAccueil {
 	}
   }
 
-	int VerifBD(String log, String mdp){
+	ArrayList VerifBD(String log, String mdp, int etape){
 	     try{
+				 if(etape == 0){
         // execution de la requête
         ResultSet rs=st.executeQuery("SELECT idR from UTILISATEUR WHERE login = '" + log + "' and motdepasse = '" + mdp+"'");
         // chargement de la 1 er ligne de résultat
         rs.next();
-        int res=rs.getInt(1);
+				int res=rs.getInt(1);
+				}
+				else if(etape == 1){
+					// execution de la requête
+	        ResultSet rs=st.executeQuery("SELECT nomU from UTILISATEUR WHERE login = '" + log + "' and motdepasse = '" + mdp+"'");
+	        // chargement de la 1 er ligne de résultat
+	        rs.next();
+					int res=rs.getString(1);
+				}
+				else{
+					// execution de la requête
+					ResultSet rs=st.executeQuery("SELECT prenomU from UTILISATEUR WHERE login = '" + log + "' and motdepasse = '" + mdp+"'");
+					// chargement de la 1 er ligne de résultat
+					rs.next();
+					int res=rs.getString(1);
+				}
         rs.close();
         return res;
       }
