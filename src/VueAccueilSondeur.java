@@ -17,59 +17,49 @@ public class VueAccueilSondeur extends JPanel{
 		this.listeSonde = this.sond.basededonnes.BDaccueilSondeur.GetListeSonde(this.questionnaire.getIdentifiantPanel());
 		pageGenerator(false);
 		this.setVisible(true); //affiche le tout
-
-
 	}
 
 	void refresh(boolean e){
 		Container cont=this.sond.getContentPane();
 		cont.removeAll();
-		cont.add(pageGenerator(e));
+		pageGenerator(e);
+		cont.setBackground(new Color(78,217,255));
 		cont.repaint();
 		cont.validate();
 	}
 
-	JPanel pageGenerator(boolean e){
-		JPanel p = new JPanel();
-		p.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+	void pageGenerator(boolean e){
+		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 			//niveau 1, Annonce la page.
 		JPanel lv1= new JPanel();
 		lv1.setLayout(new FlowLayout(FlowLayout.LEFT));
 		lv1.add(nomPage());
 		this.add(lv1);
-		p.add(lv1);
 
 			//niveau 2, informe sur le sondage en question.
 		JPanel lv2= new JPanel();
 		lv2.setLayout(new FlowLayout());
 		lv2.add(nomSondage());
 		this.add(lv2);
-		p.add(lv2);
 
 			//niveau 3, informe sur le sondé en question.
 		JPanel lv3= new JPanel();
 		lv3.setLayout(new FlowLayout());
 		lv3.add(infoSonde());
 		this.add(lv3);
-		p.add(lv3);
+
 
 			//niveau 4, disposition des bouton.
 		JPanel lv4= new JPanel();
 		lv4.setLayout(new FlowLayout());
 		lv4.add(boutons(e));
 		this.add(lv4);
-		p.add(lv4);
 
 			//niveau 5, bouton help
 		JPanel lv5= new JPanel();
 		lv5.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		lv5.add(help());
 		this.add(lv5);
-
-		p.add(lv5);
-
-
-		return p;
 	}
 
 	JPanel nomPage(){	//Annonce de la page
