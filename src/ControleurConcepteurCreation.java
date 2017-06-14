@@ -25,6 +25,16 @@ public class ControleurConcepteurCreation implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		//vueCreationConcepteur.afficherVueCreationQuestionnaire(vueCreationConcepteur.numQ);
+    if(((JButton) arg0.getSource()).getText().equals("Retour")){
+      Container cont=this.vueCreationConcepteur.sond.getContentPane();
+			cont.removeAll();
+			VueAccueilConcepteur vueAccueilConcepteur = new VueAccueilConcepteur(this.vueCreationConcepteur.sond);
+			cont.add(vueAccueilConcepteur);
+			cont.validate();
+			cont.repaint();
+    }
+    else{
+      //vueCreationConcepteur.afficherVueCreationQuestionnaire(vueCreationConcepteur.numQ);
+    }
 	}
 }
