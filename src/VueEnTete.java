@@ -1,4 +1,6 @@
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.BoxLayout;
@@ -15,8 +17,10 @@ public class VueEnTete extends JPanel {
 	private String nom;
 	private String prenom;
 	private ControleurDeco cc;
-	VueEnTete(String titre,String role,String nom,String prenom){
+	EasySond sond;
+	VueEnTete(EasySond sond,String titre,String role,String nom,String prenom){
 		super();
+		this.sond=sond;
 		this.titre=titre;
 		this.role=role;
 		this.nom=nom;
@@ -27,18 +31,17 @@ public class VueEnTete extends JPanel {
 	private void enTete(){
 		// Le panel haut
 		JPanel haut= new JPanel();
-		haut.setLayout(new GridLayout(1,4));
+		haut.setLayout(new GridLayout(1,2));
+		//Panel Titre
 		JPanel titre=new JPanel();
 		titre.setLayout(new BoxLayout(titre,BoxLayout.PAGE_AXIS));
 		JLabel titreprincipal=new JLabel(this.titre);
 		Font font = new Font("Arial",Font.BOLD,30);
 		titreprincipal.setFont(font);
 		titre.add(titreprincipal);
-		haut.add(titre);
+		haut.add(titre,"West");
 		
-		//Panel vide pour la mise en forme
-		JPanel vide=new JPanel();
-		haut.add(vide);
+		
 		
 		//Panel image
 		JPanel panelImage=new JPanel();
@@ -46,7 +49,6 @@ public class VueEnTete extends JPanel {
 		image.setSize(panelImage.getWidth(),panelImage.getHeight());
 		panelImage.add(image);
 		panelImage.repaint();
-		haut.add(panelImage);
 		
 		//Cadre de déconnection
 		JPanel Deconnexion=new JPanel();
@@ -75,8 +77,13 @@ public class VueEnTete extends JPanel {
 		boutonDeconnexion.addActionListener(this.cc);
 		Deconnexion.add(boutonDeconnexion);
 		Deconnexion.setBackground(Color.CYAN);
-		haut.add(Deconnexion);
-		
+		panelImage.add(Deconnexion);
+		haut.add(panelImage,"East");
+		haut.setLayout(new FlowLayout());
+		//System.out.println(this.sond.getWidth());
+		//System.out.println(panelImage.getSize().getWidth());
+		//System.out.println(titre.getSize().getWidth());
+		((FlowLayout) haut.getLayout()).setHgap(this.sond.getWidth()/3);
 		this.add(haut,"North");
 	}
 

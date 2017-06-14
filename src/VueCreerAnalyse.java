@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -14,28 +15,30 @@ import javax.swing.JScrollPane;
 
 @SuppressWarnings("serial")
 public class VueCreerAnalyse extends JPanel{
-	
-	VueCreerAnalyse(){
+	ModeleAnalyste modele;
+	VueAccueilAnalyste vaa;
+	String idQ;
+	ArrayList<Question> listeQuestion;
+	VueCreerAnalyse(String idQ,VueAccueilAnalyste vaa){
 		super();
+		this.idQ=idQ;
+		this.vaa=vaa;
+		this.modele=new ModeleAnalyste(this.vaa.sond.basededonnes);
+		this.listeQuestion=this.modele.listeDesQuestion(Integer.parseInt(this.idQ));
 		this.setLayout(new BorderLayout());
 		this.add(enTete(),"North");
 		this.add(corps(),"Center");
 		this.add(boutonsBas(),"South");
-		//this.add(test(),"Center");
 
 	}
-	private Component test(){
-		JLabel test = new JLabel("AZUIBDIUAZNBDKAZ NDKAZUND");
-		return test;
-	}
-	
 	private Component enTete(){
 		// Le panel haut
-		VueEnTete haut = new VueEnTete("Création d'une analyse","Analyste","Weber","Warren");
+		VueEnTete haut = new VueEnTete(this.vaa.sond,"Création d'une analyse","Analyste","Weber","Warren");
 		return haut;
 	}
 	
 	private Component corps(){
+		int i=0;
 		JPanel retour = new JPanel();
 		retour.setLayout(new BorderLayout());
 		JPanel bidonGauche = new JPanel();
@@ -47,8 +50,8 @@ public class VueCreerAnalyse extends JPanel{
 		JScrollPane scrollerQuestions = new JScrollPane(conteneurGeneral,
 				JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		
-		for(int i=1;i<51;i++){
+		for(Question q:this.listeQuestion){
+			i++;
 			JPanel cGeneral=new JPanel();
 			JPanel cQuestion=new JPanel();
 			JPanel cBoutons=new JPanel();
@@ -60,9 +63,9 @@ public class VueCreerAnalyse extends JPanel{
 			JButton boutton2 = new JButton("supprimer");
 
 			cQuestion.add(new JLabel(" "));
-			cQuestion.add(new JLabel("       Questionnaire "+i));
+			cQuestion.add(new JLabel("       Question "+i));
 			cQuestion.add(new JLabel(" "));
-			cQuestion.add(new JLabel("       du texte"));
+			cQuestion.add(new JLabel("       "+q.getTexteQuestion()));
 			cQuestion.add(new JLabel(" "));
 			cQuestion.add(new JLabel("  "));
 			cBoutons.add(new JLabel("            "));
@@ -75,7 +78,7 @@ public class VueCreerAnalyse extends JPanel{
 			cGeneral.setBorder(BorderFactory.createLineBorder(Color.black));
 			conteneurGeneral.add(cGeneral);
 		}
-		bidonGauche.add(new JLabel("                                           "));
+		bidonGauche.add(new JLabel("                          "));
 		retour.add(bidonGauche, "West");
 		retour.add(scrollerQuestions, "Center");
 		return retour;
