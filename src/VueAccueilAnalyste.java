@@ -33,7 +33,7 @@ public class VueAccueilAnalyste extends JPanel {
 	}
 	
 	private void enTete(){
-		VueEnTete haut=new VueEnTete(this.sond,"Accueil Analyste","Analyste","Weber","Warren");
+		VueEnTete haut=new VueEnTete(this.sond,"Accueil Analyste","Analyste",this.sond.Nom,this.sond.Prenom);
 		this.add(haut,"North");
 	}
 	
