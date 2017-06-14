@@ -45,7 +45,7 @@ public class ModeleAnalyste {
 	  try{
 	    ResultSet rs = st.executeQuery("Select * from QUESTION where idQ = " + numQ);
 	    while(rs.next()){
-	      Question questionC = new Question(rs.getInt(0),rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getString(4).charAt(0));
+	      Question questionC = new Question(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getInt(4),rs.getString(5).charAt(0));
 	      listeQuestion.add(questionC);
 	    }
 	    return listeQuestion;

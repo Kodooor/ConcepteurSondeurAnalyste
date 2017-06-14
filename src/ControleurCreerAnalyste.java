@@ -1,5 +1,6 @@
 import java.awt.event.*;
 
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 public class ControleurCreerAnalyste implements ActionListener{
@@ -17,7 +18,7 @@ public class ControleurCreerAnalyste implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		vueAccueilAnalyste.afficherVueCreerAnalyse();
+		vueAccueilAnalyste.afficherVueCreerAnalyse(((JButton)arg0.getSource()).getName());
 	}
 
 }
