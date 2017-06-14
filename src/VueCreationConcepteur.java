@@ -29,26 +29,30 @@ public class VueCreationConcepteur extends JFrame {
 	JButton boutt;
 	EasySond sond;
 	int numQ;
+	JPanel bidon4;
+	JPanel milieumilieu;
 
 	public VueCreationConcepteur(EasySond sond,int numQ) {
-		super("vue");
-		this.setSize(500, 200);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		super();
 		this.sond=sond;
 		this.numQ=numQ;
-		Container cont = new Container();
-		cont.setLayout(new BorderLayout());
+		this.setLayout(new BorderLayout());
+		hautt();
+		milieu();
+		bouton();
+		informations();
+	}
+	private void hautt(){
 		VueEnTete haut=new VueEnTete(this.sond,"Accueil Concepteur > Société n°? ","Concepteur",this.sond.Nom,this.sond.Prenom);
-		cont.add(haut,"Center");
-
+		this.add(haut,"Center");
 		JLabel logo = new JLabel(new ImageIcon("LogoPetit.png"));
 		haut.add(logo,"North");
-		cont.add(haut,"North");
-
+		this.add(haut,"North");
+}
+	private void milieu(){
 		JPanel milieu = new JPanel(new BorderLayout());
 		milieu.setBackground(Color.RED);
-		cont.add(milieu,"Center");
-
+		this.add(milieu,"Center");
 		JPanel milieumilieu = new JPanel();
 		milieumilieu.setLayout(new BoxLayout(milieumilieu,BoxLayout.Y_AXIS));
 		milieumilieu.setBackground(Color.WHITE);
@@ -73,14 +77,16 @@ public class VueCreationConcepteur extends JFrame {
 		bidon4.setBackground(new Color(78,217,255));
 		bidon4.setPreferredSize(new Dimension(70,70));
 		milieu.add(bidon4,"South");
-
+}
+private void bouton(){
 		JPanel bouton = new JPanel(new FlowLayout());
 		JButton bout1 = new JButton("Retour");
 		JButton bout2= new JButton("Creer Questionnaire");
 		bouton.add(bout1);
 		bouton.add(bout2);
 		bidon4.add(bouton);
-
+}
+private void informations(){
 		JPanel informations = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JLabel text1 = new JLabel("Informations : ");
 		informations.add(text1);
@@ -105,12 +111,5 @@ public class VueCreationConcepteur extends JFrame {
 		JLabel text4 = new JLabel("La description de la demande");
 		texteDemande.add(text4);
 		milieumilieu.add(texteDemande);
-		this.add(cont);
-		this.setVisible(true);
-
-	}
 }
-
-// JLabel text3 = new JLabel("Nom Directeur :");
-// informations.add(text2,"Center");
-// informations.add(text3,"South");
+	}

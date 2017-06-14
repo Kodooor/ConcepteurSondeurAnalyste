@@ -27,7 +27,7 @@ public class VueAccueilConcepteur extends JPanel {
 	ControleurConcepteur cc;
 	ArrayList<Questionnaire> listequestionnaire;
 	EasySond sond;
-	//VueCreationConcepteur vuecreationConcepteur;
+	VueCreationConcepteur vuecreationConcepteur;
 	public VueAccueilConcepteur(EasySond sond) {
 		super();
 		this.setLayout(new BorderLayout());
@@ -39,13 +39,12 @@ public class VueAccueilConcepteur extends JPanel {
 	}
 	void afficherVueInfoQuestionnaire(int num){
 		System.out.println(num);
-		/*Container cont=this.sond.getContentPane();
+		Container cont=this.sond.getContentPane();
 		cont.removeAll();
-		this.vuecreationConcepteur = new VueCreationConcepteur(num);
+		this.vuecreationConcepteur = new VueCreationConcepteur(this.sond,num);
 		cont.add(vuecreationConcepteur);
-		cont.setBackground(new Color(78,217,255));
 		cont.validate();
-		cont.repaint();*/
+		cont.repaint();
 	}
 	private void enTete(){
 		VueEnTete haut=new VueEnTete(this.sond, "Accueil Concepteur","Concepteur",this.sond.Nom,this.sond.Prenom);
