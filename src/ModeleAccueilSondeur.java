@@ -40,8 +40,8 @@ public class ModeleAccueilSondeur {
         return null;
       }
    }
-   //Fonction en cours de codage, non terminée
-   /*ArrayList<Sonde> GetListeSonde(int idPan){
+
+	 ArrayList<Sonde> GetListeSonde(int idPan){
      ArrayList<Sonde> res = new ArrayList<Sonde>();
      try{
       // execution de la requête
@@ -49,16 +49,16 @@ public class ModeleAccueilSondeur {
       // chargement de la 1 er ligne de résultat
 
       while(rs.next()){
-      Sonde s = new Sonde(rs.getInt(1),rs.getString(2), rs.getString(3).charAt(0), rs.getInt(4), rs.getInt(5), rs.getInt(6));
+      Sonde s = new Sonde(rs.getInt(2),rs.getString(3), rs.getString(4), rs.getDate(5), rs.getString(6), rs.getString(7).charAt(0));
       res.add(s);
       }
-
+			return res;
     }
     catch(SQLException e){
       System.out.println("Echec de la requête");
       System.out.println("Voici le message SQL: "+e.getMessage());
       return null;
     }
-  }*/
+  }
 
 }
