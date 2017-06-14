@@ -27,16 +27,18 @@ import javax.swing.border.TitledBorder;
 public class VueCreationConcepteur extends JFrame {
 	JButton bout;
 	JButton boutt;
+	EasySond sond;
+	int numQ;
 
-
-
-	public VueCreationConcepteur() {
+	public VueCreationConcepteur(EasySond sond,int numQ) {
 		super("vue");
 		this.setSize(500, 200);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.sond=sond;
+		this.numQ=numQ;
 		Container cont = new Container();
 		cont.setLayout(new BorderLayout());
-		VueEnTete haut=new VueEnTete(this.sond,"Accueil Concepteur > Société n°? ","Concepteur");
+		VueEnTete haut=new VueEnTete(this.sond,"Accueil Concepteur > Société n°? ","Concepteur",this.sond.Nom,this.sond.Prenom);
 		cont.add(haut,"Center");
 
 		JLabel logo = new JLabel(new ImageIcon("LogoPetit.png"));
