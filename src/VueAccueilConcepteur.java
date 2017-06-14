@@ -23,20 +23,24 @@ import javax.swing.JTextArea;
 @SuppressWarnings("serial")
 public class VueAccueilConcepteur extends JPanel {
 	ControleurConcepteur cc;
-	
-	public VueAccueilConcepteur() {
+	ArrayList<Questionnaire> listequestionnaire;
+	EasySond sond;
+	public VueAccueilConcepteur(EasySond sond) {
 		super();
 		this.setLayout(new BorderLayout());
+		this.sond = sond;
 		this.cc = new ControleurConcepteur(this);
+		this.listequestionnaire = this.sond.basededonnes.BDConcepteur.listeDesQuestionnaires();
 		enTete();
 		body();
+		System.out.println(listequestionnaire);
 	}
-	
+
 	private void enTete(){
 		VueEnTete haut=new VueEnTete("Accueil Concepteur","Concepteur","COUCOUHIBOU","LUCAS");
 		this.add(haut,"North");
 	}
-	
+
 	private void body(){
 		JPanel principal= new JPanel();
 		principal.setLayout(new BoxLayout(principal,BoxLayout.Y_AXIS));
@@ -44,16 +48,16 @@ public class VueAccueilConcepteur extends JPanel {
 		VueScrollPan scroll2=new VueScrollPan("En cours");
 		principal.add(scroll1);
 		principal.add(scroll2);
-		
+
         // Test
         scroll(scroll1.getPanel(),"salut","créer");
         scroll(scroll1.getPanel(),"Test","créer");
-        
-        
+
+
         // Test
         scroll(scroll2.getPanel(),"salut","créer");
         scroll(scroll2.getPanel(),"Test","créer");
-        
+
         this.add(principal,"Center");
     }
 	private void scroll(JPanel p,String label,String bouton){
