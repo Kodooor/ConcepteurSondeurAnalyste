@@ -36,7 +36,7 @@ public class VueCreationConcepteur extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Container cont = new Container();
 		cont.setLayout(new BorderLayout());
-		VueEnTete haut=new VueEnTete("Accueil Concepteur > Société n°? ","Concepteur");
+		VueEnTete haut=new VueEnTete(this.sond,"Accueil Concepteur > Société n°? ","Concepteur");
 		cont.add(haut,"Center");
 
 		JLabel logo = new JLabel(new ImageIcon("LogoPetit.png"));
