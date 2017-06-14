@@ -4,14 +4,14 @@ import java.sql.*;
 import java.util.ArrayList;
 /**
  * Model du jeu motus
- * @author IUT'O dpt Informatique
+ * @author Sofiane et Lucas
  *
  */
 
 public class ModeleAccueil {
 	ConnexionMySQL laConnexion;
 	Statement st;
-	
+
 	ModeleAccueil(ConnexionMySQL laConnexion){
 	this.laConnexion=laConnexion;
 	try{

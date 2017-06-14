@@ -5,7 +5,7 @@ import javax.swing.*;
 /**
  * Vue permettant l'affichage du chargement de l'application
  * @author Sofiane et Lucas
- * 
+ *
  */
 public class VueChargement extends JPanel {
 	/**
@@ -19,7 +19,7 @@ public class VueChargement extends JPanel {
 		this.add(bas(), "South");
 	}
 	/**
-	 * remplace la vue motus par la vue formulaire
+	 * Construit la partie basse de la fenetre
 	 */
 	private Component bas() {
 		JPanel PanelBas = new JPanel();
@@ -30,7 +30,7 @@ public class VueChargement extends JPanel {
 		return PanelBas;
 	}
 	/**
-	 * remplace la vue motus par la vue formulaire
+	* Construit la partie centrale de la fenetre
 	 */
 	private Component milieu() {
 		JPanel PanelMilieu = new JPanel();
@@ -42,7 +42,7 @@ public class VueChargement extends JPanel {
 		return PanelMilieu;
 	}
 	/**
-	 * remplace la vue motus par la vue formulaire
+	* Construit la partie haute de la fenetre
 	 */
 	private Component haut() {
 		JPanel PanelHaut = new JPanel();

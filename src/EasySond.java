@@ -22,7 +22,6 @@ public class EasySond extends JFrame {
 	 * vue qui gere le chargement du module Analyste
 	*/
 	VueAccueilAnalyste vueAccueilAnalyste;
-  	//VueCreerAnalyse vueCreerAnalyse;
 	/**
 	 * Modele Base de données
 	 */
@@ -37,7 +36,7 @@ public class EasySond extends JFrame {
 	VueAccueil vueAccueil;
 
 	/**
-	 * Constructeur qui va creer une vue pour le formulaire et un modele de motus ainsi que le menu
+	 * Constructeur qui va creer une vue pour le chargement et les modeles dont on a besoin
 	 *
 	 */
 	public EasySond() {
@@ -113,7 +112,7 @@ public class EasySond extends JFrame {
 			//cont.add(vueCreerAnalyse);
 			cont.setBackground(new Color(78,217,255));
 			cont.validate();
-			cont.repaint();			
+			cont.repaint();
 		}
 	}
 
