@@ -13,9 +13,9 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class VueEnTete extends JPanel {
 	private String titre;
-	private String role;
-	private String nom;
-	private String prenom;
+	String role;
+	String nom;
+	String prenom;
 	private ControleurDeco cc;
 	EasySond sond;
 	VueEnTete(EasySond sond,String titre,String role,String nom,String prenom){
@@ -29,6 +29,7 @@ public class VueEnTete extends JPanel {
 		enTete();
 	}
 	private void enTete(){
+		
 		// Le panel haut
 		JPanel haut= new JPanel();
 		haut.setLayout(new GridLayout(1,2));
@@ -36,7 +37,7 @@ public class VueEnTete extends JPanel {
 		JPanel titre=new JPanel();
 		titre.setLayout(new BoxLayout(titre,BoxLayout.PAGE_AXIS));
 		JLabel titreprincipal=new JLabel(this.titre);
-		Font font = new Font("Arial",Font.BOLD,30);
+		Font font = new Font("Arial",Font.BOLD,26);
 		titreprincipal.setFont(font);
 		titre.add(titreprincipal);
 		haut.add(titre,"West");
@@ -67,9 +68,14 @@ public class VueEnTete extends JPanel {
 		info.add(prenom);
 		Deconnexion.add(info);
 		JPanel imageHome = new JPanel();
-		JLabel home = new JLabel(new ImageIcon("home.jpg"));
-		home.setSize(panelImage.getWidth(),panelImage.getHeight());
-		imageHome.add(home);
+		ImageIcon maison = new ImageIcon("home.jpg");
+		JButton boutonMaison = new JButton(maison);
+		//JLabel home = new JLabel(new ImageIcon("home.jpg"));
+		//home.setSize(panelImage.getWidth(),panelImage.getHeight());
+		boutonMaison.setOpaque(false);
+		boutonMaison.setContentAreaFilled(false);
+		boutonMaison.setBorderPainted(false);
+		imageHome.add(boutonMaison);
 		Deconnexion.setBackground(Color.CYAN);
 		imageHome.setBackground(Color.CYAN);
 		Deconnexion.add(imageHome);
@@ -80,10 +86,7 @@ public class VueEnTete extends JPanel {
 		panelImage.add(Deconnexion);
 		haut.add(panelImage,"East");
 		haut.setLayout(new FlowLayout());
-		//System.out.println(this.sond.getWidth());
-		//System.out.println(panelImage.getSize().getWidth());
-		//System.out.println(titre.getSize().getWidth());
-		((FlowLayout) haut.getLayout()).setHgap(this.sond.getWidth()/3);
+		((FlowLayout) haut.getLayout()).setHgap(this.sond.getWidth()/5);
 		this.add(haut,"North");
 	}
 
