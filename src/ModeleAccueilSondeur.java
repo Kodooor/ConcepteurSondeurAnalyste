@@ -117,4 +117,14 @@ public class ModeleAccueilSondeur {
 		return 0;
 	}
 
+	void majQuestionnaire(int idQ){
+		try{
+			PreparedStatement ps = laConnexion.mysql.prepareStatement("update QUESTIONNAIRE set numLicJ = 'A' where idQ = "+idQ);
+		}
+		catch(SQLException e){
+			System.out.println("Problème modification du joueur ");
+			System.out.println("Voici le message SQL: "+e.getMessage());
+		}
+	}
+
 }
