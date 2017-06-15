@@ -5,6 +5,7 @@ public class ConnexionMySQL {
 	ModeleAnalyste BDanalyste;
 	ModeleAccueilSondeur BDaccueilSondeur;
 	ModeleConcepteur BDConcepteur;
+	ModeleQuestion BDQuestion;
 	Connection mysql=null;
   boolean connecte=false;
 	public ConnexionMySQL(String nomServeur, String nomBase, String nomLogin, String motDePasse) {
@@ -23,6 +24,7 @@ public class ConnexionMySQL {
 			BDanalyste = new ModeleAnalyste(this);
 			BDaccueilSondeur = new ModeleAccueilSondeur(this);
 			BDConcepteur = new ModeleConcepteur(this);
+			BDQuestion = new ModeleQuestion(this);
 		}
 		catch(SQLException e){
 			System.out.println("Echec de connexion!");

@@ -6,9 +6,9 @@ public class Question {
 	private int maxValeur;
 	private String idTypeQuestion;
 
-	public Question (int numq, int idq, String tq, int mv, String idtq) {
-		this.numeroQuestionnaire = numq;
-		this.idQuestion = idq;
+	public Question (int idq, int numq, String tq, int mv, String idtq) {
+		this.numeroQuestionnaire = idq;
+		this.idQuestion = numq;
 		this.texteQuestion = tq;
 		this.maxValeur = mv;
 		this.idTypeQuestion = idtq;
