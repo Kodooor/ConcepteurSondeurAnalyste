@@ -73,6 +73,12 @@ public class VueAccueilSondeur extends JPanel{
 		this.add(lv5);
 	}
 
+	void changerSonde(){
+		listeSonde.add(listeSonde.get(0));
+		listeSonde.remove(0);
+		refresh(false);
+	}
+
 	JPanel nomPage(){	//Annonce de la page
 		JPanel panelNom= new JPanel();
 		JLabel labelNom= new JLabel(">> Acceuil Sondeur");
@@ -122,6 +128,7 @@ public class VueAccueilSondeur extends JPanel{
 		JButton b2= new JButton("Accéder au questionnaire");
 		b2.addActionListener(this.actionBoutons);
 		JButton b3= new JButton("Passer au sondé suivant ");
+		b3.addActionListener(this.actionBoutons);
 		if(e==false){
 			JButton b1= new JButton("    Appeler le sondé    ");
 			b1.addActionListener(this.actionBoutons);
