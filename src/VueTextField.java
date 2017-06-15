@@ -6,7 +6,7 @@ import javax.swing.*;
 /**
  * Vue permettant la saisie du nom et du prenom
  * @author Sofiane et Lucas
- * 
+ *
  */
 public class VueTextField extends JPanel {
 	/**
@@ -60,5 +60,5 @@ public class VueTextField extends JPanel {
 			return false;
 		return true;
 	}
-	
+
 }
