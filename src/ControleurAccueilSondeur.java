@@ -35,7 +35,7 @@ public class ControleurAccueilSondeur implements ActionListener{
 		{
 			case "Accéder au questionnaire"  :this.vueAccueilSondeur.refreshRemplissage();
 																				break;
-			case "Passer au sondé suivant "  :
+			case "Passer au sondé suivant "  :this.vueAccueilSondeur.changerSonde();
 																				break;
       case "    Appeler le sondé    "  :this.vueAccueilSondeur.refresh(true);
              	 													break;

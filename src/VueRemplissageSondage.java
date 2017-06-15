@@ -42,6 +42,9 @@ public class VueRemplissageSondage extends JPanel{
 		this.add(lv3);
 
 			//niveau 4
+		JPanel lv4= new JPanel();
+		lv4.setLayout(new BoxLayout(lv4,BoxLayout.X_AXIS));
+
 
 			//niveau 5
 
@@ -72,5 +75,12 @@ public class VueRemplissageSondage extends JPanel{
 		panelIntitule.add(label1);
 		panelIntitule.add(label2);
 		lv3.add(panelIntitule);
+	}
+
+	JPanel question(){
+		JPanel question= new JPanel();
+		question.setLayout(new BoxLayout(question,BoxLayout.X_AXIS));
+		JLabel label = new JLabel("Intitulé : ");
+		return question;
 	}
 }
