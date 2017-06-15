@@ -94,6 +94,7 @@ private void bouton(JPanel bidon4){
 		JButton bout2= new JButton("Creer Questionnaire");
 		bouton.add(bout1);
 		bout1.addActionListener(this.cc);
+		bout2.addActionListener(this.cc);
 		bouton.add(bout2);
 		bidon4.add(bouton);
 }
