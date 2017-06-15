@@ -29,7 +29,6 @@ public class VueModificationsQuestionnaireConcepteur extends JPanel{
 	int numQ;
 	JPanel bidon4;
 	JPanel milieumilieu;
-	Client c;
 	ControleurModificationsQuestionnaireConcepteur cc;
 
 
@@ -38,8 +37,8 @@ public class VueModificationsQuestionnaireConcepteur extends JPanel{
 		this.sond=sond;
     this.numQ=numQ;
     this.cc = new ControleurModificationsQuestionnaireConcepteur(this);
-    this.c = this.sond.basededonnes.BDConcepteur.getClient(this.numQ);
     this.setLayout(new BorderLayout());
+    System.out.println("mes couilles au bord de l'eau");
 		this.add(hautt(),"North");
     this.add(milieu(),"Center");
 }
@@ -93,8 +92,6 @@ public class VueModificationsQuestionnaireConcepteur extends JPanel{
   private void informations(JPanel milieumilieu){
     JPanel enonce = new JPanel(new FlowLayout(FlowLayout.LEFT));
     enonce.setBorder(new TitledBorder("Énoncé : "));
-		JLabel text = new JLabel(c.getVille() + c.getAdresse1());
-		enonce.add(text);
 		milieumilieu.add(enonce);
 
 		JPanel type = new JPanel(new FlowLayout(FlowLayout.LEFT));
