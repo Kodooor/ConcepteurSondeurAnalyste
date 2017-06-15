@@ -60,12 +60,12 @@ public class ModeleAccueilSondeur {
       return null;
     }
   }
-/*
-	ArrayList<Question> GetListeQuestion(int idQ){
+
+	ArrayList<Question> GetListeQuestion(int numQ){
 		ArrayList<Question> res = new ArrayList<Question>();
 		try{
 		 // execution de la requête
-		 ResultSet rs=st.executeQuery("select * from QUESTION idQ ="+idQ);
+		 ResultSet rs=st.executeQuery("select * from QUESTION idQ ="+numQ);
 		 // chargement de la 1 er ligne de résultat
 
 		 while(rs.next()){
@@ -81,16 +81,16 @@ public class ModeleAccueilSondeur {
 	 }
 	}
 
-	ArrayList<ValeurPossible> GetListeValeurPossible(int idQ){
-		ArrayList<Question> res = new ArrayList<Question>();
+	ArrayList<ValeurPossible> GetListeValeurPossible(int numQuestionnaire, int idQuestion){
+		ArrayList<ValeurPossible> res = new ArrayList<ValeurPossible>();
 		try{
 		 // execution de la requête
-		 ResultSet rs=st.executeQuery("select * from QUESTION idQ ="+idQ);
+		 ResultSet rs=st.executeQuery("select * from VALPOSSIBLE were numQ = "+numQuestionnaire+" and idQ = "+idQuestion);
 		 // chargement de la 1 er ligne de résultat
 
 		 while(rs.next()){
-		 Question q = new Question(rs.getInt(1),rs.getInt(2), rs.getString(3), rs.getInt(4), rs.getString(5).charAt(0));
-		 res.add(q);
+		 ValeurPossible vp = new ValeurPossible(rs.getInt(1),rs.getInt(2), rs.getInt(3), rs.getString(4));
+		 res.add(vp);
 		 }
 		 return res;
 	 }
@@ -100,5 +100,21 @@ public class ModeleAccueilSondeur {
 		 return null;
 	 }
 	}
-*/
+
+	int insererRepondre(Repondre r){
+		try{
+			PreparedStatement ps = laConnexion.mysql.prepareStatement("insert into REPONDRE values(?,?,?,?)");
+			ps.setInt(1, r.getIdQuestionnaire());
+			ps.setInt(2, r.getNumQuestion());
+			ps.setString(3, ""+r.getIdCaracteristique());
+			ps.setString(4, r.getValeur());
+			ps.executeUpdate();
+		}
+		catch(SQLException e){
+			System.out.println("Problème insertion de la réponse ");
+			System.out.println("Voici le message SQL: "+e.getMessage());
+		}
+		return 0;
+	}
+
 }
