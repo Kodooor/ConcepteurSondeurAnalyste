@@ -34,7 +34,7 @@ public class ControleurConcepteurCreation implements ActionListener{
 			cont.repaint();
     }
     else{
-      //vueCreationConcepteur.afficherVueCreationQuestionnaire(vueCreationConcepteur.numQ);
+      vueCreationConcepteur.afficherVueCreationQuestionnaire(vueCreationConcepteur.sond, vueCreationConcepteur.numQ);
     }
 	}
 }
