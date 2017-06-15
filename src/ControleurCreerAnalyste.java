@@ -1,3 +1,4 @@
+import java.awt.Container;
 import java.awt.event.*;
 
 import javax.swing.JButton;
@@ -18,7 +19,16 @@ public class ControleurCreerAnalyste implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		vueAccueilAnalyste.afficherVueCreerAnalyse(((JButton)arg0.getSource()).getName());
+		if(((JButton)arg0.getSource()).getText().equals("Créer")){
+			this.vueAccueilAnalyste.afficherVueCreerAnalyse(((JButton)arg0.getSource()).getName());
+		}
+		if(((JButton)arg0.getSource()).getText().equals("Retour")){
+			Container cont = this.vueAccueilAnalyste.sond.getContentPane();
+			cont.removeAll();
+			this.vueAccueilAnalyste = new VueAccueilAnalyste(this.vueAccueilAnalyste.sond);
+			cont.add(this.vueAccueilAnalyste);
+			cont.validate();
+			cont.repaint();
+		}
 	}
-
 }

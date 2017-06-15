@@ -22,11 +22,13 @@ public class VueCreerAnalyse extends JPanel{
 	ArrayList<Question> listeQuestion;
 	VueEtudeQuestion vueEtudeQuestion;
 	ControleurEtudeQuestion ceq;
+	ControleurCreerAnalyste cca;
 	VueCreerAnalyse(String idQ,VueAccueilAnalyste vaa){
 		super();
 		this.idQ=idQ;
 		this.vaa=vaa;
 		this.ceq=new ControleurEtudeQuestion(this);
+		this.cca=new ControleurCreerAnalyste(this.vaa);
 		this.modele=new ModeleAnalyste(this.vaa.sond.basededonnes);
 		this.listeQuestion=this.modele.listeDesQuestion(Integer.parseInt(this.idQ));
 		this.setLayout(new BorderLayout());
@@ -91,9 +93,10 @@ public class VueCreerAnalyse extends JPanel{
 		JPanel conteneurBoutons = new JPanel();
 		JPanel contB2 = new JPanel();
 		JPanel contB4 = new JPanel();
+		JButton quitter = new JButton("Retour");
+		quitter.addActionListener(cca);
 		
-		
-		contB2.add(new JButton("Quitter"));
+		contB2.add(quitter);
 		contB4.add(new JButton("Envoyer"));
 		
 		conteneurBoutons.add(contB2);
