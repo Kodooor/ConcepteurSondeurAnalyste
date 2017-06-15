@@ -33,7 +33,7 @@ public class VueCreationConcepteur extends JPanel {
 	JPanel milieumilieu;
 	Client c;
 	ControleurConcepteurCreation cc;
-
+  VueCreationQuestionnaire vueCreationQuestionnaire
 	public VueCreationConcepteur(EasySond sond,int numQ) {
 		super();
 		this.sond=sond;
@@ -43,6 +43,14 @@ public class VueCreationConcepteur extends JPanel {
 		this.setLayout(new BorderLayout());
 		this.add(hautt(),"North");
 		this.add(milieu(),"Center");
+	}
+	void afficherVueCreationQuestionnaire(int num){
+		Container cont=this.sond.getContentPane();
+		cont.removeAll();
+		this.vueCreationQuestionnaire = new VueCreationQuestionnaire(this.sond,num);
+		cont.add(vueCreationQuestionnaire);
+		cont.validate();
+		cont.repaint();
 	}
 	Component hautt(){
 		VueEnTete haut=new VueEnTete(this.sond,"Accueil Concepteur > Société ","Concepteur",this.sond.Nom,this.sond.Prenom);
