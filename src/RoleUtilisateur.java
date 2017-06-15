@@ -1,20 +1,20 @@
 
 public class RoleUtilisateur {
-	private char identifiantRole;
+	private String identifiantRole;
 	private String nomRole;
-	
-	public RoleUtilisateur (char idr, String nr) {
+
+	public RoleUtilisateur (String idr, String nr) {
 		this.identifiantRole = idr;
 		this.nomRole = nr;
 	}
 
-	public char getIdentifiantRole() {
+	public String getIdentifiantRole() {
 		return identifiantRole;
 	}
 
 	public String getNomRole() {
 		return nomRole;
 	}
-	
-	
+
+
 }

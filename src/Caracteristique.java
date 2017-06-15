@@ -1,12 +1,12 @@
 
 public class Caracteristique {
-	
+
 	private String idCaracteristique;
-	private char sexe;
-	private char idTranche;
-	private char idCategorie;
-	
-	public Caracteristique (String idc, char s, char idtr, char idcat) {
+	private String sexe;
+	private String idTranche;
+	private String idCategorie;
+
+	public Caracteristique (String idc, String s, String idtr, String idcat) {
 		this.idCaracteristique = idc;
 		this.sexe = s;
 		this.idTranche = idtr;
@@ -21,29 +21,29 @@ public class Caracteristique {
 		this.idCaracteristique = idCaracteristique;
 	}
 
-	public char getSexe() {
+	public String getSexe() {
 		return sexe;
 	}
 
-	public void setSexe(char sexe) {
+	public void setSexe(String sexe) {
 		this.sexe = sexe;
 	}
 
-	public char getIdTranche() {
+	public String getIdTranche() {
 		return idTranche;
 	}
 
-	public void setIdTranche(char idTranche) {
+	public void setIdTranche(String idTranche) {
 		this.idTranche = idTranche;
 	}
 
-	public char getIdCategorie() {
+	public String getIdCategorie() {
 		return idCategorie;
 	}
 
-	public void setIdCategorie(char idCategorie) {
+	public void setIdCategorie(String idCategorie) {
 		this.idCategorie = idCategorie;
 	}
-	
-	
+
+
 }

@@ -1,16 +1,16 @@
 
 public class Tranche {
-	private char idTranche;
+	private String idTranche;
 	private int valeurDebut;
 	private int valeurFin;
-	
-	public Tranche (char idtr, int vd, int vf) {
+
+	public Tranche (String idtr, int vd, int vf) {
 		this.idTranche = idtr;
 		this.valeurDebut = vd;
 		this.valeurFin = vf;
 	}
 
-	public char getIdTranche() {
+	public String getIdTranche() {
 		return idTranche;
 	}
 
@@ -21,6 +21,6 @@ public class Tranche {
 	public int getValeurFin() {
 		return valeurFin;
 	}
-	
-	
+
+
 }
