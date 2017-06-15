@@ -7,9 +7,9 @@ public class Questionnaire {
 	private int identifiantUtilisateur;
 	private int identifiantPanel;
 
-	static String ENCOURS = 'C';
-	static String PRETPOURLESONDAGE = 'S';
-	static String PRETPOURANALYSTE = 'A';
+	static String ENCOURS = "C";
+	static String PRETPOURLESONDAGE = "S";
+	static String PRETPOURANALYSTE = "A";
 
 	public Questionnaire (int nq, String tq, String eq, int nc, int iu, int ip) {
 		this.numeroQuestionnaire = nq;

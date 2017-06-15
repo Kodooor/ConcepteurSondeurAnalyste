@@ -29,7 +29,7 @@ public class ModeleConcepteur {
 	    ResultSet rs = st.executeQuery("Select * from QUESTIONNAIRE where Etat = \'C\'");
 	    while(rs.next()){
 	      Questionnaire q = new Questionnaire(rs.getInt(1), rs.getString(2),
-	      rs.getString(3).charAt(0), rs.getInt(4), rs.getInt(5), rs.getInt(6));
+	      rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6));
 	      listeQuestionnaire.add(q);
 	    }
 	    return listeQuestionnaire;
