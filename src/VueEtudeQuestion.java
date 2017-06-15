@@ -1,8 +1,10 @@
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
@@ -49,10 +51,29 @@ public class VueEtudeQuestion extends JPanel {
 		infoQuestion.add(new JLabel(this.question.getTexteQuestion()));
 		centre.add(infoQuestion);
 		
-//		JPanel reponses = new JPanel();
-//		reponses.setBorder(new TitledBorder("Les réponses"));
-//		ArrayList<Repondre> listeReponses = new ArrayList<Repondre>();
-//		listeReponses.add(new Repondre(1,1,'')
+
+		JPanel reponses = new JPanel();
+		reponses.setBorder(new TitledBorder("Les réponses"));
+		ArrayList<Repondre> listeReponses = new ArrayList<Repondre>();
+		listeReponses.add(new Repondre(1,1,'1',"serfzeqrze"));
+		listeReponses.add(new Repondre(1,2,'1',"ertgdrydy"));
+		listeReponses.add(new Repondre(1,3,'1',"fghthtrt"));
+		listeReponses.add(new Repondre(1,4,'1',"gfyjhyt"));
+		listeReponses.add(new Repondre(1,5,'1',"jfyjjy"));
+		for(Repondre elem: listeReponses){
+			
+		}
+		
+		bas.setLayout(new BoxLayout(bas,BoxLayout.Y_AXIS));
+		JLabel titreBas1 = new JLabel("Représentation :");
+		titre.setFont(new Font("Arial",Font.BOLD,30));
+		JLabel titreBas2 = new JLabel("Commenter :");
+		titre.setFont(new Font("Arial",Font.BOLD,30));
+		JPanel panelBoutons1 = new JPanel();
+		panelBoutons1.add(new JButton("Bâtons"));
+		panelBoutons1.add(new JButton("Camembert"));
+		panelBoutons1.add(new JButton("Graphique"));
+		panelBoutons1.add(new JButton("Brut"));
 		
 		panelGeneral.setLayout(new BorderLayout());
 		panelGeneral.add(haut,"North");
