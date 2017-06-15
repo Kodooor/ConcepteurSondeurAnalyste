@@ -31,7 +31,7 @@ public class ModeleAccueilSondeur {
         // chargement de la 1 er ligne de résultat
 
         rs.next();
-        Questionnaire res = new Questionnaire(rs.getInt(1),rs.getString(2), rs.getString(3).charAt(0), rs.getInt(4), rs.getInt(5), rs.getInt(6));
+        Questionnaire res = new Questionnaire(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6));
         return res;
       }
       catch(SQLException e){
@@ -49,7 +49,7 @@ public class ModeleAccueilSondeur {
       // chargement de la 1 er ligne de résultat
 
       while(rs.next()){
-      Sonde s = new Sonde(rs.getInt(2),rs.getString(3), rs.getString(4), rs.getDate(5), rs.getString(6), rs.getString(7).charAt(0));
+      Sonde s = new Sonde(rs.getInt(2),rs.getString(3), rs.getString(4), rs.getDate(5), rs.getString(6), rs.getString(7));
       res.add(s);
       }
 			return res;
@@ -69,7 +69,7 @@ public class ModeleAccueilSondeur {
 		 // chargement de la 1 er ligne de résultat
 
 		 while(rs.next()){
-		 Question q = new Question(rs.getInt(1),rs.getInt(2), rs.getString(3), rs.getInt(4), rs.getString(5).charAt(0));
+		 Question q = new Question(rs.getInt(1),rs.getInt(2), rs.getString(3), rs.getInt(4), rs.getString(5));
 		 res.add(q);
 		 }
 		 return res;
@@ -106,7 +106,7 @@ public class ModeleAccueilSondeur {
 			PreparedStatement ps = laConnexion.mysql.prepareStatement("insert into REPONDRE values(?,?,?,?)");
 			ps.setInt(1, r.getIdQuestionnaire());
 			ps.setInt(2, r.getNumQuestion());
-			ps.setString(3, ""+r.getIdCaracteristique());
+			ps.setString(3, r.getIdCaracteristique());
 			ps.setString(4, r.getValeur());
 			ps.executeUpdate();
 		}
