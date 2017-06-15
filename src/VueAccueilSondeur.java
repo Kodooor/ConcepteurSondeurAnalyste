@@ -24,7 +24,7 @@ public class VueAccueilSondeur extends JPanel{
 	void refreshRemplissage(){
 		Container cont=this.sond.getContentPane();
 		cont.removeAll();
-		vueRemplissageSondage = new VueRemplissageSondage(this.sond);
+		vueRemplissageSondage = new VueRemplissageSondage(this.sond,this.questionnaire,this.listeSonde.get(0));
 		cont.add(vueRemplissageSondage);
 		cont.setBackground(new Color(78,217,255));
 		cont.validate();
