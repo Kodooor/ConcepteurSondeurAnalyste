@@ -34,6 +34,6 @@ public class ModeleQuestion {
 	  catch(SQLException e){
 	    System.out.println(e);
 	  }
-	  return null;
+	  return -1;
 	  }
 }
