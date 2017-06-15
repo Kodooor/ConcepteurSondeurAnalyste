@@ -29,7 +29,7 @@ public class ModeleAnalyste {
 	    ResultSet rs = st.executeQuery("Select * from QUESTIONNAIRE where Etat = \'A\'");
 	    while(rs.next()){
 	      Questionnaire q = new Questionnaire(rs.getInt(1), rs.getString(2),
-	      rs.getString(3).charAt(0), rs.getInt(4), rs.getInt(5), rs.getInt(6));
+	      rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6));
 	      listeQuestionnaire.add(q);
 	    }
 	    return listeQuestionnaire;
@@ -45,7 +45,7 @@ public class ModeleAnalyste {
 	  try{
 	    ResultSet rs = st.executeQuery("Select * from QUESTION where idQ = " + numQ);
 	    while(rs.next()){
-	      Question questionC = new Question(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getInt(4),rs.getString(5).charAt(0));
+	      Question questionC = new Question(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getInt(4),rs.getString(5));
 	      listeQuestion.add(questionC);
 	    }
 	    return listeQuestion;
@@ -60,7 +60,7 @@ public class ModeleAnalyste {
 		try{
 			ResultSet rs = st.executeQuery("Select * from QUESTION where idQ = " + idQ +" and numQ = "+ numQ  );
 		    while(rs.next()){
-		      questionC = new Question(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getInt(4),rs.getString(5).charAt(0));
+		      questionC = new Question(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getInt(4),rs.getString(5));
 		    }
 			return questionC;
 		}

@@ -55,11 +55,11 @@ public class VueEtudeQuestion extends JPanel {
 		JPanel reponses = new JPanel();
 		reponses.setBorder(new TitledBorder("Les réponses"));
 		ArrayList<Repondre> listeReponses = new ArrayList<Repondre>();
-		listeReponses.add(new Repondre(1,1,'1',"serfzeqrze"));
-		listeReponses.add(new Repondre(1,2,'1',"ertgdrydy"));
-		listeReponses.add(new Repondre(1,3,'1',"fghthtrt"));
-		listeReponses.add(new Repondre(1,4,'1',"gfyjhyt"));
-		listeReponses.add(new Repondre(1,5,'1',"jfyjjy"));
+		listeReponses.add(new Repondre(1,1,"1","serfzeqrze"));
+		listeReponses.add(new Repondre(1,2,"1","ertgdrydy"));
+		listeReponses.add(new Repondre(1,3,"1","fghthtrt"));
+		listeReponses.add(new Repondre(1,4,"1","gfyjhyt"));
+		listeReponses.add(new Repondre(1,5,"1","jfyjjy"));
 		for(Repondre elem: listeReponses){
 			
 		}
