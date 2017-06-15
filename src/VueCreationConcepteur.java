@@ -33,7 +33,7 @@ public class VueCreationConcepteur extends JPanel {
 	JPanel milieumilieu;
 	Client c;
 	ControleurConcepteurCreation cc;
-  VueCreationQuestionnaire vueCreationQuestionnaire
+  VueCreationQuestionnaire vueCreationQuestionnaire;
 	public VueCreationConcepteur(EasySond sond,int numQ) {
 		super();
 		this.sond=sond;
