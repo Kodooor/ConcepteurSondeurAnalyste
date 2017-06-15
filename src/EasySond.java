@@ -42,6 +42,10 @@ public class EasySond extends JFrame {
    * Prenom de l'utilisateur
    */
   String Prenom;
+  /**
+   * Role de l'utilisateur
+   */
+  int role;
 	/**
 	 * Constructeur qui va creer une vue pour le chargement et les modeles dont on a besoin
 	 *
@@ -94,6 +98,7 @@ public class EasySond extends JFrame {
 	void afficherVueModule(int role, String nom, String prenom){
     this.Nom = nom;
     this.Prenom = prenom;
+    this.role = role;
 		if(role == 1){
 			Container cont=this.getContentPane();
 			cont.removeAll();
