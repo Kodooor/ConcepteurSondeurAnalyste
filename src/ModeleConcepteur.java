@@ -39,5 +39,17 @@ public class ModeleConcepteur {
 	  }
 	  return null;
 	  }
-
+		public Client getClient(int numQ){
+		  try{
+		    ResultSet rs = st.executeQuery("Select * from CLIENT NATURAL JOIN QUESTIONNAIRE where idQ = '" + numQ + "'");
+				rs.next();
+		    Client c = new Client(rs.getInt(1), rs.getString(2),rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6),rs.getString(7),rs.getString(8));
+				rs.close();
+				return c;
+		  }
+		  catch(SQLException e){
+		    System.out.println(e);
+		  }
+		  return null;
+		  }
 }

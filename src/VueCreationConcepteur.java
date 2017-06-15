@@ -24,38 +24,38 @@ import javax.swing.border.TitledBorder;
 
 
 
-public class VueCreationConcepteur extends JFrame {
+public class VueCreationConcepteur extends JPanel {
 	JButton bout;
 	JButton boutt;
 	EasySond sond;
 	int numQ;
 	JPanel bidon4;
 	JPanel milieumilieu;
+	Client c;
+	ControleurConcepteurCreation cc;
 
 	public VueCreationConcepteur(EasySond sond,int numQ) {
 		super();
 		this.sond=sond;
 		this.numQ=numQ;
+		this.cc = new ControleurConcepteurCreation(this);
+		this.c = this.sond.basededonnes.BDConcepteur.getClient(this.numQ);
 		this.setLayout(new BorderLayout());
-		hautt();
-		milieu();
-		bouton();
-		informations();
+		this.add(hautt(),"North");
+		this.add(milieu(),"Center");
 	}
-	private void hautt(){
-		VueEnTete haut=new VueEnTete(this.sond,"Accueil Concepteur > Société n°? ","Concepteur",this.sond.Nom,this.sond.Prenom);
-		this.add(haut,"Center");
-		JLabel logo = new JLabel(new ImageIcon("LogoPetit.png"));
-		haut.add(logo,"North");
-		this.add(haut,"North");
+	Component hautt(){
+		VueEnTete haut=new VueEnTete(this.sond,"Accueil Concepteur > Société ","Concepteur",this.sond.Nom,this.sond.Prenom);
+		return haut;
 }
-	private void milieu(){
+	Component milieu(){
 		JPanel milieu = new JPanel(new BorderLayout());
 		milieu.setBackground(Color.RED);
 		this.add(milieu,"Center");
 		JPanel milieumilieu = new JPanel();
 		milieumilieu.setLayout(new BoxLayout(milieumilieu,BoxLayout.Y_AXIS));
 		milieumilieu.setBackground(Color.WHITE);
+		informations(milieumilieu);
 		milieu.add(milieumilieu,"Center");
 
 		JPanel bidon1 = new JPanel();
@@ -76,17 +76,20 @@ public class VueCreationConcepteur extends JFrame {
 		JPanel bidon4 = new JPanel();
 		bidon4.setBackground(new Color(78,217,255));
 		bidon4.setPreferredSize(new Dimension(70,70));
+		bouton(bidon4);
 		milieu.add(bidon4,"South");
+		return milieu;
 }
-private void bouton(){
+private void bouton(JPanel bidon4){
 		JPanel bouton = new JPanel(new FlowLayout());
 		JButton bout1 = new JButton("Retour");
 		JButton bout2= new JButton("Creer Questionnaire");
 		bouton.add(bout1);
+		bout1.addActionListener(this.cc);
 		bouton.add(bout2);
 		bidon4.add(bouton);
 }
-private void informations(){
+private void informations(JPanel milieumilieu){
 		JPanel informations = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JLabel text1 = new JLabel("Informations : ");
 		informations.add(text1);
@@ -94,21 +97,21 @@ private void informations(){
 
 		JPanel nomSociete = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JLabel text2 = new JLabel("Nom Societe : ");
-		JLabel nom = new JLabel("il faut mettre le nom de la société");
+		JLabel nom = new JLabel(c.getRaisonSociale());
     nomSociete.add(text2);
 		nomSociete.add(nom);
 		milieumilieu.add(nomSociete);
 
 		JPanel nomDirecteur = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel text3 = new JLabel("Nom Directeur : ");
-		JLabel nomDir = new JLabel("il faut mettre le nom du directeur");
+		JLabel text3 = new JLabel("Addresse Mail : ");
+		JLabel nomDir = new JLabel(c.getEmail());
     nomDirecteur.add(text3);
 		nomDirecteur.add(nomDir);
 		milieumilieu.add(nomDirecteur);
 
 		JPanel texteDemande = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		texteDemande.setBorder(new TitledBorder("Description de la demande : "));
-		JLabel text4 = new JLabel("La description de la demande");
+		JLabel text4 = new JLabel(c.getVille() + c.getAdresse1());
 		texteDemande.add(text4);
 		milieumilieu.add(texteDemande);
 }
