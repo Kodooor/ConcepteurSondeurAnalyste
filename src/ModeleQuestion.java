@@ -30,6 +30,7 @@ public class ModeleQuestion {
       int num = rs.getInt(1) + 1;
       rs.close();
 	    return num;
+
 	  }
 	  catch(SQLException e){
 	    System.out.println(e);
