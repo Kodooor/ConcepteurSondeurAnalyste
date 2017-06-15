@@ -30,14 +30,14 @@ public class VueCreationQuestionnaire extends JPanel{
 	JPanel bidon4;
 	JPanel milieumilieu;
 	Client c;
-	ControleurConcepteurCreation cc;
+	ControleurCreationQuestionnaire cc;
 
 
   public VueCreationQuestionnaire(EasySond sond, int numQ) {
 		super();
 		this.sond=sond;
     this.numQ=numQ;
-    this.cc = new ControleurConcepteurCreation(this);
+    this.cc = new ControleurCreationQuestionnaire(this);
     this.c = this.sond.basededonnes.BDConcepteur.getClient(this.numQ);
     this.setLayout(new BorderLayout());
 		this.add(hautt(),"North");
@@ -85,7 +85,7 @@ public class VueCreationQuestionnaire extends JPanel{
     JButton bout1 = new JButton("Retour");
     JButton bout2= new JButton("Valider");
     bouton.add(bout1);
-    bout1.addActionListenerValider(this.cc);
+    bout1.addActionListener(this.cc);
     bout2.addActionListener(this.cc);
     bouton.add(bout2);
     bidon4.add(bouton);
