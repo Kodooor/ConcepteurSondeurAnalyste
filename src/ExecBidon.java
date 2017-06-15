@@ -1,4 +1,4 @@
-import javax.swing.JFrame;
+/*import javax.swing.JFrame;
 
 
 public class ExecBidon extends JFrame{
@@ -17,6 +17,6 @@ public class ExecBidon extends JFrame{
 		ExecBidon exec = new ExecBidon();
 
 	}
-}
+}*/
 
 

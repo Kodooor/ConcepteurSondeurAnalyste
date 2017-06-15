@@ -20,7 +20,7 @@ public class VueCreerAnalyse extends JPanel{
 	VueAccueilAnalyste vaa;
 	String idQ;
 	ArrayList<Question> listeQuestion;
-	//VueEtudeQuestion vueEtudeQuestion;
+	VueEtudeQuestion vueEtudeQuestion;
 	ControleurEtudeQuestion ceq;
 	VueCreerAnalyse(String idQ,VueAccueilAnalyste vaa){
 		super();
@@ -68,7 +68,7 @@ public class VueCreerAnalyse extends JPanel{
 			boutton1.setName(""+q.getIdQuestion());
 
 			cQuestion.add(new JLabel(" "));
-			cQuestion.add(new JLabel("       Question "+i));
+			cQuestion.add(new JLabel("       Question "+q.getIdQuestion()));
 			cQuestion.add(new JLabel(" "));
 			cQuestion.add(new JLabel("       "+q.getTexteQuestion()));
 			cQuestion.add(new JLabel(" "));
@@ -103,9 +103,9 @@ public class VueCreerAnalyse extends JPanel{
 	public void afficherVueEtudeQuestion(String nom) {
 		Container cont = this.vaa.sond.getContentPane();
 		cont.removeAll();
-		//Question temp =this.modele.getQuestion(Integer.parseInt(idQ), Integer.parseInt(nom));
-		//vueEtudeQuestion = new VueEtudeQuestion(this.vaa.sond,temp);
-		//cont.add(vueEtudeQuestion);
+		Question temp =this.modele.getQuestion(Integer.parseInt(idQ), Integer.parseInt(nom));
+		this.vueEtudeQuestion = new VueEtudeQuestion(this.vaa.sond,temp);
+		cont.add(vueEtudeQuestion);
 		cont.validate();
 		cont.repaint();
 	}

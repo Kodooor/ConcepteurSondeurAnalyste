@@ -13,11 +13,11 @@ public class VueEtudeQuestion extends JPanel {
 	
 	EasySond easySond;
 	
-	//Question question;
+	Question question;
 	
-	VueEtudeQuestion(EasySond easySond){//, Question q){
+	VueEtudeQuestion(EasySond easySond, Question q){
 		this.easySond = easySond;
-		//this.question = q;
+		this.question = q;
 		enTete();
 		corps();
 	}
@@ -36,7 +36,7 @@ public class VueEtudeQuestion extends JPanel {
 		JPanel bas = new JPanel();
 		
 		haut.setLayout(new FlowLayout(FlowLayout.LEFT));
-		JLabel titre = new JLabel("Question 1:");
+		JLabel titre = new JLabel("Question "+this.question.getIdQuestion()+ ": ");
 		titre.setFont(new Font("Arial",Font.BOLD,30));
 		haut.add(titre);
 		
@@ -46,7 +46,7 @@ public class VueEtudeQuestion extends JPanel {
 		centre.setLayout(new BoxLayout(centre,BoxLayout.Y_AXIS));
 		JPanel infoQuestion = new JPanel();
 		infoQuestion.setBorder(new TitledBorder("Informations question:"));
-		infoQuestion.add(new JLabel("Ici veuillez ajouter les informations des questions"));
+		infoQuestion.add(new JLabel(this.question.getTexteQuestion()));
 		centre.add(infoQuestion);
 		
 //		JPanel reponses = new JPanel();
