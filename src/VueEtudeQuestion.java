@@ -1,12 +1,14 @@
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 
 
@@ -66,20 +68,43 @@ public class VueEtudeQuestion extends JPanel {
 		
 		bas.setLayout(new BoxLayout(bas,BoxLayout.Y_AXIS));
 		JLabel titreBas1 = new JLabel("Représentation :");
-		titre.setFont(new Font("Arial",Font.BOLD,30));
-		JLabel titreBas2 = new JLabel("Commenter :");
-		titre.setFont(new Font("Arial",Font.BOLD,30));
+		titreBas1.setFont(new Font("Arial",Font.BOLD,30));
+		
 		JPanel panelBoutons1 = new JPanel();
-		panelBoutons1.add(new JButton("Bâtons"));
-		panelBoutons1.add(new JButton("Camembert"));
-		panelBoutons1.add(new JButton("Graphique"));
-		panelBoutons1.add(new JButton("Brut"));
+		JButton bouton1 = new JButton("Bâtons");
+		JButton bouton2 = new JButton("Camembert");
+		JButton bouton3 = new JButton("Graphique");
+		JButton bouton4 = new JButton("Brut");
+		panelBoutons1.add(bouton1);
+		panelBoutons1.add(bouton2);
+		panelBoutons1.add(bouton3);
+		panelBoutons1.add(bouton4);
+
+		JLabel titreBas2 = new JLabel("Commenter :");
+		titreBas2.setFont(new Font("Arial",Font.BOLD,30));
+		
+		JTextArea zoneTexte = new JTextArea(5,1);
+		zoneTexte.setLineWrap(true);
+		zoneTexte.setWrapStyleWord(true);
+		
+		JPanel panelBoutons2 = new JPanel();
+		JButton bouton5 = new JButton("Annuler");
+		JButton bouton6 = new JButton("Valider");
+		panelBoutons2.add(bouton5);
+		panelBoutons2.add(bouton6);
+		
+		bas.add(titreBas1);
+		bas.add(panelBoutons1);
+		bas.add(titreBas2);
+		bas.add(zoneTexte);
+		bas.add(panelBoutons2);
 		
 		panelGeneral.setLayout(new BorderLayout());
 		panelGeneral.add(haut,"North");
 		panelGeneral.add(gauche,"West");
 		panelGeneral.add(droite,"East");
 		panelGeneral.add(centre,"Center");
+		panelGeneral.add(bas,"South");
 		this.add(panelGeneral,"Center");
 	}
 }
