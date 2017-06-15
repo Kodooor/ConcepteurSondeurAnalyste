@@ -1,23 +1,23 @@
 
 public class Caracteristique {
 	
-	private char idCaracteristique;
+	private String idCaracteristique;
 	private char sexe;
 	private char idTranche;
 	private char idCategorie;
 	
-	public Caracteristique (char idc, char s, char idtr, char idcat) {
+	public Caracteristique (String idc, char s, char idtr, char idcat) {
 		this.idCaracteristique = idc;
 		this.sexe = s;
 		this.idTranche = idtr;
 		this.idCategorie = idcat;
 	}
 
-	public char getIdCaracteristique() {
+	public String getIdCaracteristique() {
 		return idCaracteristique;
 	}
 
-	public void setIdCaracteristique(char idCaracteristique) {
+	public void setIdCaracteristique(String idCaracteristique) {
 		this.idCaracteristique = idCaracteristique;
 	}
 

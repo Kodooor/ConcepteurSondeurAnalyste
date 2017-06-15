@@ -18,6 +18,7 @@ public class VueEnTete extends JPanel {
 	String prenom;
 	private ControleurDeco cc;
 	EasySond sond;
+	ControleurMaison cm;
 	VueEnTete(EasySond sond,String titre,String role,String nom,String prenom){
 		super();
 		this.sond=sond;
@@ -26,6 +27,7 @@ public class VueEnTete extends JPanel {
 		this.nom=nom;
 		this.prenom=prenom;
 		this.cc = new ControleurDeco(this);
+		this.cm= new ControleurMaison(this.sond);
 		enTete();
 	}
 	private void enTete(){
@@ -70,6 +72,7 @@ public class VueEnTete extends JPanel {
 		JPanel imageHome = new JPanel();
 		ImageIcon maison = new ImageIcon("home.jpg");
 		JButton boutonMaison = new JButton(maison);
+		boutonMaison.addActionListener(this.cm);
 		//JLabel home = new JLabel(new ImageIcon("home.jpg"));
 		//home.setSize(panelImage.getWidth(),panelImage.getHeight());
 		boutonMaison.setOpaque(false);
