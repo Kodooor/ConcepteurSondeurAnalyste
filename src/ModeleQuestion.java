@@ -27,7 +27,7 @@ public class ModeleQuestion {
 	  try{
 	    ResultSet rs = st.executeQuery("Select IFNULL(MAX(numQ), 0) from QUESTION where idQ = '" + idQ + "'");
       rs.next();
-      int num = rs.getInt(1);
+      int num = rs.getInt(1) + 1;
       rs.close();
 	    return num;
 	  }
@@ -36,4 +36,5 @@ public class ModeleQuestion {
 	  }
 	  return -1;
 	  }
+
 }
