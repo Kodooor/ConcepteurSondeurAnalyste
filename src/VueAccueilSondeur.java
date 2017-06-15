@@ -13,6 +13,7 @@ public class VueAccueilSondeur extends JPanel{
 	VueAccueilSondeur(EasySond sond){
 		super();
 		this.sond = sond;
+		this.actionBoutons = new ControleurAccueilSondeur(this);
 		this.questionnaire = this.sond.basededonnes.BDaccueilSondeur.GetQuestionnaire();
 		this.listeSonde = this.sond.basededonnes.BDaccueilSondeur.GetListeSonde(this.questionnaire.getIdentifiantPanel());
 		pageGenerator(false);
@@ -21,11 +22,10 @@ public class VueAccueilSondeur extends JPanel{
 
 	void refresh(boolean e){
 		Container cont=this.sond.getContentPane();
-		cont.removeAll();
+		this.removeAll();
 		pageGenerator(e);
-		cont.setBackground(new Color(78,217,255));
-		cont.repaint();
 		cont.validate();
+		cont.repaint();
 	}
 
 	void pageGenerator(boolean e){
@@ -135,4 +135,5 @@ public class VueAccueilSondeur extends JPanel{
 
 		return panelHelp;
 	}
+	//
 }

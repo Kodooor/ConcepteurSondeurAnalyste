@@ -36,9 +36,9 @@ public class ControleurAccueilSondeur implements ActionListener{
 		{
 			case "Accéder au questionnaire" :break;
 			case "Passer au sondé suivant "  :break;
-      case "    Appeler le sondé    "  ://vueAccueilSondeur.refresh(true);
+      case "    Appeler le sondé    "  :this.vueAccueilSondeur.refresh(true);
              	 													break;
-      case "Appel en cours (annuler)"  ://vueAccueilSondeur.refresh(false);
+      case "Appel en cours (annuler)"  :this.vueAccueilSondeur.refresh(false);
                													break;
 			default    :break;
 		}
