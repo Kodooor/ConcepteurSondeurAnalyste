@@ -18,7 +18,6 @@ public class ControleurAccueilSondeur implements ActionListener{
 
 	VueAccueilSondeur vueAccueilSondeur;
 
-
 	/**
 	 * Constructeur qui permet de fixer la vue et le modele
 	 * //param motus le modele
@@ -34,8 +33,10 @@ public class ControleurAccueilSondeur implements ActionListener{
 	{
 		switch(((JButton) arg0.getSource()).getText())
 		{
-			case "Accéder au questionnaire" :break;
-			case "Passer au sondé suivant "  :break;
+			case "Accéder au questionnaire"  :this.vueAccueilSondeur.refreshRemplissage();
+																				break;
+			case "Passer au sondé suivant "  :
+																				break;
       case "    Appeler le sondé    "  :this.vueAccueilSondeur.refresh(true);
              	 													break;
       case "Appel en cours (annuler)"  :this.vueAccueilSondeur.refresh(false);
