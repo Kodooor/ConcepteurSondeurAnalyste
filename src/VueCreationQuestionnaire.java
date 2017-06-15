@@ -41,6 +41,7 @@ public class VueCreationQuestionnaire extends JPanel{
     this.c = this.sond.basededonnes.BDConcepteur.getClient(this.numQ);
     this.setLayout(new BorderLayout());
 		this.add(hautt(),"North");
+    this.add(milieu(),"Center");
 }
 
   Component hautt(){
