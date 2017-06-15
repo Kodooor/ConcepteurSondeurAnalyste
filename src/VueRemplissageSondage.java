@@ -8,7 +8,7 @@ public class VueRemplissageSondage extends JPanel{
 	VueRemplissageSondage(EasySond sond){
 		super();
 		this.sond=sond;
-		this.add(pageGenerator(0));
+		pageGenerator(0);
 		this.setVisible(true);
 	}
 
@@ -20,33 +20,31 @@ public class VueRemplissageSondage extends JPanel{
 	// 	cont.repaint();
 	// }
 
-	Component pageGenerator(int e){
-		JPanel tout = new JPanel();
-		tout.setLayout(new BoxLayout(tout,BoxLayout.Y_AXIS));
+	void pageGenerator(int e){
+		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 
 			//niveau 1
 		JPanel lv1= new JPanel();
 		lv1.setLayout(new FlowLayout(FlowLayout.LEFT));
 		nomPage(lv1);
-		tout.add(lv1);
+		this.add(lv1);
 
 			//niveau 2
 		JPanel lv2= new JPanel();
 		lv2.setLayout(new BoxLayout(lv2,BoxLayout.Y_AXIS));
 		nomSondage(lv2);
-		tout.add(lv2);
+		this.add(lv2);
 
 			//niveau 3
 		JPanel lv3= new JPanel();
 		lv3.setLayout(new FlowLayout());
 		intitule(lv3);
-		tout.add(lv3);
+		this.add(lv3);
 
 			//niveau 4
 
 			//niveau 5
 
-			return tout;
 	}
 
 	void nomPage(JPanel lv1){	//Annonce de la page
