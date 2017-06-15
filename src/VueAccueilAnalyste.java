@@ -46,10 +46,6 @@ public class VueAccueilAnalyste extends JPanel {
 		for(Questionnaire q:this.listeQuestionnaire){
 			scroll(scroll1.getPanel(),q.getTitreQuestionnaire(),"Créer",q.getNumeroQuestionnaire());
 		}
-        // Test
-        //scroll(scroll1.getPanel(),"salut","créer");
-        //scroll(scroll1.getPanel(),"Test","créer");
-        
         
         this.add(principal,"Center");
         
