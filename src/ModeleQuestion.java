@@ -26,7 +26,7 @@ public class ModeleQuestion {
   public int getNumQuestionActuel(int idQ){
 	  try{
 	    ResultSet rs = st.executeQuery("Select IFNULL(MAX(numQ), 0) from QUESTION where idQ = '" + idQ + "'");
-      rs.next()
+      rs.next();
       int num = rs.getInt(1);
       rs.close();
 	    return num;
