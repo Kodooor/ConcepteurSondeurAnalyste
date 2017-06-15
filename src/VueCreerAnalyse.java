@@ -39,7 +39,7 @@ public class VueCreerAnalyse extends JPanel{
 	}
 	private Component enTete(){
 		// Le panel haut
-		VueEnTete haut = new VueEnTete(this.vaa.sond,"Création d'une analyse","Analyste",this.vaa.sond.Nom,this.vaa.sond.Prenom);
+		VueEnTete haut = new VueEnTete(this.vaa.sond,"Accueil > Création d'une analyse","Analyste",this.vaa.sond.Nom,this.vaa.sond.Prenom);
 		return haut;
 	}
 	
