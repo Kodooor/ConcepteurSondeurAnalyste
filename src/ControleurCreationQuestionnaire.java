@@ -25,22 +25,23 @@ public class ControleurCreationQuestionnaire implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-    if(((JButton) arg0.getSource()).getText().equals("Retour")){
-      Container cont=this.vueCreationQuestionnaire.sond.getContentPane();
-			cont.removeAll();
-			VueCreationConcepteur vueCreationConcepteur = new VueCreationConcepteur(this.vueCreationQuestionnaire.sond, this.vueCreationQuestionnaire.numQ);
-			cont.add(vueCreationConcepteur);
-			cont.validate();
-			cont.repaint();
+		EasySond fenetrePrincipale=this.vueCreationQuestionnaire.sond;
+    if(((JButton) arg0.getSource()).getText().equals("Quitter")){
+			int retour = JOptionPane.showOptionDialog(fenetrePrincipale, "Voulez - vous vraiment quitter ?","Attention !!",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null, null, null);
+			if(retour==0){
+				fenetrePrincipale.afficherVueModule(1,fenetrePrincipale.Nom,fenetrePrincipale.Prenom);
+			}
     }
-		else{
-			Container cont=this.vueCreationQuestionnaire.sond.getContentPane();
-			cont.removeAll();
-			VueCreationQuestionnaire vueCreationQuestionnaire = new VueCreationQuestionnaire(this.vueCreationQuestionnaire.sond, this.vueCreationQuestionnaire.numQ);
-			cont.add(vueCreationQuestionnaire);
-			cont.validate();
-			cont.repaint();
+		else if(((JButton) arg0.getSource()).getText().equals("Ajouter Question")){
+      this.vueCreationQuestionnaire.afficherVueModificationsQuestionnaireConcepteur(fenetrePrincipale,this.vueCreationQuestionnaire.numQ);
+    }
+		else if(((JButton) arg0.getSource()).getText().equals("Publier")){
+      int retour = JOptionPane.showOptionDialog(fenetrePrincipale, "Voulez - vous vraiment publier votre Questionnaire  ?", "Publication",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null, null, null);
+			if(retour==0){
+				fenetrePrincipale.afficherVueModule(1,fenetrePrincipale.Nom,fenetrePrincipale.Prenom);
+			}
 		}
-
-	}
+		else{
+			JOptionPane.showMessageDialog(fenetrePrincipale, "nique ta race !");
 }
+}}

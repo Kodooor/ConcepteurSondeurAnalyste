@@ -22,7 +22,7 @@ import javax.swing.*;
 import java.awt.*;
 import javax.swing.border.TitledBorder;
 
-public class VueCreationQuestionnaire extends JPanel{
+public class VueModificationsQuestionnaireConcepteur extends JPanel{
   JButton bout;
 	JButton boutt;
 	EasySond sond;
@@ -30,33 +30,24 @@ public class VueCreationQuestionnaire extends JPanel{
 	JPanel bidon4;
 	JPanel milieumilieu;
 	Client c;
-	ControleurCreationQuestionnaire cc;
-  VueModificationsQuestionnaireConcepteur vueModificationsQuestionnaireConcepteur;
+	ControleurModificationsQuestionnaireConcepteur cc;
 
 
-  public VueCreationQuestionnaire(EasySond sond, int numQ) {
+  public VueModificationsQuestionnaireConcepteur(EasySond sond, int numQ) {
 		super();
 		this.sond=sond;
     this.numQ=numQ;
-    this.cc = new ControleurCreationQuestionnaire(this);
+    this.cc = new ControleurModificationsQuestionnaireConcepteur(this);
     this.c = this.sond.basededonnes.BDConcepteur.getClient(this.numQ);
     this.setLayout(new BorderLayout());
 		this.add(hautt(),"North");
     this.add(milieu(),"Center");
 }
-  void afficherVueModificationsQuestionnaireConcepteur(EasySond sond, int num){
-    Container cont=this.sond.getContentPane();
-    cont.removeAll();
-    this.vueModificationsQuestionnaireConcepteur = new VueModificationsQuestionnaireConcepteur(this.sond,num);
-    cont.add(vueModificationsQuestionnaireConcepteur);
-    cont.validate();
-    cont.repaint();
-  }
+
   Component hautt(){
-    VueEnTete haut=new VueEnTete(this.sond,"Accueil Concepteur > Société n°? > Création questionnaire","Concepteur",this.sond.Nom,this.sond.Prenom);
+    VueEnTete haut=new VueEnTete(this.sond,"Accueil Concepteur > Société n°? > Modification questionnaire","Concepteur",this.sond.Nom,this.sond.Prenom);
     return haut;
 }
-
   Component milieu(){
     JPanel milieu = new JPanel(new BorderLayout());
     milieu.setBackground(Color.RED);
@@ -91,25 +82,47 @@ public class VueCreationQuestionnaire extends JPanel{
   }
   private void bouton(JPanel bidon4){
     JPanel bouton = new JPanel(new FlowLayout());
-    JButton bout1 = new JButton("Quitter");
-    JButton bout2= new JButton("Publier");
-    JButton bout3 = new JButton("Ajouter Question");
-    JButton bout4 = new JButton("Sauvegarder");
+    JButton bout1 = new JButton("Retour");
+    JButton bout2= new JButton("Valider");
     bouton.add(bout1);
-    bouton.add(bout3);
     bout1.addActionListener(this.cc);
     bout2.addActionListener(this.cc);
-    bout3.addActionListener(this.cc);
-    bout4.addActionListener(this.cc);
-    bouton.add(bout4);
     bouton.add(bout2);
     bidon4.add(bouton);
   }
   private void informations(JPanel milieumilieu){
-    JPanel LesQ = new JPanel(new FlowLayout(FlowLayout.LEFT));
-    LesQ.setBorder(new TitledBorder("Liste des Questions : "));
-    JLabel text4 = new JLabel(c.getVille() + c.getAdresse1());
-    LesQ.add(text4);
-    milieumilieu.add(LesQ);
+    JPanel enonce = new JPanel(new FlowLayout(FlowLayout.LEFT));
+    enonce.setBorder(new TitledBorder("Énoncé : "));
+		JLabel text = new JLabel(c.getVille() + c.getAdresse1());
+		enonce.add(text);
+		milieumilieu.add(enonce);
+
+		JPanel type = new JPanel(new FlowLayout(FlowLayout.LEFT));
+    JLabel typee = new JLabel("Type :");
+    String [] lesChoix={"Choix multiples","Choix simple","Choix libre"};
+    JComboBox <String> maListeChoix=new JComboBox <String> (lesChoix);
+    type.add(typee);
+    type.add(maListeChoix);
+    milieumilieu.add(type);
+
+		JPanel reponse = new JPanel(new FlowLayout(FlowLayout.LEFT));
+    reponse.setBorder(new TitledBorder("Réponses :"));
+    JRadioButton  choix1=new JRadioButton("Choix 1   ");
+    JRadioButton  choix2=new JRadioButton("Choix 2   ");
+    JRadioButton  choix3=new JRadioButton("Choix 3   ");
+    JRadioButton  choix4=new JRadioButton("Choix 4   ");
+    JRadioButton  choix5=new JRadioButton("Choix 5   ");
+    ButtonGroup  choixOption=new ButtonGroup ();
+    choixOption.add(choix1);
+    choixOption.add(choix2);
+    choixOption.add(choix3);
+    choixOption.add(choix4);
+    choixOption.add(choix5);
+    reponse.add(choix1);
+    reponse.add(choix2);
+    reponse.add(choix3);
+    reponse.add(choix4);
+    reponse.add(choix5);
+    milieumilieu.add(reponse);
   }
   }
