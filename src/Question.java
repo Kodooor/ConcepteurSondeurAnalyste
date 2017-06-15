@@ -5,10 +5,10 @@ public class Question {
 	private String texteQuestion;
 	private int maxValeur;
 	private char idTypeQuestion;
-	
-	public Question (int idq, int numq, String tq, int mv, char idtq) {
-		this.idQuestion = idq;
+
+	public Question (int numq, int idq, String tq, int mv, char idtq) {
 		this.numeroQuestionnaire = numq;
+		this.idQuestion = idq;
 		this.texteQuestion = tq;
 		this.maxValeur = mv;
 		this.idTypeQuestion = idtq;
@@ -53,8 +53,6 @@ public class Question {
 	public void setIdTypeQuestion(char idTypeQuestion) {
 		this.idTypeQuestion = idTypeQuestion;
 	}
-	
-	
-}
 
-	
+
+}
