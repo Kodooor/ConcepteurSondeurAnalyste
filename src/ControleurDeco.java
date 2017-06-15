@@ -10,7 +10,7 @@ public class ControleurDeco implements ActionListener{
 	private VueEnTete vueEnTete;
 	/**
 	 * Constructeur qui donne un acces a la deconnection
-	 * @param vueEnTete 
+	 * @param vueEnTete
 	 */
 	public ControleurDeco(VueEnTete vueEnTete) {
 		super();
@@ -21,7 +21,7 @@ public class ControleurDeco implements ActionListener{
 		EasySond fenetrePrincipale=(EasySond) vueEnTete.getRootPane().getParent();
 		int retour = JOptionPane.showOptionDialog(fenetrePrincipale, "You really want to quit?", "Quit?",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null, null, null);
 		if(retour==0){
-			fenetrePrincipale.dispose();
+			this.vueEnTete.sond.afficherVueAccueil();
 		}
 	}
 }
