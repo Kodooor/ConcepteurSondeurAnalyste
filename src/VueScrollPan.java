@@ -9,10 +9,10 @@ import javax.swing.JScrollPane;
 
 @SuppressWarnings("serial")
 public class VueScrollPan extends JPanel {
-	
+
 	private String titre;
 	private JPanel jp;
-	
+
 	VueScrollPan(String titre){
 		super();
 		this.titre=titre;
@@ -32,7 +32,7 @@ public class VueScrollPan extends JPanel {
 	                                     JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 	    this.add(js);
 	}
-	
+
 	public JPanel getPanel(){
 		return this.jp;
 	}
