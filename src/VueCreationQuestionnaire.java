@@ -32,6 +32,7 @@ public class VueCreationQuestionnaire extends JPanel{
     this.numQ=numQ;
     this.setLayout(new BorderLayout());
 		this.add(hautt(),"North");
+    System.out.println("VIENS LA BATARD");
 }
 
   Component hautt(){
