@@ -44,7 +44,7 @@ public class VueCreationConcepteur extends JPanel {
 		this.add(hautt(),"North");
 		this.add(milieu(),"Center");
 	}
-	void afficherVueCreationQuestionnaire(int num){
+	void afficherVueCreationQuestionnaire(EasySond sond, int num){
 		Container cont=this.sond.getContentPane();
 		cont.removeAll();
 		this.vueCreationQuestionnaire = new VueCreationQuestionnaire(this.sond,num);
