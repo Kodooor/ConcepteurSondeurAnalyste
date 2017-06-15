@@ -1,21 +1,21 @@
 
 public class Categorie {
-	
-	private char idCategorie;
+
+	private String idCategorie;
 	private String intituleCategorie;
-	
-	public Categorie (char idcat, String icat) {
+
+	public Categorie (String idcat, String icat) {
 		this.idCategorie = idcat;
 		this.intituleCategorie = icat;
 	}
 
-	public char getIdCategorie() {
+	public String getIdCategorie() {
 		return idCategorie;
 	}
 
 	public String getIntituleCategorie() {
 		return intituleCategorie;
 	}
-	
-	
+
+
 }

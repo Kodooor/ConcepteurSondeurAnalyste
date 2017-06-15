@@ -5,9 +5,9 @@ public class Utilisateur {
 	private String prenomUtilisateur;
 	private String loginUtilisateur;
 	private String motdepasseUtilisateur;
-	private char identifiantRole;
-	
-	public Utilisateur (int id, String nu, String pu, String lu, String mdpu, char idr) {
+	private String identifiantRole;
+
+	public Utilisateur (int id, String nu, String pu, String lu, String mdpu, String idr) {
 		this.identifiantUtilisateur = id;
 		this.nomUtilisateur = nu;
 		this.prenomUtilisateur = pu;
@@ -56,13 +56,13 @@ public class Utilisateur {
 		this.motdepasseUtilisateur = motdepasseUtilisateur;
 	}
 
-	public char getIdentifiantRole() {
+	public String getIdentifiantRole() {
 		return identifiantRole;
 	}
 
-	public void setIdentifiantRole(char identifiantRole) {
+	public void setIdentifiantRole(String identifiantRole) {
 		this.identifiantRole = identifiantRole;
 	}
-	
-	
+
+
 }

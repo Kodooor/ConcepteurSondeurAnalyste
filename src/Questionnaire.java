@@ -2,16 +2,16 @@
 public class Questionnaire {
 	private int numeroQuestionnaire;
 	private String titreQuestionnaire;
-	private char etatQuestionnaire;
+	private String etatQuestionnaire;
 	private int numClient;
 	private int identifiantUtilisateur;
 	private int identifiantPanel;
-	
-	static char ENCOURS = 'C';
-	static char PRETPOURLESONDAGE = 'S';
-	static char PRETPOURANALYSTE = 'A';
-	
-	public Questionnaire (int nq, String tq, char eq, int nc, int iu, int ip) {
+
+	static String ENCOURS = 'C';
+	static String PRETPOURLESONDAGE = 'S';
+	static String PRETPOURANALYSTE = 'A';
+
+	public Questionnaire (int nq, String tq, String eq, int nc, int iu, int ip) {
 		this.numeroQuestionnaire = nq;
 		this.titreQuestionnaire = tq;
 		this.etatQuestionnaire = eq;
@@ -36,11 +36,11 @@ public class Questionnaire {
 		this.titreQuestionnaire = titreQuestionnaire;
 	}
 
-	public char getEtatQuestionnaire() {
+	public String getEtatQuestionnaire() {
 		return etatQuestionnaire;
 	}
 
-	public void setEtatQuestionnaire(char etatQuestionnaire) {
+	public void setEtatQuestionnaire(String etatQuestionnaire) {
 		this.etatQuestionnaire = etatQuestionnaire;
 	}
 
@@ -67,6 +67,6 @@ public class Questionnaire {
 	public void setIdentifiantPanel(int identifiantPanel) {
 		this.identifiantPanel = identifiantPanel;
 	}
-	
-	
+
+
 }
