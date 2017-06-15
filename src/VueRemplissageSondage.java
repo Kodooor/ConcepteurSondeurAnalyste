@@ -1,17 +1,27 @@
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
+import java.util.ArrayList;
+
 
 @SuppressWarnings("serial")
 public class VueRemplissageSondage extends JPanel{
 	EasySond sond;
 	ControleurRemplissageSondage controleur;
-	VueRemplissageSondage(EasySond sond){
+	Questionnaire questionnaire;
+	Sonde sonde;
+	ArrayList<Question> listeQuestion;
+
+
+	VueRemplissageSondage(EasySond sond, Questionnaire q, Sonde s){
 		super();
 		this.sond=sond;
 		this.controleur= new ControleurRemplissageSondage(this);
 		pageGenerator("l");
 		this.setVisible(true);
+		this.questionnaire = q;
+		this.sonde = s;
+		listeQuestion = this.sond.basededonnes.BDaccueilSondeur.GetListeQuestion(questionnaire.getNumeroQuestionnaire());
 	}
 
 	void refresh(String e){
