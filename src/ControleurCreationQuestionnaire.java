@@ -28,7 +28,7 @@ public class ControleurCreationQuestionnaire implements ActionListener{
     if(((JButton) arg0.getSource()).getText().equals("Retour")){
       Container cont=this.vueCreationQuestionnaire.sond.getContentPane();
 			cont.removeAll();
-			VueCreationConcepteur vueCreationConcepteur = new VueCreationConcepteur(this.vueCreationQuestionnaire.sond);
+			VueCreationConcepteur vueCreationConcepteur = new VueCreationConcepteur(this.vueCreationQuestionnaire.sond, this.vueCreationQuestionnaire.num);
 			cont.add(vueCreationConcepteur);
 			cont.validate();
 			cont.repaint();
@@ -36,7 +36,7 @@ public class ControleurCreationQuestionnaire implements ActionListener{
 		if(((JButton) arg0.getSource()).getText().equals("Valider")){
 			Container cont=this.vueCreationQuestionnaire.sond.getContentPane();
 			cont.removeAll();
-			VueCreationQuestionnaire vueCreationQuestionnaire = new VueCreationQuestionnaire(this.vueCreationQuestionnaire.sond, this.vueCreationQuestionnaire.numQ);
+			VueCreationQuestionnaire vueCreationQuestionnaire = new VueCreationQuestionnaire(this.vueCreationQuestionnaire.sond, this.vueCreationQuestionnaire.num);
 			cont.add(vueCreationQuestionnaire);
 			cont.validate();
 			cont.repaint();
