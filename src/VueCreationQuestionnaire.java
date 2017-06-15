@@ -23,6 +23,8 @@ import java.awt.*;
 import javax.swing.border.TitledBorder;
 
 public class VueCreationQuestionnaire extends JPanel{
+  EasySond sond;
+  int numQ;
 
   public VueCreationQuestionnaire(EasySond sond, int numQ) {
 		super();
@@ -35,4 +37,5 @@ public class VueCreationQuestionnaire extends JPanel{
   Component hautt(){
     VueEnTete haut=new VueEnTete(this.sond,"Accueil Concepteur > Société n°? > Création questionnaire","Concepteur",this.sond.Nom,this.sond.Prenom);
     return haut;
+}
 }
