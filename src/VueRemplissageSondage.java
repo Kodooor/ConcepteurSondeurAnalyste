@@ -5,22 +5,24 @@ import javax.swing.border.TitledBorder;
 @SuppressWarnings("serial")
 public class VueRemplissageSondage extends JPanel{
 	EasySond sond;
+	ControleurRemplissageSondage controleur;
 	VueRemplissageSondage(EasySond sond){
 		super();
 		this.sond=sond;
-		pageGenerator(0);
+		this.controleur= new ControleurRemplissageSondage(this);
+		pageGenerator("l");
 		this.setVisible(true);
 	}
 
-	// void refresh(int e){
-	// 	Container cont=this.sond.getContentPane();
-	// 	this.removeAll();
-	// 	pageGenerator(e);
-	// 	cont.validate();
-	// 	cont.repaint();
-	// }
+	void refresh(String e){
+		Container cont=this.sond.getContentPane();
+		this.removeAll();
+		pageGenerator(e);
+		cont.validate();
+		cont.repaint();
+	}
 
-	void pageGenerator(int e){
+	void pageGenerator(String e){
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 
 			//niveau 1
@@ -44,10 +46,14 @@ public class VueRemplissageSondage extends JPanel{
 			//niveau 4
 		JPanel lv4= new JPanel();
 		lv4.setLayout(new BoxLayout(lv4,BoxLayout.X_AXIS));
-
+		lv4.add(reponse(e));
+		this.add(lv4);
 
 			//niveau 5
-
+		JPanel lv5= new JPanel();
+		lv5.setLayout(new BoxLayout(lv5,BoxLayout.X_AXIS));
+		lv5.add(boutons());
+		this.add(lv5);
 	}
 
 	void nomPage(JPanel lv1){	//Annonce de la page
@@ -77,10 +83,69 @@ public class VueRemplissageSondage extends JPanel{
 		lv3.add(panelIntitule);
 	}
 
-	JPanel question(){
+	Component reponse(String typeQuestion){
 		JPanel question= new JPanel();
 		question.setLayout(new BoxLayout(question,BoxLayout.X_AXIS));
-		JLabel label = new JLabel("Intitulé : ");
+		//intitulé
+		question.setBorder(new TitledBorder("réponse"));
+		//réponses
+		JPanel panelQuestion= new JPanel();
+		ButtonGroup panelChoix=new ButtonGroup();
+		switch(typeQuestion){
+			//choix unique
+			case "u": for(int i=0;i<5;i++){
+								 JRadioButton c =new JRadioButton("Choix"+i);
+								 panelQuestion.add(c);
+								 panelChoix.add(c);
+							 }
+							break;
+			//choix multiple
+			case "m": for(int i=0;i<5;i++){
+								 JCheckBox  c =new JCheckBox("Choix"+i);
+								 panelQuestion.add(c);
+							 }
+							break;
+			//classement
+			case "c": panelQuestion.setLayout(new BoxLayout(panelQuestion,BoxLayout.Y_AXIS));
+								//String [] liste = new String [listeDeLaBD.size()];
+		 					  //listeDeLaBD = entetes1.toArray(liste);
+								String [] liste={"opt1","opt2","opt3"};
+								JComboBox <String> maListe=new JComboBox <String> (liste);
+								for(int i=1;i<liste.length+1;i++){
+									JPanel p = new JPanel();
+									p.setLayout(new BoxLayout(p,BoxLayout.X_AXIS));
+									JLabel l = new JLabel(i+" : ");
+									p.add(l);
+								  p.add(maListe);
+									panelQuestion.add(p);
+						 		}
+							break;
+			//réponse
+			case "l":JTextField maZone=new JTextField(100);
+							 panelQuestion.add(maZone);
+							break;
+			//note
+			case "n":String [] liste2={"1","2","3"};
+							 JComboBox <String> maListe2=new JComboBox <String> (liste2);
+							 panelQuestion.add(maListe2);
+							break;
+		}
+		question.add(panelQuestion);
 		return question;
+	}
+
+	JPanel boutons(){
+		JPanel panelBoutons= new JPanel();
+		JButton b1= new JButton("<-------");
+		b1.addActionListener(this.controleur);
+		JButton b2= new JButton("Racrocher");
+		b2.addActionListener(this.controleur);
+		JButton b3= new JButton("------->");
+		b3.addActionListener(this.controleur);
+		panelBoutons.add(b1);
+		panelBoutons.add(b2);
+		panelBoutons.add(b3);
+
+		return panelBoutons;
 	}
 }
