@@ -7,27 +7,30 @@ import javax.swing.JOptionPane;
 
 
 /**
- * Controleur des bouton de l'accueil
+ * Controleur des bouton de l'accueil Sondeur
  * @author Romain
  *
  */
 
 public class ControleurAccueilSondeur implements ActionListener{
 
-	//model manquant
-
+	/**
+	* vue qui contien les bouton a faire fonctionner
+	*/
 	VueAccueilSondeur vueAccueilSondeur;
 
 	/**
-	 * Constructeur qui permet de fixer la vue et le modele
-	 * //param motus le modele
-	 * @param vueAccueilSondeur la vue
+	 * Constructeur qui permet de fixer la vue
+	 * @param vueAccueilSondeur la vue Accueil Sondeur
 	 */
 	public ControleurAccueilSondeur(VueAccueilSondeur vueAccueilSondeur) {
 		super();
 		this.vueAccueilSondeur=vueAccueilSondeur;
 	}
 
+	/**
+	*fait fonctionner les bouton de vueAccueilSondeur
+	*/
 	@Override
 	public void actionPerformed(ActionEvent arg0)
 	{
