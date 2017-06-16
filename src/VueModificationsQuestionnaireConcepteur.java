@@ -32,6 +32,7 @@ public class VueModificationsQuestionnaireConcepteur extends JPanel{
 	ControleurModificationsQuestionnaireConcepteur cc;
   int numeroQuestion;
   ControleurComboBox ccb;
+  JPanel cont;
 
 
   public VueModificationsQuestionnaireConcepteur(EasySond sond, int numQ) {
@@ -42,8 +43,10 @@ public class VueModificationsQuestionnaireConcepteur extends JPanel{
     this.cc = new ControleurModificationsQuestionnaireConcepteur(this);
     this.setLayout(new BorderLayout());
     this.numeroQuestion=this.sond.basededonnes.BDQuestion.getNumQuestionActuel(this.numQ);
+    this.cont = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		this.add(hautt(),"North");
     this.add(milieu(),"Center");
+
 }
 
   Component hautt(){
@@ -109,68 +112,47 @@ public class VueModificationsQuestionnaireConcepteur extends JPanel{
     type.add(typee);
     type.add(maListeChoix);
     milieumilieu.add(type);
-    panelReponse(milieumilieu, "Choix multiples", 8);
+    milieumilieu.add(cont);
+    panelReponse(0, 8);
   }
-  void panelReponse(JPanel milieumilieu, String nom, int nbChoix){
-    JPanel reponse = new JPanel(new FlowLayout(FlowLayout.LEFT));
-    reponse.setBorder(new TitledBorder("Réponses :"));
-    Container cont = ((Container) milieumilieu);
-    if(nom.equals("Choix multiples")){
-  		cont.removeAll();
+  void panelReponse(int nom, int nbChoix){
+    cont.removeAll();
+    if(nom == 0){
       ButtonGroup  choixOption=new ButtonGroup ();
       for(int i =0; i <nbChoix; ++i){
         JRadioButton  choix=new JRadioButton("Choix " + i);
         choixOption.add(choix);
-        reponse.add(choix);
+        cont.add(choix);
       }
-      cont.add(reponse);
-      cont.setBackground(this.sond.couleur);
-      cont.validate();
-      cont.repaint();
     }
-    else if(nom.equals("Choix simple")){
-      cont.removeAll();
+    else if(nom == 1){
       ButtonGroup  choixOption=new ButtonGroup ();
       for(int i =0; i <nbChoix; ++i){
         JRadioButton  choix=new JRadioButton("Choix " + i);
         choixOption.add(choix);
-        reponse.add(choix);
+        cont.add(choix);
       }
-      cont.add(reponse);
-      cont.setBackground(this.sond.couleur);
-      cont.validate();
-      cont.repaint();
     }
-    else if(nom.equals("Choix libre")){
-      cont.removeAll();
+    else if(nom == 2){
       JTextArea texte = new JTextArea(8,96);
       texte.setLineWrap(true);
       texte.setWrapStyleWord(true);
-      reponse.add(texte);
-      cont.add(reponse);
-      cont.setBackground(this.sond.couleur);
-      cont.validate();
-      cont.repaint();    }
-    else if(nom.equals("Classement")){
-      cont.removeAll();
+      cont.add(texte);
+    }
+    else if(nom == 3){
       for(int i=0; i<nbChoix; ++i){
         JLabel choix1 = new JLabel("Choix" + i);
         JTextField texte1 = new JTextField(20);
-        reponse.add(choix1);
-        reponse.add(texte1);
+        cont.add(choix1);
+        cont.add(texte1);
       }
-      cont.add(reponse);
-      cont.setBackground(this.sond.couleur);
-      cont.validate();
-      cont.repaint();    }
-    else{
-      cont.removeAll();
-      JTextField note = new JTextField(5);
-      reponse.add(note);
-      cont.add(reponse);
-      cont.setBackground(this.sond.couleur);
-      cont.validate();
-      cont.repaint();
     }
+    else{
+      JTextField note = new JTextField(5);
+      cont.add(note);
+    }
+    cont.setBorder(new TitledBorder("Réponses :"));
+    cont.validate();
+    cont.repaint();
 }
 }
