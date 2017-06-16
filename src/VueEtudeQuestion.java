@@ -2,12 +2,15 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 
@@ -19,9 +22,12 @@ public class VueEtudeQuestion extends JPanel {
 	
 	Question question;
 	
+	ModeleAnalyste modeleAnalyste;
+	
 	VueEtudeQuestion(EasySond easySond, Question q){
 		this.easySond = easySond;
 		this.question = q;
+		this.modeleAnalyste = new ModeleAnalyste(easySond.basededonnes);
 		enTete();
 		corps();
 	}
@@ -53,18 +59,12 @@ public class VueEtudeQuestion extends JPanel {
 		infoQuestion.add(new JLabel(this.question.getTexteQuestion()));
 		centre.add(infoQuestion);
 		
-
-		JPanel reponses = new JPanel();
-		reponses.setBorder(new TitledBorder("Les réponses"));
-		ArrayList<Repondre> listeReponses = new ArrayList<Repondre>();
-		listeReponses.add(new Repondre(1,1,"1","serfzeqrze"));
-		listeReponses.add(new Repondre(1,2,"1","ertgdrydy"));
-		listeReponses.add(new Repondre(1,3,"1","fghthtrt"));
-		listeReponses.add(new Repondre(1,4,"1","gfyjhyt"));
-		listeReponses.add(new Repondre(1,5,"1","jfyjjy"));
-		for(Repondre elem: listeReponses){
-			
-		}
+		JTable tableMilieu = genererTableau();
+		
+		JScrollPane panelScrolling = new JScrollPane(tableMilieu,
+				JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		centre.add(panelScrolling);
 		
 		bas.setLayout(new BoxLayout(bas,BoxLayout.Y_AXIS));
 		JLabel titreBas1 = new JLabel("Représentation :");
@@ -106,5 +106,25 @@ public class VueEtudeQuestion extends JPanel {
 		panelGeneral.add(centre,"Center");
 		panelGeneral.add(bas,"South");
 		this.add(panelGeneral,"Center");
+	}
+	
+	private JTable genererTableau(){
+		ArrayList<Repondre> listeReponses = this.modeleAnalyste.getListeReponses(this.question);
+		ArrayList<Tranche> listeTranches = this.modeleAnalyste.getTranches();
+		ArrayList<String> listeStr = new ArrayList<String>();
+		listeStr.add("");
+		for(Tranche elem: listeTranches){
+			listeStr.add("" + elem.getValeurDebut() + "-" + elem.getValeurFin() + " ans");
+		}
+		listeStr.add("Total");
+		System.out.println(listeStr);
+		String[] enTete = new String[listeStr.size()];
+		enTete = listeStr.toArray(enTete);
+		
+		ArrayList<String> colonneGauche = this.modeleAnalyste.genererColonneGauche(this.question);
+		System.out.println(colonneGauche);
+		String[][] listeCorpsTableau = {{"Rouge","1","3","9","25","2","4","50"}};
+		
+		return new JTable(listeCorpsTableau,enTete);
 	}
 }

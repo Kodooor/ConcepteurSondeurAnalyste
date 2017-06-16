@@ -55,6 +55,7 @@ public class ModeleAnalyste {
 	  }
 	  return null;
 	  }
+	
 	public Question getQuestion(int idQ,int numQ){
 		Question questionC = null;
 		try{
@@ -69,4 +70,124 @@ public class ModeleAnalyste {
 		}
 		return null;
 	}
+	
+	public ArrayList<Repondre> getListeReponses(Question q){
+		ArrayList<Repondre> listeRes = new ArrayList<Repondre>();
+		try{
+			ResultSet rs = st.executeQuery("Select * from REPONDRE where idQ = " + q.getNumeroQuestionnaire() + " and numQ = "+ q.getIdQuestion());
+			while(rs.next()){
+				Repondre reponse = new Repondre(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4));
+				listeRes.add(reponse);
+			}
+			return listeRes;
+		}
+		catch(SQLException e){
+			System.out.println(e);
+		}
+		
+		return null;
+	}
+	
+	public ArrayList<Tranche> getTranches(){
+		ArrayList<Tranche> listeRes = new ArrayList<Tranche>();
+		try{
+			ResultSet rs = st.executeQuery("Select * from TRANCHE");
+			while(rs.next()){
+				Tranche tranche = new Tranche(rs.getString(1),rs.getInt(2),rs.getInt(3));
+				listeRes.add(tranche);
+			}
+			return listeRes;
+		}
+		catch(SQLException e){
+			System.out.println(e);
+		}
+		return null;
+	}
+	
+	public ArrayList<String> genererColonneGauche(Question q){
+		ArrayList<String> listeRes = new ArrayList<String>();
+		switch(q.getIdTypeQuestion()){
+		case "u":try{
+					ResultSet rs = st.executeQuery("Select Valeur from VALPOSSIBLE where idQ = " + q.getNumeroQuestionnaire() + " and numQ = " + q.getIdQuestion());
+					while(rs.next()){
+						String val = rs.getString(1);
+						listeRes.add(val);
+					}
+				}
+				catch(SQLException e){
+					System.out.println(e);
+				}
+				break;
+		case "m":try{
+					ResultSet rs = st.executeQuery("Select Valeur from VALPOSSIBLE where idQ = " + q.getNumeroQuestionnaire() + " and numQ = " + q.getIdQuestion());
+					while(rs.next()){
+						String val = rs.getString(1);
+						listeRes.add(val);
+						}
+					}
+				catch(SQLException e){
+					System.out.println(e);
+				}
+				break;
+		case "c":ArrayList<String> listeTemp = new ArrayList<String>();
+				try{
+					ResultSet rs = st.executeQuery("Select Valeur from VALPOSSIBLE where idQ = " + q.getNumeroQuestionnaire() + " and numQ = " + q.getIdQuestion());
+					while(rs.next()){
+						String val = rs.getString(1);
+						listeTemp.add(val);
+						}
+					for(int i=1;i<q.getMaxValeur()+1;i++){
+						for(String elem:listeTemp){
+							listeRes.add(elem + " " + i);
+						}
+					}
+				}
+				catch(SQLException e){
+					System.out.println(e);
+				}
+				break;
+		case "n":for(int i=0;i<q.getMaxValeur()+1;i++){
+					listeRes.add(""+i);
+				}
+				break;
+		case "l":ArrayList<Repondre> listeR= getListeReponses(q);
+				for(Repondre elem:listeR){
+					if(!listeRes.contains(elem.getValeur())){
+						listeRes.add(elem.getValeur());
+					}
+				}
+				break;
+		}
+		return listeRes;
+	}
+
+	public ArrayList<String> getValeursTableau(Question q){
+		ArrayList<String> listeGauche = genererColonneGauche(q);
+		ArrayList<Tranche> listeTranches = getTranches();
+		ArrayList<String> listeValeurs = new ArrayList<String>();
+		for(String elem:listeGauche){
+			for(Tranche t:listeTranches){
+				
+			}
+		}
+		return listeValeurs;
+	}
+	
+//	public int getNbpersonnes(String valeur, int debut, int fin){
+//		try{
+//			ResultSet rs = st.executeQuery("Select count(*) from REPONDRE natural join CARACTERISTIQUE natural join TRANCHE where valDebut = " + debut + "and valFin = " + fin +" and valeur = " + valeur);
+//			while(rs.next()){
+//				String val = rs.getString(1);
+//				listeTemp.add(val);
+//				}
+//			for(int i=1;i<q.getMaxValeur()+1;i++){
+//				for(String elem:listeTemp){
+//					listeRes.add(elem + " " + i);
+//				}
+//			}
+//		}
+//		catch(SQLException e){
+//			System.out.println(e);
+//		}
+//	}
 }
