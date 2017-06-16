@@ -32,6 +32,7 @@ public class ModeleAccueilSondeur {
 
         rs.next();
         Questionnaire res = new Questionnaire(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6));
+				rs.close();
         return res;
       }
       catch(SQLException e){
@@ -45,13 +46,14 @@ public class ModeleAccueilSondeur {
      ArrayList<Sonde> res = new ArrayList<Sonde>();
      try{
       // execution de la requête
-      ResultSet rs=st.executeQuery("select * from SONDE natural join CONSTITUER natural join PANEL where idPan ="+idPan);
+      ResultSet rs=st.executeQuery("select * from SONDE natural join CONSTITUER natural join PANEL where idPan = '"+idPan+"'");
       // chargement de la 1 er ligne de résultat
 
       while(rs.next()){
       Sonde s = new Sonde(rs.getInt(2),rs.getString(3), rs.getString(4), rs.getDate(5), rs.getString(6), rs.getString(7));
       res.add(s);
       }
+			rs.close();
 			return res;
     }
     catch(SQLException e){
@@ -65,13 +67,15 @@ public class ModeleAccueilSondeur {
 		ArrayList<Question> res = new ArrayList<Question>();
 		try{
 		 // execution de la requête
-		 ResultSet rs=st.executeQuery("select * from QUESTION idQ ="+numQ);
+		 ResultSet rs=st.executeQuery("select * from QUESTION idQ = '"+numQ+"'");
 		 // chargement de la 1 er ligne de résultat
 
 		 while(rs.next()){
 		 Question q = new Question(rs.getInt(1),rs.getInt(2), rs.getString(3), rs.getInt(4), rs.getString(5));
 		 res.add(q);
 		 }
+		 rs.close();
+		 System.out.println("test 2 " + res);
 		 return res;
 	 }
 	 catch(SQLException e){
@@ -92,6 +96,7 @@ public class ModeleAccueilSondeur {
 		 ValeurPossible vp = new ValeurPossible(rs.getInt(1),rs.getInt(2), rs.getInt(3), rs.getString(4));
 		 res.add(vp);
 		 }
+		 rs.close();
 		 return res;
 	 }
 	 catch(SQLException e){

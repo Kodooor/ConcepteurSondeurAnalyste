@@ -11,17 +11,20 @@ public class VueRemplissageSondage extends JPanel{
 	Questionnaire questionnaire;
 	Sonde sonde;
 	ArrayList<Question> listeQuestion;
+	int numeroQuestion;
 
 
 	VueRemplissageSondage(EasySond sond, Questionnaire q, Sonde s){
 		super();
 		this.sond=sond;
 		this.controleur= new ControleurRemplissageSondage(this);
-		pageGenerator("l");
 		this.setVisible(true);
 		this.questionnaire = q;
 		this.sonde = s;
-		listeQuestion = this.sond.basededonnes.BDaccueilSondeur.GetListeQuestion(questionnaire.getNumeroQuestionnaire());
+		this.listeQuestion = this.sond.basededonnes.BDaccueilSondeur.GetListeQuestion(this.questionnaire.getNumeroQuestionnaire());
+		System.out.println("test 1 " + this.listeQuestion);
+		this.numeroQuestion = 0;
+		pageGenerator("l");
 	}
 
 	void refresh(String e){
@@ -76,10 +79,12 @@ public class VueRemplissageSondage extends JPanel{
 	void nomSondage(JPanel lv2){	//Annonce de la page
 		JPanel panelNom= new JPanel();
 		panelNom.setLayout(new BoxLayout(panelNom,BoxLayout.Y_AXIS));
-		JLabel label1= new JLabel("Questionnaire : "+"Sondage sur les pastèques");
-		JLabel label2= new JLabel("Question"+"1"+" :");
+		JLabel label1= new JLabel("Questionnaire : "+this.questionnaire.getTitreQuestionnaire());
+
+		JLabel label2= new JLabel("Question "+this.listeQuestion.get(this.numeroQuestion) + ".getIdQuestion()" +" :");
+
 		panelNom.add(label1);
-		panelNom.add(label2);
+	  panelNom.add(label2);
 		lv2.add(panelNom);
 	}
 
@@ -87,7 +92,9 @@ public class VueRemplissageSondage extends JPanel{
 		JPanel panelIntitule= new JPanel();
 		panelIntitule.setLayout(new BoxLayout(panelIntitule,BoxLayout.X_AXIS));
 		JLabel label1= new JLabel("Intitulé : ");
-		JLabel label2= new JLabel("les pastèque sont cuites, A, B C?");
+
+		JLabel label2= new JLabel(this.listeQuestion.get(this.numeroQuestion) + ".getTexteQuestion()");
+
 		panelIntitule.add(label1);
 		panelIntitule.add(label2);
 		lv3.add(panelIntitule);
@@ -97,7 +104,7 @@ public class VueRemplissageSondage extends JPanel{
 		JPanel question= new JPanel();
 		question.setLayout(new BoxLayout(question,BoxLayout.X_AXIS));
 		//intitulé
-		question.setBorder(new TitledBorder("réponse"));
+		question.setBorder(new TitledBorder("Réponse"));
 		//réponses
 		JPanel panelQuestion= new JPanel();
 		ButtonGroup panelChoix=new ButtonGroup();
