@@ -32,12 +32,12 @@ public class ControleurRemplissageSondage implements ActionListener{
 	{
 		switch(((JButton) arg0.getSource()).getText())
 		{
-			case "Accéder au questionnaire"  :
-																				break;
-			case "Passer au sondé suivant "  :
-																				break;
-      case "    Appeler le sondé    "  :
-             	 													break;
+			case "<-------"  :vueRemplissageSondage.questionChangement(-1);
+													break;
+			case "Racrocher"  :vueRemplissageSondage.refreshAccueil();
+													break;
+      case "------->"  :vueRemplissageSondage.questionChangement(1);
+             	 						break;
 			default    :break;
 		}
 	}

@@ -12,6 +12,7 @@ public class VueRemplissageSondage extends JPanel{
 	Sonde sonde;
 	ArrayList<Question> listeQuestion;
 	int numeroQuestion;
+	VueAccueilSondeur vueAccueilSondeur;
 
 
 	VueRemplissageSondage(EasySond sond, Questionnaire q, Sonde s){
@@ -23,18 +24,33 @@ public class VueRemplissageSondage extends JPanel{
 		this.sonde = s;
 		this.listeQuestion = this.sond.basededonnes.BDaccueilSondeur.GetListeQuestion(this.questionnaire.getNumeroQuestionnaire());
 		this.numeroQuestion = 0;
-		pageGenerator("l");
+		pageGenerator();
 	}
 
-	void refresh(String e){
+	void refreshAccueil(){
 		Container cont=this.sond.getContentPane();
-		this.removeAll();
-		pageGenerator(e);
+		cont.removeAll();
+		vueAccueilSondeur = new VueAccueilSondeur(this.sond);
+		cont.add(vueAccueilSondeur);
+		cont.setBackground(new Color(78,217,255));
 		cont.validate();
 		cont.repaint();
 	}
 
-	void pageGenerator(String e){
+	void questionChangement(int e){
+		this.numeroQuestion+=e;
+		refresh();
+	}
+
+	void refresh(){
+		Container cont=this.sond.getContentPane();
+		this.removeAll();
+		pageGenerator();
+		cont.validate();
+		cont.repaint();
+	}
+
+	void pageGenerator(){
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 
 			//niveau 1
@@ -161,6 +177,12 @@ public class VueRemplissageSondage extends JPanel{
 		b2.addActionListener(this.controleur);
 		JButton b3= new JButton("------->");
 		b3.addActionListener(this.controleur);
+		if(this.numeroQuestion==0){
+			b1.setEnabled(false);
+		}
+		else if(this.numeroQuestion==this.listeQuestion.size()-1){
+			b3.setEnabled(false);
+		}
 		panelBoutons.add(b1);
 		panelBoutons.add(b2);
 		panelBoutons.add(b3);
