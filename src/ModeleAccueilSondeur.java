@@ -88,7 +88,7 @@ public class ModeleAccueilSondeur {
 		ArrayList<ValeurPossible> res = new ArrayList<ValeurPossible>();
 		try{
 		 // execution de la requête
-		 ResultSet rs=st.executeQuery("select * from VALPOSSIBLE where numQ = "+numQuestionnaire+" and idQ = "+idQuestion);
+		 ResultSet rs=st.executeQuery("select * from VALPOSSIBLE where numQ = "+idQuestion+" and idQ = "+numQuestionnaire);
 		 // chargement de la 1 er ligne de résultat
 
 		 while(rs.next()){
