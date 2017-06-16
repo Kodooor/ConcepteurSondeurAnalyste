@@ -36,7 +36,7 @@ public class ModeleAccueilSondeur {
         return res;
       }
       catch(SQLException e){
-        System.out.println("Echec de la requête");
+        System.out.println("Echec de la requête 1 ");
         System.out.println("Voici le message SQL: "+e.getMessage());
         return null;
       }
@@ -46,7 +46,7 @@ public class ModeleAccueilSondeur {
      ArrayList<Sonde> res = new ArrayList<Sonde>();
      try{
       // execution de la requête
-      ResultSet rs=st.executeQuery("select * from SONDE natural join CONSTITUER natural join PANEL where idPan = '"+idPan+"'");
+      ResultSet rs=st.executeQuery("select * from SONDE natural join CONSTITUER natural join PANEL where idPan = "+idPan);
       // chargement de la 1 er ligne de résultat
 
       while(rs.next()){
@@ -57,7 +57,7 @@ public class ModeleAccueilSondeur {
 			return res;
     }
     catch(SQLException e){
-      System.out.println("Echec de la requête");
+      System.out.println("Echec de la requête 2 ");
       System.out.println("Voici le message SQL: "+e.getMessage());
       return null;
     }
@@ -67,7 +67,7 @@ public class ModeleAccueilSondeur {
 		ArrayList<Question> res = new ArrayList<Question>();
 		try{
 		 // execution de la requête
-		 ResultSet rs=st.executeQuery("select * from QUESTION idQ = '"+numQ+"'");
+		 ResultSet rs=st.executeQuery("select * from QUESTION where idQ = "+numQ);
 		 // chargement de la 1 er ligne de résultat
 
 		 while(rs.next()){
@@ -75,11 +75,10 @@ public class ModeleAccueilSondeur {
 		 res.add(q);
 		 }
 		 rs.close();
-		 System.out.println("test 2 " + res);
 		 return res;
 	 }
 	 catch(SQLException e){
-		 System.out.println("Echec de la requête");
+		 System.out.println("Echec de la requête 3 ");
 		 System.out.println("Voici le message SQL: "+e.getMessage());
 		 return null;
 	 }
@@ -100,7 +99,7 @@ public class ModeleAccueilSondeur {
 		 return res;
 	 }
 	 catch(SQLException e){
-		 System.out.println("Echec de la requête");
+		 System.out.println("Echec de la requête 4 ");
 		 System.out.println("Voici le message SQL: "+e.getMessage());
 		 return null;
 	 }

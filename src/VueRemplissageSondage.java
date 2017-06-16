@@ -22,7 +22,6 @@ public class VueRemplissageSondage extends JPanel{
 		this.questionnaire = q;
 		this.sonde = s;
 		this.listeQuestion = this.sond.basededonnes.BDaccueilSondeur.GetListeQuestion(this.questionnaire.getNumeroQuestionnaire());
-		System.out.println("test 1 " + this.listeQuestion);
 		this.numeroQuestion = 0;
 		pageGenerator("l");
 	}
@@ -59,7 +58,7 @@ public class VueRemplissageSondage extends JPanel{
 			//niveau 4
 		JPanel lv4= new JPanel();
 		lv4.setLayout(new BoxLayout(lv4,BoxLayout.X_AXIS));
-		lv4.add(reponse(e));
+		lv4.add(reponse());
 		this.add(lv4);
 
 			//niveau 5
@@ -80,9 +79,7 @@ public class VueRemplissageSondage extends JPanel{
 		JPanel panelNom= new JPanel();
 		panelNom.setLayout(new BoxLayout(panelNom,BoxLayout.Y_AXIS));
 		JLabel label1= new JLabel("Questionnaire : "+this.questionnaire.getTitreQuestionnaire());
-
-		JLabel label2= new JLabel("Question "+this.listeQuestion.get(this.numeroQuestion) + ".getIdQuestion()" +" :");
-
+		JLabel label2= new JLabel("Question "+ this.listeQuestion.get(this.numeroQuestion).getIdQuestion() +":");
 		panelNom.add(label1);
 	  panelNom.add(label2);
 		lv2.add(panelNom);
@@ -92,15 +89,13 @@ public class VueRemplissageSondage extends JPanel{
 		JPanel panelIntitule= new JPanel();
 		panelIntitule.setLayout(new BoxLayout(panelIntitule,BoxLayout.X_AXIS));
 		JLabel label1= new JLabel("Intitulé : ");
-
-		JLabel label2= new JLabel(this.listeQuestion.get(this.numeroQuestion) + ".getTexteQuestion()");
-
+		JLabel label2= new JLabel(this.listeQuestion.get(this.numeroQuestion).getTexteQuestion());
 		panelIntitule.add(label1);
 		panelIntitule.add(label2);
 		lv3.add(panelIntitule);
 	}
 
-	Component reponse(String typeQuestion){
+	Component reponse(){
 		JPanel question= new JPanel();
 		question.setLayout(new BoxLayout(question,BoxLayout.X_AXIS));
 		//intitulé
@@ -108,25 +103,29 @@ public class VueRemplissageSondage extends JPanel{
 		//réponses
 		JPanel panelQuestion= new JPanel();
 		ButtonGroup panelChoix=new ButtonGroup();
+		Question questionActuelle = this.listeQuestion.get(this.numeroQuestion);
+		String typeQuestion = questionActuelle.getIdTypeQuestion();
+		int maxValeur = questionActuelle.getMaxValeur();
+		ArrayList<ValeurPossible>  listeValeur= this.sond.basededonnes.BDaccueilSondeur.GetListeValeurPossible(questionActuelle.getNumeroQuestionnaire(),questionActuelle.getIdQuestion());
+
 		switch(typeQuestion){
 			//choix unique
-			case "u": for(int i=0;i<5;i++){
-								 JRadioButton c =new JRadioButton("Choix"+i);
+			case "u": for(int i=0; i < listeValeur.size() ; i++){
+								 JRadioButton c =new JRadioButton(listeValeur.get(i).getValeur());
 								 panelQuestion.add(c);
 								 panelChoix.add(c);
 							 }
 							break;
 			//choix multiple
-			case "m": for(int i=0;i<5;i++){
-								 JCheckBox  c =new JCheckBox("Choix"+i);
+			case "m": for(int i=0;i < listeValeur.size() ; i++){
+								 JCheckBox  c =new JCheckBox(listeValeur.get(i).getValeur());
 								 panelQuestion.add(c);
 							 }
 							break;
 			//classement
 			case "c": panelQuestion.setLayout(new BoxLayout(panelQuestion,BoxLayout.Y_AXIS));
-								//String [] liste = new String [listeDeLaBD.size()];
-		 					  //listeDeLaBD = entetes1.toArray(liste);
-								String [] liste={"opt1","opt2","opt3"};
+								String [] liste = new String [listeValeur.size()];
+		 					  liste = listeValeur.toArray(liste);
 								JComboBox <String> maListe=new JComboBox <String> (liste);
 								for(int i=1;i<liste.length+1;i++){
 									JPanel p = new JPanel();
@@ -142,7 +141,10 @@ public class VueRemplissageSondage extends JPanel{
 							 panelQuestion.add(maZone);
 							break;
 			//note
-			case "n":String [] liste2={"1","2","3"};
+			case "n":String [] liste2= new String[maxValeur+1];
+							 for (int i=0; i <= maxValeur ; i++){
+								 liste2[i] = ""+i;
+							 }
 							 JComboBox <String> maListe2=new JComboBox <String> (liste2);
 							 panelQuestion.add(maListe2);
 							break;
