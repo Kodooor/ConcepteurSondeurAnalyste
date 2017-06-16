@@ -48,7 +48,6 @@ public class ModeleConcepteur {
 				rs.close();
 				return c;
 		  }
-			rs.close();
 		  catch(SQLException e){
 		    System.out.println(e);
 		  }
