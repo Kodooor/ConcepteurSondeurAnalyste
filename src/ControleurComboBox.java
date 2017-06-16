@@ -35,10 +35,11 @@ public class ControleurComboBox implements ActionListener{
 	 this.vueModificationsQuestionnaireConcepteur.choixvoulu = 2;
  }
  else if(((String)(((JComboBox) arg0.getSource()).getSelectedItem())).equals("Classement")){
-	 this.vueModificationsQuestionnaireConcepteur.choixvoulu = 3; 
+	 this.vueModificationsQuestionnaireConcepteur.choixvoulu = 3;
  }
  else if(((String)(((JComboBox) arg0.getSource()).getSelectedItem())).equals("Note")){
-	 this.vueModificationsQuestionnaireConcepteur.choixvoulu = 4;
+this.vueModificationsQuestionnaireConcepteur.choixvoulu = 2;
  }
    }
+
 }
