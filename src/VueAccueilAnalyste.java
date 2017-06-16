@@ -49,42 +49,12 @@ public class VueAccueilAnalyste extends JPanel {
         
         this.add(principal,"Center");
         
-        //Panneau de droite
-        JPanel panneauDroit=new JPanel();
-        //panneauDroit.setLayout(new BoxLayout(panneauDroit,BoxLayout.Y_AXIS));
-        panneauDroit.setLayout(new BorderLayout());
         
-        //Panel de la barre de recherche
-        JPanel panelRecherche = new JPanel();
-        //panelRecherche.setLayout(new FlowLayout());
-        panelRecherche.setBounds(100,100,50,50);
-        JTextField recherche = new JTextField("Rechercher   ");
-        panelRecherche.add(new JLabel("   "));
-        panelRecherche.add(recherche);
-        panelRecherche.add(new JLabel("   "));
-        panneauDroit.add(panelRecherche,"North");
-        
-        //Panel de la recherche avancé
-        JPanel rechercheAvance=new JPanel();
-        rechercheAvance.setLayout(new BoxLayout(rechercheAvance,BoxLayout.Y_AXIS));
-        JPanel panelTitreR = new JPanel();
-        panelTitreR.setLayout(new BorderLayout());
-        JLabel titreRecherche = new JLabel("Recherche avancée :    ");
-        panelTitreR.add(titreRecherche,"North");
-        rechercheAvance.add(panelTitreR);
-        
-        JPanel comboBox= new JPanel();
-        JLabel titreCombo= new JLabel("Etat : ");
-        String [] lesOptions={"A créer","En cours"};
-        JComboBox <String> maListe=new JComboBox <String> (lesOptions);
-        comboBox.add(titreCombo);
-        comboBox.add(maListe);
-        panelTitreR.add(comboBox,"East");
-        
-        panneauDroit.add(rechercheAvance,"Center");
-        
-        this.add(panneauDroit,"East");
-        
+        //Panneau bidon gauche
+        JPanel panneauGauche = new JPanel();
+        JLabel bidon2 = new JLabel("                          ");
+        panneauGauche.add(bidon2);
+        this.add(panneauGauche,"West");
     }
 	private void scroll(JPanel p,String label,String bouton,int idQ){
 		
