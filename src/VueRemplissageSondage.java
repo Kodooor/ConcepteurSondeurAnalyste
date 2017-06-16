@@ -127,7 +127,7 @@ public class VueRemplissageSondage extends JPanel{
 		switch(typeQuestion){
 			//choix unique
 			case "u": for(int i=0; i < listeValeur.size() ; i++){
-								 JRadioButton c =new JRadioButton(listeValeur.get(i).getValeur());
+								 JRadioButton c =new JRadioButton("" + listeValeur.get(i).getValeur());
 								 panelQuestion.add(c);
 								 panelChoix.add(c);
 							 }
