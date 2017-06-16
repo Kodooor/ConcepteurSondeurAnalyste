@@ -36,6 +36,13 @@ public class VueAccueilConcepteur extends JPanel {
 		this.listequestionnaire = this.sond.basededonnes.BDConcepteur.listeDesQuestionnaires();
 		enTete();
 		body();
+		for(Component truc : this.getComponents()){
+			if (truc instanceof Container){
+			for(Component bis : ((Container) truc).getComponents()){
+				bis.setBackground(new Color(78,217,255));
+			}
+		}
+		}
 	}
 	void afficherVueInfoQuestionnaire(int num){
 		Container cont=this.sond.getContentPane();
