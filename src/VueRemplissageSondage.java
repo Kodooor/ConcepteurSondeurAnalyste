@@ -3,18 +3,57 @@ import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.util.ArrayList;
 
-
+/**
+*Vue de la page d'accueil du Sondeur
+*@author Romain et Zéphyr
+*
+*/
 @SuppressWarnings("serial")
 public class VueRemplissageSondage extends JPanel{
+
+	/**
+	*permet d'accéder au conteneur principal
+	*/
 	EasySond sond;
+
+	/**
+	*permet de lier les bouton à leur controleur
+	*/
 	ControleurRemplissageSondage controleur;
+
+	/**
+	*questionnaire en cours
+	*/
 	Questionnaire questionnaire;
+
+	/**
+	*information du sondé
+	*/
 	Sonde sonde;
+
+	/**
+	*liste des question d'un questionnaire
+	*/
 	ArrayList<Question> listeQuestion;
+
+	/**
+	*numéro d'une question dans un questionnaire
+	*/
 	int numeroQuestion;
+
+	/**
+	*vue qui gere le chargement du module Sondeur
+	*/
 	VueAccueilSondeur vueAccueilSondeur;
 
+	VueEnTete vueEnTete;
 
+	/**
+	 * Constructeur qui permet de fixer la vue
+	 * @param sond la vue Accueil Sondeur
+	 * @param q
+	 * @param s
+	 */
 	VueRemplissageSondage(EasySond sond, Questionnaire q, Sonde s){
 		super();
 		this.sond=sond;
@@ -24,6 +63,7 @@ public class VueRemplissageSondage extends JPanel{
 		this.sonde = s;
 		this.listeQuestion = this.sond.basededonnes.BDaccueilSondeur.GetListeQuestion(this.questionnaire.getNumeroQuestionnaire());
 		this.numeroQuestion = 0;
+		this.vueEnTete = new VueEnTete(this.sond,"Remplissage Sondage", "Sondeur", this.sond.Nom, this.sond.Prenom);
 		pageGenerator();
 	}
 
@@ -85,10 +125,7 @@ public class VueRemplissageSondage extends JPanel{
 	}
 
 	void nomPage(JPanel lv1){	//Annonce de la page
-		JPanel panelNom= new JPanel();
-		JLabel labelNom= new JLabel(">> Acceuil Sondeur >> Remplissage Sondage");
-		panelNom.add(labelNom);
-		lv1.add(panelNom);
+		lv1.add(this.vueEnTete);
 	}
 
 	void nomSondage(JPanel lv2){	//Annonce de la page
