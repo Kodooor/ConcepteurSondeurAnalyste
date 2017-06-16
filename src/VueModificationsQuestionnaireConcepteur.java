@@ -30,6 +30,7 @@ public class VueModificationsQuestionnaireConcepteur extends JPanel{
 	JPanel bidon4;
 	JPanel milieumilieu;
 	ControleurModificationsQuestionnaireConcepteur cc;
+  int numeroQuestion;
 
 
   public VueModificationsQuestionnaireConcepteur(EasySond sond, int numQ) {
@@ -38,7 +39,7 @@ public class VueModificationsQuestionnaireConcepteur extends JPanel{
     this.numQ=numQ;
     this.cc = new ControleurModificationsQuestionnaireConcepteur(this);
     this.setLayout(new BorderLayout());
-    System.out.println("mes couilles au bord de l'eau");
+    this.numeroQuestion=this.sond.basededonnes.BDQuestion.getNumQuestionActuel(this.numQ);
 		this.add(hautt(),"North");
     this.add(milieu(),"Center");
 }
@@ -91,12 +92,16 @@ public class VueModificationsQuestionnaireConcepteur extends JPanel{
   }
   private void informations(JPanel milieumilieu){
     JPanel enonce = new JPanel(new FlowLayout(FlowLayout.LEFT));
+    JTextArea texte = new JTextArea(8,96);
+    texte.setLineWrap(true);
+    texte.setWrapStyleWord(true);
     enonce.setBorder(new TitledBorder("Énoncé : "));
+    enonce.add(texte);
 		milieumilieu.add(enonce);
 
 		JPanel type = new JPanel(new FlowLayout(FlowLayout.LEFT));
     JLabel typee = new JLabel("Type :");
-    String [] lesChoix={"Choix multiples","Choix simple","Choix libre"};
+    String [] lesChoix={"Choix multiples","Choix simple","Choix libre","Classement"};
     JComboBox <String> maListeChoix=new JComboBox <String> (lesChoix);
     type.add(typee);
     type.add(maListeChoix);
