@@ -46,6 +46,10 @@ public class EasySond extends JFrame {
    * Role de l'utilisateur
    */
   int role;
+  /**
+   * COULEUR DE L APPLI
+   */
+  Color couleur;
 	/**
 	 * Constructeur qui va creer une vue pour le chargement et les modeles dont on a besoin
 	 *
@@ -56,6 +60,7 @@ public class EasySond extends JFrame {
 	    this.setLocationRelativeTo(null);
 	    this.validate();
 	    this.setVisible(true);
+      this.couleur = new Color(78,217,255);
 	    String nomServeur="192.168.82.168";
 	    String nomBase="dbfilleul";
 	    basededonnes = new ConnexionMySQL(nomServeur,nomBase,"filleul","lulujaune");
@@ -76,7 +81,6 @@ public class EasySond extends JFrame {
 		cont.removeAll();
 		vueChargement = new VueChargement();
 		cont.add(vueChargement);
-		cont.setBackground(new Color(78,217,255));
 		cont.validate();
 		cont.repaint();
 	}
@@ -91,7 +95,6 @@ public class EasySond extends JFrame {
 		cont.removeAll();
 		vueAccueil = new VueAccueil();
 		cont.add(vueAccueil);
-		cont.setBackground(new Color(78,217,255));
 		cont.validate();
 		cont.repaint();
 	}
@@ -104,7 +107,6 @@ public class EasySond extends JFrame {
 			cont.removeAll();
 			vueAccueilConcepteur = new VueAccueilConcepteur(this);
 			cont.add(vueAccueilConcepteur);
-			cont.setBackground(new Color(78,217,255));
 			cont.validate();
 			cont.repaint();
 		}
@@ -113,7 +115,6 @@ public class EasySond extends JFrame {
 			cont.removeAll();
 			vueAccueilSondeur = new VueAccueilSondeur(this);
 			cont.add(vueAccueilSondeur);
-			cont.setBackground(new Color(78,217,255));
 			cont.validate();
 			cont.repaint();
 		}
@@ -122,9 +123,6 @@ public class EasySond extends JFrame {
 			cont.removeAll();
 			vueAccueilAnalyste = new VueAccueilAnalyste(this);
 			cont.add(vueAccueilAnalyste);
-			//vueCreerAnalyse = new VueCreerAnalyse();
-			//cont.add(vueCreerAnalyse);
-			cont.setBackground(new Color(78,217,255));
 			cont.validate();
 			cont.repaint();
 		}
