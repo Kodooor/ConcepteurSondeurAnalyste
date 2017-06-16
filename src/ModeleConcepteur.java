@@ -32,6 +32,7 @@ public class ModeleConcepteur {
 	      rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6));
 	      listeQuestionnaire.add(q);
 	    }
+			rs.close();
 	    return listeQuestionnaire;
 	  }
 	  catch(SQLException e){
@@ -47,6 +48,7 @@ public class ModeleConcepteur {
 				rs.close();
 				return c;
 		  }
+			rs.close();
 		  catch(SQLException e){
 		    System.out.println(e);
 		  }
