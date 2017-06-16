@@ -4,6 +4,9 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -13,6 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
+import javax.swing.text.html.HTMLDocument.Iterator;
 
 
 @SuppressWarnings("serial")
@@ -109,7 +113,7 @@ public class VueEtudeQuestion extends JPanel {
 	}
 	
 	private JTable genererTableau(){
-		ArrayList<Repondre> listeReponses = this.modeleAnalyste.getListeReponses(this.question);
+		ArrayList<String> colonneGauche = new ArrayList<String>();
 		ArrayList<Tranche> listeTranches = this.modeleAnalyste.getTranches();
 		ArrayList<String> listeStr = new ArrayList<String>();
 		listeStr.add("");
@@ -121,10 +125,19 @@ public class VueEtudeQuestion extends JPanel {
 		String[] enTete = new String[listeStr.size()];
 		enTete = listeStr.toArray(enTete);
 		
-		ArrayList<String> colonneGauche = this.modeleAnalyste.genererColonneGauche(this.question);
-		System.out.println(colonneGauche);
-		String[][] listeCorpsTableau = {{"Rouge","1","3","9","25","2","4","50"}};
-		
+		HashMap<String,String> dico = this.modeleAnalyste.genererColonneGauche(this.question);
+		System.out.println(dico);
+		String[][] listeCorpsTableau = new String[dico.size()][listeStr.size()];
+		int i=0;
+		for (Map.Entry mapentry : dico.entrySet()) {
+			listeCorpsTableau[i][0]=(String) mapentry.getKey();
+			int j=1;
+			for (Tranche tranche:listeTranches){
+				listeCorpsTableau[i][j]= ""+this.modeleAnalyste.getNbpersonnes(mapentry.getKey()+"", tranche.getValeurDebut(), tranche.getValeurFin(),this.question,dico);
+				j++;
+			}
+		    i++;
+		}
 		return new JTable(listeCorpsTableau,enTete);
 	}
 }

@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.sql.*;
 /**
  * Model du jeu motus
@@ -109,14 +110,15 @@ public class ModeleAnalyste {
 		return null;
 	}
 	
-	public ArrayList<String> genererColonneGauche(Question q){
-		ArrayList<String> listeRes = new ArrayList<String>();
+	public HashMap<String,String> genererColonneGauche(Question q){
+		HashMap<String,String> dicoRes = new HashMap<String,String>();
 		switch(q.getIdTypeQuestion()){
 		case "u":try{
-					ResultSet rs = st.executeQuery("Select Valeur from VALPOSSIBLE where idQ = " + q.getNumeroQuestionnaire() + " and numQ = " + q.getIdQuestion());
+					ResultSet rs = st.executeQuery("Select idV,Valeur from VALPOSSIBLE where idQ = " + q.getNumeroQuestionnaire() + " and numQ = " + q.getIdQuestion());
 					while(rs.next()){
-						String val = rs.getString(1);
-						listeRes.add(val);
+						int idval = rs.getInt(1);
+						String val = rs.getString(2);
+						dicoRes.put(val,idval+"");
 					}
 					rs.close();
 				}
@@ -125,20 +127,21 @@ public class ModeleAnalyste {
 				}
 				break;
 		case "m":try{
-					ResultSet rs = st.executeQuery("Select Valeur from VALPOSSIBLE where idQ = " + q.getNumeroQuestionnaire() + " and numQ = " + q.getIdQuestion());
+					ResultSet rs = st.executeQuery("Select idV,Valeur from VALPOSSIBLE where idQ = " + q.getNumeroQuestionnaire() + " and numQ = " + q.getIdQuestion());
 					while(rs.next()){
-						String val = rs.getString(1);
-						listeRes.add(val);
-						}
+						int idval = rs.getInt(1);
+						String val = rs.getString(2);
+						dicoRes.put(val,idval+"");
+					}
 					rs.close();
 					}
 				catch(SQLException e){
 					System.out.println(e);
 				}
 				break;
-		case "c":ArrayList<String> listeTemp = new ArrayList<String>();
+		/*case "c":ArrayList<String> listeTemp = new ArrayList<String>();
 				try{
-					ResultSet rs = st.executeQuery("Select Valeur from VALPOSSIBLE where idQ = " + q.getNumeroQuestionnaire() + " and numQ = " + q.getIdQuestion());
+					ResultSet rs = st.executeQuery("Select idV,Valeur from VALPOSSIBLE where idQ = " + q.getNumeroQuestionnaire() + " and numQ = " + q.getIdQuestion());
 					while(rs.next()){
 						String val = rs.getString(1);
 						listeTemp.add(val);
@@ -153,23 +156,23 @@ public class ModeleAnalyste {
 				catch(SQLException e){
 					System.out.println(e);
 				}
-				break;
+				break;*/
 		case "n":for(int i=0;i<q.getMaxValeur()+1;i++){
-					listeRes.add(""+i);
+					dicoRes.put(""+i,""+i);
 				}
 				break;
 		case "l":ArrayList<Repondre> listeR= getListeReponses(q);
 				for(Repondre elem:listeR){
-					if(!listeRes.contains(elem.getValeur())){
-						listeRes.add(elem.getValeur());
+					if(!dicoRes.containsKey(elem.getValeur())){
+						dicoRes.put(elem.getValeur(),elem.getValeur());
 					}
 				}
 				break;
 		}
-		return listeRes;
+		return dicoRes;
 	}
 
-	public ArrayList<String> getValeursTableau(Question q){
+/*	public ArrayList<String> getValeursTableau(Question q){
 		ArrayList<String> listeGauche = genererColonneGauche(q);
 		ArrayList<Tranche> listeTranches = getTranches();
 		ArrayList<String> listeValeurs = new ArrayList<String>();
@@ -179,24 +182,61 @@ public class ModeleAnalyste {
 			}
 		}
 		return listeValeurs;
-	}
+	}*/
 	
-//	public int getNbpersonnes(String valeur, int debut, int fin,String typeQ){
-//		try{
-//			ResultSet rs = st.executeQuery("Select count(*) from REPONDRE natural join CARACTERISTIQUE natural join TRANCHE where valDebut = " + debut + "and valFin = " + fin +" and valeur = " + valeur);
-//			while(rs.next()){
-//				String val = rs.getString(1);
-//				listeTemp.add(val);
-//				}
-//			rs.close();
-//			for(int i=1;i<q.getMaxValeur()+1;i++){
-//				for(String elem:listeTemp){
-//					listeRes.add(elem + " " + i);
-//				}
-//			}
-//		}
-//		catch(SQLException e){
-//			System.out.println(e);
-//		}
-//	}
+	public int getNbpersonnes(String valeur, int debut, int fin,Question q,HashMap<String,String> dico){
+		int res=0;
+		switch(q.getIdTypeQuestion()){
+		 case "n":try{
+					ResultSet rs = st.executeQuery("Select count(*) from TRANCHE natural join CARACTERISTIQUE natural join REPONDRE "
+							+"where idQ = " + q.getNumeroQuestionnaire() + " and numQ = " + q.getIdQuestion()+" and valDebut = "+debut+" and valFin = "+
+							fin+" and valeur='"+valeur+"'");
+					rs.next();
+					res=rs.getInt(1);
+					rs.close();
+					}
+				   catch(SQLException e){
+						System.out.println(e);
+					}
+		 			break;
+		 case "l":try{
+				ResultSet rs = st.executeQuery("Select count(*) from TRANCHE natural join CARACTERISTIQUE natural join REPONDRE "
+						+"where idQ = " + q.getNumeroQuestionnaire() + " and numQ = " + q.getIdQuestion()+" and valDebut = "+debut+" and valFin = "+
+						fin+" and valeur='"+valeur+"'");
+				rs.next();
+				res=rs.getInt(1);
+				rs.close();
+				}
+			   catch(SQLException e){
+					System.out.println(e);
+				}
+		 		break;
+		 case "u":try{
+				ResultSet rs = st.executeQuery("Select count(*) from TRANCHE natural join CARACTERISTIQUE natural join REPONDRE "
+						+"where idQ = " + q.getNumeroQuestionnaire() + " and numQ = " + q.getIdQuestion()+" and valDebut = "+debut+" and valFin = "+
+						fin+" and valeur='"+dico.get(valeur)+"'");
+				rs.next();
+				res=rs.getInt(1);
+				rs.close();
+				}
+			   catch(SQLException e){
+					System.out.println(e);
+				}
+		 		break;
+		 /*case "m":try{
+			 	ResultSet chaineChoix= st.executeQuery("Select valeur from REPONDRE where idQ = " + q.getNumeroQuestionnaire() + " and numQ = " + q.getIdQuestion() );
+				ResultSet rs = st.executeQuery("Select count(*) from TRANCHE natural join CARACTERISTIQUE natural join REPONDRE"
+						+"where idQ = " + q.getNumeroQuestionnaire() + " and numQ = " + q.getIdQuestion()+" and valDebut="+debut+" and valFin="+
+						fin+" valeur="+dico.get(valeur));
+				rs.next();
+				res=rs.getInt(1);
+				rs.close();
+				}
+			   catch(SQLException e){
+					System.out.println(e);
+				}
+		 		break;*/
+		}
+		return res;
+	}
 }
