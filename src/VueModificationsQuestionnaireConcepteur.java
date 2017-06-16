@@ -31,12 +31,14 @@ public class VueModificationsQuestionnaireConcepteur extends JPanel{
 	JPanel milieumilieu;
 	ControleurModificationsQuestionnaireConcepteur cc;
   int numeroQuestion;
+  ControleurComboBox ccb;
 
 
   public VueModificationsQuestionnaireConcepteur(EasySond sond, int numQ) {
 		super();
 		this.sond=sond;
     this.numQ=numQ;
+    this.ccb= new ControleurComboBox(this);
     this.cc = new ControleurModificationsQuestionnaireConcepteur(this);
     this.setLayout(new BorderLayout());
     this.numeroQuestion=this.sond.basededonnes.BDQuestion.getNumQuestionActuel(this.numQ);
@@ -52,11 +54,11 @@ public class VueModificationsQuestionnaireConcepteur extends JPanel{
     JPanel milieu = new JPanel(new BorderLayout());
     milieu.setBackground(Color.RED);
     this.add(milieu,"Center");
-    JPanel milieumilieu = new JPanel();
-    milieumilieu.setLayout(new BoxLayout(milieumilieu,BoxLayout.Y_AXIS));
-    milieumilieu.setBackground(Color.WHITE);
-    informations(milieumilieu);
-    milieu.add(milieumilieu,"Center");
+    this.milieumilieu = new JPanel();
+    this.milieumilieu.setLayout(new BoxLayout(milieumilieu,BoxLayout.Y_AXIS));
+    this.milieumilieu.setBackground(Color.WHITE);
+    informations(this.milieumilieu);
+    milieu.add(this.milieumilieu,"Center");
 
     JPanel bidon1 = new JPanel();
     bidon1.setBackground(new Color(78,217,255));
@@ -101,30 +103,74 @@ public class VueModificationsQuestionnaireConcepteur extends JPanel{
 
 		JPanel type = new JPanel(new FlowLayout(FlowLayout.LEFT));
     JLabel typee = new JLabel("Type :");
-    String [] lesChoix={"Choix multiples","Choix simple","Choix libre","Classement"};
+    String [] lesChoix={"Choix multiples","Choix simple","Choix libre","Classement","Note"};
     JComboBox <String> maListeChoix=new JComboBox <String> (lesChoix);
+    maListeChoix.addActionListener(this.ccb);
     type.add(typee);
     type.add(maListeChoix);
     milieumilieu.add(type);
-
-		JPanel reponse = new JPanel(new FlowLayout(FlowLayout.LEFT));
+    panelReponse(milieumilieu, "Choix multiples", 8);
+  }
+  void panelReponse(JPanel milieumilieu, String nom, int nbChoix){
+    JPanel reponse = new JPanel(new FlowLayout(FlowLayout.LEFT));
     reponse.setBorder(new TitledBorder("Réponses :"));
-    JRadioButton  choix1=new JRadioButton("Choix 1   ");
-    JRadioButton  choix2=new JRadioButton("Choix 2   ");
-    JRadioButton  choix3=new JRadioButton("Choix 3   ");
-    JRadioButton  choix4=new JRadioButton("Choix 4   ");
-    JRadioButton  choix5=new JRadioButton("Choix 5   ");
-    ButtonGroup  choixOption=new ButtonGroup ();
-    choixOption.add(choix1);
-    choixOption.add(choix2);
-    choixOption.add(choix3);
-    choixOption.add(choix4);
-    choixOption.add(choix5);
-    reponse.add(choix1);
-    reponse.add(choix2);
-    reponse.add(choix3);
-    reponse.add(choix4);
-    reponse.add(choix5);
-    milieumilieu.add(reponse);
-  }
-  }
+    Container cont = ((Container) milieumilieu);
+    if(nom.equals("Choix multiples")){
+  		cont.removeAll();
+      ButtonGroup  choixOption=new ButtonGroup ();
+      for(int i =0; i <nbChoix; ++i){
+        JRadioButton  choix=new JRadioButton("Choix " + i);
+        choixOption.add(choix);
+        reponse.add(choix);
+      }
+      cont.add(reponse);
+      cont.setBackground(this.sond.couleur);
+      cont.validate();
+      cont.repaint();
+    }
+    else if(nom.equals("Choix simple")){
+      cont.removeAll();
+      ButtonGroup  choixOption=new ButtonGroup ();
+      for(int i =0; i <nbChoix; ++i){
+        JRadioButton  choix=new JRadioButton("Choix " + i);
+        choixOption.add(choix);
+        reponse.add(choix);
+      }
+      cont.add(reponse);
+      cont.setBackground(this.sond.couleur);
+      cont.validate();
+      cont.repaint();
+    }
+    else if(nom.equals("Choix libre")){
+      cont.removeAll();
+      JTextArea texte = new JTextArea(8,96);
+      texte.setLineWrap(true);
+      texte.setWrapStyleWord(true);
+      reponse.add(texte);
+      cont.add(reponse);
+      cont.setBackground(this.sond.couleur);
+      cont.validate();
+      cont.repaint();    }
+    else if(nom.equals("Classement")){
+      cont.removeAll();
+      for(int i=0; i<nbChoix; ++i){
+        JLabel choix1 = new JLabel("Choix" + i);
+        JTextField texte1 = new JTextField(20);
+        reponse.add(choix1);
+        reponse.add(texte1);
+      }
+      cont.add(reponse);
+      cont.setBackground(this.sond.couleur);
+      cont.validate();
+      cont.repaint();    }
+    else{
+      cont.removeAll();
+      JTextField note = new JTextField(5);
+      reponse.add(note);
+      cont.add(reponse);
+      cont.setBackground(this.sond.couleur);
+      cont.validate();
+      cont.repaint();
+    }
+}
+}
