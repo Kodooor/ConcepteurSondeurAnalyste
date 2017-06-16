@@ -4,56 +4,17 @@ import javax.swing.border.TitledBorder;
 import java.util.ArrayList;
 
 
-/**
-*Vue de la page d'accueil du Sondeur
-*@author Romain et Zéphyr
-*
-*/
-
 @SuppressWarnings("serial")
 public class VueRemplissageSondage extends JPanel{
-
-	/**
-	*permet d'accéder au conteneur principal
-	*/
 	EasySond sond;
-
-	/**
-	*permet de lier les bouton à leur controleur
-	*/
 	ControleurRemplissageSondage controleur;
-
-	/**
-	*questionnaire en cours
-	*/
 	Questionnaire questionnaire;
-
-	/**
-	*information du sondé
-	*/
 	Sonde sonde;
-
-	/**
-	*liste des question d'un questionnaire
-	*/
 	ArrayList<Question> listeQuestion;
-
-	/**
-	*numéro d'une question dans un questionnaire
-	*/
 	int numeroQuestion;
-
-	/**
-	*vue qui gere le chargement du module Sondeur
-	*/
 	VueAccueilSondeur vueAccueilSondeur;
 
-	/**
-	 * Constructeur qui permet de fixer la vue
-	 * @param vueAccueilSondeur la vue Accueil Sondeur
-	 * @param
-	 * @param
-	 */
+
 	VueRemplissageSondage(EasySond sond, Questionnaire q, Sonde s){
 		super();
 		this.sond=sond;
@@ -166,7 +127,7 @@ public class VueRemplissageSondage extends JPanel{
 		switch(typeQuestion){
 			//choix unique
 			case "u": for(int i=0; i < listeValeur.size() ; i++){
-								 JRadioButton c =new JRadioButton(listeValeur.get(i).getValeur());
+								 JRadioButton c =new JRadioButton("" + listeValeur.get(i).getValeur());
 								 panelQuestion.add(c);
 								 panelChoix.add(c);
 							 }
@@ -178,18 +139,17 @@ public class VueRemplissageSondage extends JPanel{
 							 }
 							break;
 			//classement
-			case "c": panelQuestion.setLayout(new BoxLayout(panelQuestion,BoxLayout.Y_AXIS));
-								String [] liste = new String [listeValeur.size()];
-		 					  liste = listeValeur.toArray(liste);
-								JComboBox <String> maListe=new JComboBox <String> (liste);
-								for(int i=1;i<liste.length+1;i++){
-									JPanel p = new JPanel();
-									p.setLayout(new BoxLayout(p,BoxLayout.X_AXIS));
-									JLabel l = new JLabel(i+" : ");
-									p.add(l);
-								  p.add(maListe);
-									panelQuestion.add(p);
-						 		}
+			case "c": 	for (int i = 1 ; i <= maxValeur ; i++){
+									JLabel label = new JLabel("Numéro "+i);
+									panelQuestion.add(label);
+									String [] liste2= new String[listeValeur.size()];
+									for (int j = 0 ; j < listeValeur.size(); ++j){
+										liste2[j] = listeValeur.get(j).getValeur();
+									}
+									JComboBox <String> maListe2=new JComboBox <String> (liste2);
+									panelQuestion.add(maListe2);
+								}
+
 							break;
 			//réponse
 			case "l":JTextField maZone=new JTextField(100);
