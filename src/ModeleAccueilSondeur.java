@@ -3,15 +3,26 @@ import java.util.ArrayList;
 import java.sql.*;
 import java.util.ArrayList;
 /**
- * Model du jeu motus
- * @author IUT'O dpt Informatique
+ * Model du Sondeur
+ * @author Zéphyr
  *
  */
 
 public class ModeleAccueilSondeur {
+
+	/**
+	*Connexion à la base de données
+	*/
 	ConnexionMySQL laConnexion;
+
+	/**
+	* Statement
+	*/
 	Statement st;
 
+	/**
+	* Génère le modele en fonction de la connexion
+	*/
 	ModeleAccueilSondeur(ConnexionMySQL laConnexion){
 	this.laConnexion=laConnexion;
 	try{
@@ -24,6 +35,9 @@ public class ModeleAccueilSondeur {
 	}
   }
 
+	/**
+	*Recupère le premier questionnaire attendant d'être sondé
+	*/
 	Questionnaire GetQuestionnaire(){
 	     try{
         // execution de la requête
@@ -42,6 +56,9 @@ public class ModeleAccueilSondeur {
       }
    }
 
+	 /**
+	 *Recupère la liste des sondés participant à un questionnaire
+	 */
 	 ArrayList<Sonde> GetListeSonde(int idPan){
      ArrayList<Sonde> res = new ArrayList<Sonde>();
      try{
@@ -63,6 +80,9 @@ public class ModeleAccueilSondeur {
     }
   }
 
+	/**
+	*Recupère la liste des questions d'un questionnaire
+	*/
 	ArrayList<Question> GetListeQuestion(int numQ){
 		ArrayList<Question> res = new ArrayList<Question>();
 		try{
@@ -84,6 +104,9 @@ public class ModeleAccueilSondeur {
 	 }
 	}
 
+	/**
+	*Recupère la liste des valeurs possible pour une question d'un questionnaire
+	*/
 	ArrayList<ValeurPossible> GetListeValeurPossible(int numQuestionnaire, int idQuestion){
 		ArrayList<ValeurPossible> res = new ArrayList<ValeurPossible>();
 		try{
@@ -105,6 +128,9 @@ public class ModeleAccueilSondeur {
 	 }
 	}
 
+	/**
+	*Insère une réponse d'un sondé
+	*/
 	int insererRepondre(Repondre r){
 		try{
 			PreparedStatement ps = laConnexion.mysql.prepareStatement("insert into REPONDRE values(?,?,?,?)");
@@ -121,6 +147,9 @@ public class ModeleAccueilSondeur {
 		return 0;
 	}
 
+	/**
+	*Change l'état d'un questionnaire pour qu'il puisse être analysé
+	*/
 	void majQuestionnaire(int idQ){
 		try{
 			PreparedStatement ps = laConnexion.mysql.prepareStatement("update QUESTIONNAIRE set numLicJ = 'A' where idQ = "+idQ);
