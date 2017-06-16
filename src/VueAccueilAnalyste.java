@@ -33,7 +33,7 @@ public class VueAccueilAnalyste extends JPanel {
 	}
 	
 	private void enTete(){
-		VueEnTete haut=new VueEnTete(this.sond,"Accueil Analyste","Analyste",this.sond.Nom,this.sond.Prenom);
+		VueEnTete haut=new VueEnTete(this.sond,"Accueil Analyste    ","Analyste",this.sond.Nom,this.sond.Prenom);
 		this.add(haut,"North");
 	}
 	
@@ -52,6 +52,7 @@ public class VueAccueilAnalyste extends JPanel {
         
         //Panneau bidon gauche
         JPanel panneauGauche = new JPanel();
+        panneauGauche.setBackground(this.sond.couleur);
         JLabel bidon2 = new JLabel("                          ");
         panneauGauche.add(bidon2);
         this.add(panneauGauche,"West");

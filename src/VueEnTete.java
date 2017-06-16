@@ -3,6 +3,8 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -22,6 +24,7 @@ public class VueEnTete extends JPanel {
 	VueEnTete(EasySond sond,String titre,String role,String nom,String prenom){
 		super();
 		this.sond=sond;
+		this.setBackground(this.sond.couleur);
 		this.titre=titre;
 		this.role=role;
 		this.nom=nom;
@@ -35,9 +38,11 @@ public class VueEnTete extends JPanel {
 		// Le panel haut
 		JPanel haut= new JPanel();
 		haut.setLayout(new GridLayout(1,2));
+		haut.setBackground(this.sond.couleur);
 		//Panel Titre
 		JPanel titre=new JPanel();
 		titre.setLayout(new BoxLayout(titre,BoxLayout.PAGE_AXIS));
+		titre.setBackground(this.sond.couleur);
 		JLabel titreprincipal=new JLabel(this.titre);
 		Font font = new Font("Arial",Font.BOLD,26);
 		titreprincipal.setFont(font);
@@ -48,6 +53,7 @@ public class VueEnTete extends JPanel {
 		
 		//Panel image
 		JPanel panelImage=new JPanel();
+		panelImage.setBackground(this.sond.couleur);
 		JLabel image = new JLabel(new ImageIcon("LogoPetit.png"));
 		image.setSize(panelImage.getWidth(),panelImage.getHeight());
 		panelImage.add(image);
@@ -56,14 +62,16 @@ public class VueEnTete extends JPanel {
 		//Cadre de déconnection
 		JPanel Deconnexion=new JPanel();
 		Deconnexion.setLayout(new GridLayout(2,2));
+		Deconnexion.setBorder(BorderFactory.createLineBorder(Color.black));
 		JPanel panelRole=new JPanel();
+		panelRole.setLayout(new BoxLayout(panelRole,BoxLayout.Y_AXIS));
+		panelRole.setBackground(new Color(255,157,52));
 		JLabel role =new JLabel("Role : "+this.role);
 		panelRole.add(role);
-		panelRole.setBackground(Color.CYAN);
 		Deconnexion.add(panelRole);
 		JPanel info = new JPanel();
 		info.setLayout(new BoxLayout(info,BoxLayout.Y_AXIS));
-		info.setBackground(Color.CYAN);
+		info.setBackground(new Color(255,157,52));
 		JLabel nom = new JLabel("Nom :"+this.nom);
 		JLabel prenom = new JLabel("Prenom :"+this.prenom);
 		info.add(nom);
@@ -77,16 +85,16 @@ public class VueEnTete extends JPanel {
 		boutonMaison.setContentAreaFilled(false);
 		boutonMaison.setBorderPainted(false);
 		imageHome.add(boutonMaison);
-		Deconnexion.setBackground(Color.CYAN);
-		imageHome.setBackground(Color.CYAN);
+		Deconnexion.setBackground(new Color(255,157,52));
+		imageHome.setBackground(new Color(255,157,52));
 		Deconnexion.add(imageHome);
 		JButton boutonDeconnexion=new JButton("Deconnexion");
 		boutonDeconnexion.addActionListener(this.cc);
 		Deconnexion.add(boutonDeconnexion);
-		Deconnexion.setBackground(Color.CYAN);
 		panelImage.add(Deconnexion);
 		haut.add(panelImage,"East");
 		haut.setLayout(new FlowLayout());
+		((FlowLayout) haut.getLayout()).setHgap(this.sond.getWidth()/3);
 		this.add(haut,"North");
 	}
 

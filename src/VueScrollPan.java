@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
@@ -15,9 +16,11 @@ public class VueScrollPan extends JPanel {
 
 	VueScrollPan(String titre){
 		super();
+		this.setBackground(new Color(78,217,255));
 		this.titre=titre;
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 		this.jp=new JPanel();
+		this.jp.setBackground(new Color(78,217,255));
 		body();
 	}
 	private void body(){
