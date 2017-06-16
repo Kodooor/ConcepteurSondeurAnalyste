@@ -3,18 +3,57 @@ import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.util.ArrayList;
 
-
+/**
+*Vue de la page d'accueil du Sondeur
+*@author Romain et Zéphyr
+*
+*/
 @SuppressWarnings("serial")
 public class VueRemplissageSondage extends JPanel{
+
+	/**
+	*permet d'accéder au conteneur principal
+	*/
 	EasySond sond;
+
+	/**
+	*permet de lier les bouton à leur controleur
+	*/
 	ControleurRemplissageSondage controleur;
+
+	/**
+	*questionnaire en cours
+	*/
 	Questionnaire questionnaire;
+
+	/**
+	*information du sondé
+	*/
 	Sonde sonde;
+
+	/**
+	*liste des question d'un questionnaire
+	*/
 	ArrayList<Question> listeQuestion;
+
+	/**
+	*numéro d'une question dans un questionnaire
+	*/
 	int numeroQuestion;
+
+	/**
+	*vue qui gere le chargement du module Sondeur
+	*/
 	VueAccueilSondeur vueAccueilSondeur;
 
+	VueEnTete vueEnTete;
 
+	/**
+	 * Constructeur qui permet de fixer la vue
+	 * @param sond permet d'accéder au conteneur principal
+	 * @param q questionnaire en cours
+	 * @param s sondage en cours
+	 */
 	VueRemplissageSondage(EasySond sond, Questionnaire q, Sonde s){
 		super();
 		this.sond=sond;
@@ -24,9 +63,13 @@ public class VueRemplissageSondage extends JPanel{
 		this.sonde = s;
 		this.listeQuestion = this.sond.basededonnes.BDaccueilSondeur.GetListeQuestion(this.questionnaire.getNumeroQuestionnaire());
 		this.numeroQuestion = 0;
+		this.vueEnTete = new VueEnTete(this.sond,"Remplissage Sondage", "Sondeur", this.sond.Nom, this.sond.Prenom);
 		pageGenerator();
 	}
 
+/**
+*Affiche la page liée a VueAccueilSondeur
+*/
 	void refreshAccueil(){
 		Container cont=this.sond.getContentPane();
 		cont.removeAll();
@@ -37,11 +80,17 @@ public class VueRemplissageSondage extends JPanel{
 		cont.repaint();
 	}
 
+	/**
+	*Actualise la page des question en passant à la suivant ou à la précédante
+	*/
 	void questionChangement(int e){
 		this.numeroQuestion+=e;
 		refresh();
 	}
 
+	/**
+	*Actualise la page
+	*/
 	void refresh(){
 		Container cont=this.sond.getContentPane();
 		this.removeAll();
@@ -50,6 +99,9 @@ public class VueRemplissageSondage extends JPanel{
 		cont.repaint();
 	}
 
+	/**
+	*Contien la contruction de la page de Remplissage de sondage
+	*/
 	void pageGenerator(){
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 
@@ -84,13 +136,18 @@ public class VueRemplissageSondage extends JPanel{
 		this.add(lv5);
 	}
 
+	/**
+	*Ajoute VueEnTete au panel lv1
+	* @param lv1 couche 1 de l'affichage
+	*/
 	void nomPage(JPanel lv1){	//Annonce de la page
-		JPanel panelNom= new JPanel();
-		JLabel labelNom= new JLabel(">> Acceuil Sondeur >> Remplissage Sondage");
-		panelNom.add(labelNom);
-		lv1.add(panelNom);
+		lv1.add(this.vueEnTete);
 	}
 
+	/**
+	*Ajoute le nom du sondage au panel lv2
+	* @param lv2 couche 2 de l'affichage
+	*/
 	void nomSondage(JPanel lv2){	//Annonce de la page
 		JPanel panelNom= new JPanel();
 		panelNom.setLayout(new BoxLayout(panelNom,BoxLayout.Y_AXIS));
@@ -101,6 +158,10 @@ public class VueRemplissageSondage extends JPanel{
 		lv2.add(panelNom);
 	}
 
+	/**
+	*Ajoute l'intitulé au panel lv3
+	* @param lv3 couche 3 de l'affichage
+	*/
 	void intitule(JPanel lv3){	//Annonce de la page
 		JPanel panelIntitule= new JPanel();
 		panelIntitule.setLayout(new BoxLayout(panelIntitule,BoxLayout.X_AXIS));
@@ -111,6 +172,9 @@ public class VueRemplissageSondage extends JPanel{
 		lv3.add(panelIntitule);
 	}
 
+	/**
+	*Ajoute les questionnaire a remplir au panel lv4
+	*/
 	Component reponse(){
 		JPanel question= new JPanel();
 		question.setLayout(new BoxLayout(question,BoxLayout.X_AXIS));
@@ -168,6 +232,9 @@ public class VueRemplissageSondage extends JPanel{
 		return question;
 	}
 
+	/**
+	*Renvoie lie les bouton à ControleurRemplissageSondage et les renvoies
+	*/
 	JPanel boutons(){
 		JPanel panelBoutons= new JPanel();
 		JButton b1= new JButton("<-------");

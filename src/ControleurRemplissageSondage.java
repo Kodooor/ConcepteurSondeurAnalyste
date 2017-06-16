@@ -7,26 +7,30 @@ import javax.swing.JOptionPane;
 
 
 /**
- * Controleur des bouton de l'accueil
+ * Controleur des bouton du remplissage Sondage
  * @author Romain
  *
  */
 
 public class ControleurRemplissageSondage implements ActionListener{
 
-	//model manquant
-
+	/**
+	* vue qui contien les bouton a faire fonctionner
+	*/
 	VueRemplissageSondage vueRemplissageSondage;
 
 	/**
 	 * Constructeur qui permet de fixer la vue et le modele
-	 * @param vueRemplissageSondage la vue
+	 * @param vueRemplissageSondage la vue Remplissage Sondage
 	 */
 	public ControleurRemplissageSondage(VueRemplissageSondage vueRemplissageSondage) {
 		super();
 		this.vueRemplissageSondage=vueRemplissageSondage;
 	}
 
+	/**
+	*fait fonctionner les bouton de vueRemplissageSondage
+	*/
 	@Override
 	public void actionPerformed(ActionEvent arg0)
 	{
