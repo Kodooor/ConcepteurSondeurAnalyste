@@ -73,8 +73,6 @@ public class VueEnTete extends JPanel {
 		ImageIcon maison = new ImageIcon("home.jpg");
 		JButton boutonMaison = new JButton(maison);
 		boutonMaison.addActionListener(this.cm);
-		//JLabel home = new JLabel(new ImageIcon("home.jpg"));
-		//home.setSize(panelImage.getWidth(),panelImage.getHeight());
 		boutonMaison.setOpaque(false);
 		boutonMaison.setContentAreaFilled(false);
 		boutonMaison.setBorderPainted(false);
@@ -89,7 +87,6 @@ public class VueEnTete extends JPanel {
 		panelImage.add(Deconnexion);
 		haut.add(panelImage,"East");
 		haut.setLayout(new FlowLayout());
-		((FlowLayout) haut.getLayout()).setHgap(this.sond.getWidth()/5);
 		this.add(haut,"North");
 	}
 
