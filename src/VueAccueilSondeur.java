@@ -38,6 +38,11 @@ public class VueAccueilSondeur extends JPanel{
 	VueRemplissageSondage vueRemplissageSondage;
 
 	/**
+	*Vue qui gère l'entête
+	*/
+	VueEnTete vueEnTete;
+
+	/**
 	*Constructeur qui créé la vue en la reliant au programme principal,
 	*créé le contrôleur et va chercher des données dans la base de donnée
 	*pour les réutiliser
@@ -48,6 +53,7 @@ public class VueAccueilSondeur extends JPanel{
 		this.actionBoutons = new ControleurAccueilSondeur(this);
 		this.questionnaire = this.sond.basededonnes.BDaccueilSondeur.GetQuestionnaire();
 		this.listeSonde = this.sond.basededonnes.BDaccueilSondeur.GetListeSonde(this.questionnaire.getIdentifiantPanel());
+		this.vueEnTete = new VueEnTete(this.sond,"Accueil Sondeur","Sondeur",this.sond.Nom,this.sond.Prenom);
 		pageGenerator(false);
 		this.setVisible(true); //affiche le tout
 	}
@@ -126,11 +132,7 @@ public class VueAccueilSondeur extends JPanel{
 	*Annonce le nom de la page
 	*/
 	JPanel nomPage(){
-		JPanel panelNom= new JPanel();
-		JLabel labelNom= new JLabel(">> Acceuil Sondeur");
-		panelNom.add(labelNom);
-
-		return panelNom;
+		return this.vueEnTete;
 	}
 
 	/**
