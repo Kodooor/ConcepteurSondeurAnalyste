@@ -58,7 +58,7 @@ public class VueCreationConcepteur extends JPanel {
 }
 	Component milieu(){
 		JPanel milieu = new JPanel(new BorderLayout());
-		milieu.setBackground(Color.RED);
+		milieu.setBackground(this.sond.couleur);
 		this.add(milieu,"Center");
 		JPanel milieumilieu = new JPanel();
 		milieumilieu.setLayout(new BoxLayout(milieumilieu,BoxLayout.Y_AXIS));
@@ -67,22 +67,22 @@ public class VueCreationConcepteur extends JPanel {
 		milieu.add(milieumilieu,"Center");
 
 		JPanel bidon1 = new JPanel();
-		bidon1.setBackground(new Color(78,217,255));
+		bidon1.setBackground(this.sond.couleur);
 		bidon1.setPreferredSize(new Dimension(40,40));
 		milieu.add(bidon1,"North");
 
 		JPanel bidon2 = new JPanel();
-		bidon2.setBackground(new Color(78,217,255));
+		bidon2.setBackground(this.sond.couleur);
 		bidon2.setPreferredSize(new Dimension(100,100));
 		milieu.add(bidon2,"West");
 
 		JPanel bidon3 = new JPanel();
-		bidon3.setBackground(new Color(78,217,255));
+		bidon3.setBackground(this.sond.couleur);
 		bidon3.setPreferredSize(new Dimension(100,100));
 		milieu.add(bidon3,"East");
 
 		JPanel bidon4 = new JPanel();
-		bidon4.setBackground(new Color(78,217,255));
+		bidon4.setBackground(this.sond.couleur);
 		bidon4.setPreferredSize(new Dimension(70,70));
 		bouton(bidon4);
 		milieu.add(bidon4,"South");

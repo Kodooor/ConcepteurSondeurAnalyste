@@ -36,13 +36,7 @@ public class VueAccueilConcepteur extends JPanel {
 		this.listequestionnaire = this.sond.basededonnes.BDConcepteur.listeDesQuestionnaires();
 		enTete();
 		body();
-		for(Component truc : this.getComponents()){
-			if (truc instanceof Container){
-			for(Component bis : ((Container) truc).getComponents()){
-				bis.setBackground(new Color(78,217,255));
-			}
-		}
-		}
+
 	}
 	void afficherVueInfoQuestionnaire(int num){
 		Container cont=this.sond.getContentPane();
@@ -60,6 +54,7 @@ public class VueAccueilConcepteur extends JPanel {
 	private void body(){
 		JPanel principal= new JPanel();
 		principal.setLayout(new BoxLayout(principal,BoxLayout.Y_AXIS));
+		principal.setBackground(this.sond.couleur);
 		VueScrollPan scroll1=new VueScrollPan("A créer");
 		VueScrollPan scroll2=new VueScrollPan("En cours");
 		principal.add(scroll1);
@@ -80,12 +75,14 @@ public class VueAccueilConcepteur extends JPanel {
 	private void scroll(JPanel p,String label,int num, String bouton){
 		JPanel c=new JPanel();
 		c.setPreferredSize(new Dimension(50,50));
+		c.setBackground(this.sond.couleur);
     	c.setLayout(new GridLayout(1,2));
     	c.add(new JPanel().add(new JLabel(label)));
     	JButton jbouton = new JButton(bouton);
 			jbouton.setName("" + num);
     	jbouton.addActionListener(this.cc);
     	c.add(new JPanel().add(jbouton));
+				p.setBackground(this.sond.couleur);
         p.add(c);
 	}
 }
