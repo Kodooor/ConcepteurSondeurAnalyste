@@ -32,6 +32,7 @@ public class ModeleAnalyste {
 	      rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6));
 	      listeQuestionnaire.add(q);
 	    }
+	    rs.close();
 	    return listeQuestionnaire;
 	  }
 	  catch(SQLException e){
@@ -48,6 +49,7 @@ public class ModeleAnalyste {
 	      Question questionC = new Question(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getInt(4),rs.getString(5));
 	      listeQuestion.add(questionC);
 	    }
+	    rs.close();
 	    return listeQuestion;
 	  }
 	  catch(SQLException e){
@@ -63,6 +65,7 @@ public class ModeleAnalyste {
 		    while(rs.next()){
 		      questionC = new Question(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getInt(4),rs.getString(5));
 		    }
+		    rs.close();
 			return questionC;
 		}
 		catch(SQLException e){
@@ -79,6 +82,7 @@ public class ModeleAnalyste {
 				Repondre reponse = new Repondre(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4));
 				listeRes.add(reponse);
 			}
+			rs.close();
 			return listeRes;
 		}
 		catch(SQLException e){
@@ -96,6 +100,7 @@ public class ModeleAnalyste {
 				Tranche tranche = new Tranche(rs.getString(1),rs.getInt(2),rs.getInt(3));
 				listeRes.add(tranche);
 			}
+			rs.close();
 			return listeRes;
 		}
 		catch(SQLException e){
@@ -113,6 +118,7 @@ public class ModeleAnalyste {
 						String val = rs.getString(1);
 						listeRes.add(val);
 					}
+					rs.close();
 				}
 				catch(SQLException e){
 					System.out.println(e);
@@ -124,6 +130,7 @@ public class ModeleAnalyste {
 						String val = rs.getString(1);
 						listeRes.add(val);
 						}
+					rs.close();
 					}
 				catch(SQLException e){
 					System.out.println(e);
@@ -136,6 +143,7 @@ public class ModeleAnalyste {
 						String val = rs.getString(1);
 						listeTemp.add(val);
 						}
+					rs.close();
 					for(int i=1;i<q.getMaxValeur()+1;i++){
 						for(String elem:listeTemp){
 							listeRes.add(elem + " " + i);
@@ -173,13 +181,14 @@ public class ModeleAnalyste {
 		return listeValeurs;
 	}
 	
-//	public int getNbpersonnes(String valeur, int debut, int fin){
+//	public int getNbpersonnes(String valeur, int debut, int fin,String typeQ){
 //		try{
 //			ResultSet rs = st.executeQuery("Select count(*) from REPONDRE natural join CARACTERISTIQUE natural join TRANCHE where valDebut = " + debut + "and valFin = " + fin +" and valeur = " + valeur);
 //			while(rs.next()){
 //				String val = rs.getString(1);
 //				listeTemp.add(val);
 //				}
+//			rs.close();
 //			for(int i=1;i<q.getMaxValeur()+1;i++){
 //				for(String elem:listeTemp){
 //					listeRes.add(elem + " " + i);
