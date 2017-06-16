@@ -26,19 +26,19 @@ public class ControleurComboBox implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
    if(((String)(((JComboBox) arg0.getSource()).getSelectedItem())).equals("Choix simple")){
-		 this.vueModificationsQuestionnaireConcepteur.panelReponse(1,50);
+		 this.vueModificationsQuestionnaireConcepteur.choixvoulu = 1;
 	 }
 	 else if(((String)(((JComboBox) arg0.getSource()).getSelectedItem())).equals("Choix multiples")){
-		this.vueModificationsQuestionnaireConcepteur.panelReponse(0,10);
+		 this.vueModificationsQuestionnaireConcepteur.choixvoulu = 0;
 	}
 	else if(((String)(((JComboBox) arg0.getSource()).getSelectedItem())).equals("Choix libre")){
-	 this.vueModificationsQuestionnaireConcepteur.panelReponse(2,20);
+	 this.vueModificationsQuestionnaireConcepteur.choixvoulu = 2;
  }
  else if(((String)(((JComboBox) arg0.getSource()).getSelectedItem())).equals("Classement")){
-	this.vueModificationsQuestionnaireConcepteur.panelReponse(3,5);
+	 this.vueModificationsQuestionnaireConcepteur.choixvoulu = 3; 
  }
  else if(((String)(((JComboBox) arg0.getSource()).getSelectedItem())).equals("Note")){
-	this.vueModificationsQuestionnaireConcepteur.panelReponse(4,50);
+	 this.vueModificationsQuestionnaireConcepteur.choixvoulu = 4;
  }
    }
 }

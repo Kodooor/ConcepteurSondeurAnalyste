@@ -33,6 +33,8 @@ public class VueModificationsQuestionnaireConcepteur extends JPanel{
   int numeroQuestion;
   ControleurComboBox ccb;
   JPanel cont;
+  int choixvoulu;
+  JTextField textnb;
 
 
   public VueModificationsQuestionnaireConcepteur(EasySond sond, int numQ) {
@@ -46,6 +48,7 @@ public class VueModificationsQuestionnaireConcepteur extends JPanel{
     this.cont = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		this.add(hautt(),"North");
     this.add(milieu(),"Center");
+    this.choixvoulu = 0;
 
 }
 
@@ -112,16 +115,23 @@ public class VueModificationsQuestionnaireConcepteur extends JPanel{
     type.add(typee);
     type.add(maListeChoix);
     milieumilieu.add(type);
+    JPanel nombre = new JPanel(new FlowLayout(FlowLayout.LEFT));
+    JLabel bla = new JLabel("Nombre de réponses :");
+    nombre.add(bla);
+    this.textnb = new JTextField(20);
+    nombre.add(this.textnb);
+    JButton validation = new JButton("OK");
+    validation.addActionListener(this.cc);
+    nombre.add(validation);
+    milieumilieu.add(nombre);
     milieumilieu.add(cont);
-    panelReponse(0, 8);
+    panelReponse(this.choixvoulu, 8);
   }
   void panelReponse(int nom, int nbChoix){
     cont.removeAll();
     if(nom == 0){
-      ButtonGroup  choixOption=new ButtonGroup ();
       for(int i =0; i <nbChoix; ++i){
         JRadioButton  choix=new JRadioButton("Choix " + i);
-        choixOption.add(choix);
         cont.add(choix);
       }
     }

@@ -31,11 +31,11 @@ public class ControleurModificationsQuestionnaireConcepteur implements ActionLis
       	this.vueModificationsQuestionnaireConcepteur.sond.vueAccueilConcepteur.vuecreationConcepteur.afficherVueCreationQuestionnaire(this.vueModificationsQuestionnaireConcepteur.sond,this.vueModificationsQuestionnaireConcepteur.numQ);
     }
 	}
+	else if(((JButton) arg0.getSource()).getText().equals("OK")){
+		this.vueModificationsQuestionnaireConcepteur.panelReponse(this.vueModificationsQuestionnaireConcepteur.choixvoulu,Integer.parseInt(this.vueModificationsQuestionnaireConcepteur.textnb.getText()));
+	}
 		else if(((JButton) arg0.getSource()).getText().equals("Valider")){
 			JOptionPane.showMessageDialog(this.vueModificationsQuestionnaireConcepteur.sond, "nique ta race petit fdp !");
 		}
-		else if(((String)(((JComboBox) arg0.getSource()).getSelectedItem())).equals("Choix simple")){
-			JOptionPane.showMessageDialog(this.vueModificationsQuestionnaireConcepteur.sond, "nique bien ta race");
-}
 }
 }
