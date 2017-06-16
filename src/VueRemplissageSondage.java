@@ -139,18 +139,17 @@ public class VueRemplissageSondage extends JPanel{
 							 }
 							break;
 			//classement
-			case "c": panelQuestion.setLayout(new BoxLayout(panelQuestion,BoxLayout.Y_AXIS));
-								String [] liste = new String [listeValeur.size()];
-		 					  liste = listeValeur.toArray(liste);
-								JComboBox <String> maListe=new JComboBox <String> (liste);
-								for(int i=1;i<liste.length+1;i++){
-									JPanel p = new JPanel();
-									p.setLayout(new BoxLayout(p,BoxLayout.X_AXIS));
-									JLabel l = new JLabel(i+" : ");
-									p.add(l);
-								  p.add(maListe);
-									panelQuestion.add(p);
-						 		}
+			case "c": 	for (int i = 1 ; i <= maxValeur ; i++){
+									JLabel label = new JLabel("Numéro "+i);
+									panelQuestion.add(label);
+									String [] liste2= new String[listeValeur.size()];
+									for (int j = 0 ; j < listeValeur.size(); ++j){
+										liste2[j] = listeValeur.get(j).getValeur();
+									}
+									JComboBox <String> maListe2=new JComboBox <String> (liste2);
+									panelQuestion.add(maListe2);
+								}
+
 							break;
 			//réponse
 			case "l":JTextField maZone=new JTextField(100);
