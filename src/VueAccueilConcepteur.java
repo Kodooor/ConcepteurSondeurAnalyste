@@ -21,13 +21,20 @@ import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-
+/**
+ * Vue permettant l'affichage de l'accueil Concepteur
+ * @author Sofiane et Lucas
+ *
+ */
 @SuppressWarnings("serial")
 public class VueAccueilConcepteur extends JPanel {
 	ControleurConcepteur cc;
 	ArrayList<Questionnaire> listequestionnaire;
 	EasySond sond;
 	VueCreationConcepteur vuecreationConcepteur;
+	/**
+	 * Constructeur de l'accueil Concepteur
+	 */
 	public VueAccueilConcepteur(EasySond sond) {
 		super();
 		this.setLayout(new BorderLayout());
@@ -38,6 +45,10 @@ public class VueAccueilConcepteur extends JPanel {
 		body();
 
 	}
+	/**
+	 * Méthode qui va modifier la vue avec la vue des information en fonction d'un questionnaire
+	 * @param Int l'identifiant du questionnaire
+	 */
 	void afficherVueInfoQuestionnaire(int num){
 		Container cont=this.sond.getContentPane();
 		cont.removeAll();
@@ -46,6 +57,9 @@ public class VueAccueilConcepteur extends JPanel {
 		cont.validate();
 		cont.repaint();
 	}
+	/**
+	 * Méthode qui va ajouter la vue 
+	 */
 	private void enTete(){
 		VueEnTete haut=new VueEnTete(this.sond, "Accueil Concepteur","Concepteur",this.sond.Nom,this.sond.Prenom);
 		this.add(haut,"North");

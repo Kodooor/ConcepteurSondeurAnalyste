@@ -11,7 +11,10 @@ public class ModeleConcepteur {
 	ConnexionMySQL laConnexion;
 	Statement st;
 	EasySond easySond;
-
+	/**
+	 * Constructeur qui va creer le modele et gerer les récuperation de donnees
+	 * @param ConnexionMySQL permet l'acces a la base de donnees
+	 */
 	ModeleConcepteur(ConnexionMySQL laConnexion){
 	this.laConnexion=laConnexion;
 	try{
@@ -23,6 +26,10 @@ public class ModeleConcepteur {
 	  st=null;
 	}
   }
+	/**
+	 * Méthode qui va recuperer la liste des questionnaire
+	 * @return la liste des questionnaire
+	 */
   public ArrayList<Questionnaire> listeDesQuestionnaires(){
 	      ArrayList<Questionnaire> listeQuestionnaire= new ArrayList<Questionnaire>();
 	  try{
@@ -40,6 +47,11 @@ public class ModeleConcepteur {
 	  }
 	  return null;
 	  }
+		/**
+		 * Méthode qui va recuperer le clien en fonction d'un questionnaire
+		 * @param Int l'identifiant du questionnaire
+		 * @return le Client
+		 */
 		public Client getClient(int numQ){
 		  try{
 		    ResultSet rs = st.executeQuery("Select * from CLIENT NATURAL JOIN QUESTIONNAIRE where idQ = '" + numQ + "'");

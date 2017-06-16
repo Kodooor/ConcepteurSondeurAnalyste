@@ -5,7 +5,7 @@ import javax.swing.*;
 /**
  * Vue permettant l'affichage de l'accueil
  * @author Sofiane et Lucas
- * 
+ *
  */
 public class VueAccueil extends JPanel {
 	/**
@@ -24,6 +24,7 @@ public class VueAccueil extends JPanel {
 	}
 	/**
 	 * remplace la vue de chargement par l'accueil de l'application
+	 * @return Le panel
 	 */
 	private Component bas() {
 		JPanel PanelBas = new JPanel();
@@ -35,6 +36,7 @@ public class VueAccueil extends JPanel {
 	}
 	/**
 	 * remplace la vue de chargement par l'accueil de l'application
+	 * @return Le TextField
 	 */
 	private Component milieu() {
 		textfield = new VueTextField();
@@ -42,6 +44,7 @@ public class VueAccueil extends JPanel {
 	}
 	/**
 	 * remplace la vue de chargement par l'accueil de l'application
+	 * @return Le panel
 	 */
 	private Component haut() {
 		JPanel PanelHaut = new JPanel();

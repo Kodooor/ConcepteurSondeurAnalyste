@@ -9,7 +9,7 @@ import javax.swing.*;
  */
 public class VueChargement extends JPanel {
 	/**
-	 * Constructeur du Chargement.
+	 * Constructeur du Chargement
 	 */
 	public VueChargement() {
 		super();
@@ -20,6 +20,7 @@ public class VueChargement extends JPanel {
 	}
 	/**
 	 * Construit la partie basse de la fenetre
+	 * @return Le panel
 	 */
 	private Component bas() {
 		JPanel PanelBas = new JPanel();
@@ -31,6 +32,7 @@ public class VueChargement extends JPanel {
 	}
 	/**
 	* Construit la partie centrale de la fenetre
+	* @return Le panel
 	 */
 	private Component milieu() {
 		JPanel PanelMilieu = new JPanel();
@@ -43,6 +45,7 @@ public class VueChargement extends JPanel {
 	}
 	/**
 	* Construit la partie haute de la fenetre
+	* @return Le panel
 	 */
 	private Component haut() {
 		JPanel PanelHaut = new JPanel();

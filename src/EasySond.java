@@ -56,19 +56,16 @@ public class EasySond extends JFrame {
 	 */
 	public EasySond() {
 		super("EasySond");
-	    this.setSize(getToolkit().getScreenSize());
-	    this.setLocationRelativeTo(null);
-	    this.validate();
-	    this.setVisible(true);
-      this.couleur = new Color(78,217,255);
-	    String nomServeur="192.168.82.168";
-	    String nomBase="dbfilleul";
-	    basededonnes = new ConnexionMySQL(nomServeur,nomBase,"filleul","lulujaune");
-		// conteneur principal
+	  this.setSize(getToolkit().getScreenSize());
+	  this.setLocationRelativeTo(null);
+	  this.validate();
+	  this.setVisible(true);
+    this.couleur = new Color(78,217,255);
+	  String nomServeur="192.168.82.168";
+	  String nomBase="dbfilleul";
+	  basededonnes = new ConnexionMySQL(nomServeur,nomBase,"filleul","lulujaune");
 		Container cont=this.getContentPane();
-		//ICI RAJOUTER CE QU'IL FAUT POUR AFFICHER LA PAGE DE CHARGEMENT
 		afficherVueChargement();
-		//cont.add(vueChargement);
 		this.setVisible(true);
 	}
 
@@ -84,9 +81,6 @@ public class EasySond extends JFrame {
 		cont.validate();
 		cont.repaint();
 	}
-	Container getCont(){
-		return this.getContentPane();
-	}
 	/**
 	 * remplace la vue chargement par la vue de l'accueil
 	 */
@@ -98,6 +92,10 @@ public class EasySond extends JFrame {
 		cont.validate();
 		cont.repaint();
 	}
+  /**
+  * Remplace les vue par les vue d'accueil pour chaque module
+  * @param Int,String,String le role, le nom et le prenom de l'utilisateur
+  */
 	void afficherVueModule(int role, String nom, String prenom){
     this.Nom = nom;
     this.Prenom = prenom;

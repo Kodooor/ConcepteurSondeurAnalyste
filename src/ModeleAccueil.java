@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.sql.*;
 import java.util.ArrayList;
 /**
- * Model du jeu motus
+ * Model de l'accueil
  * @author Sofiane et Lucas
  *
  */
@@ -11,7 +11,10 @@ import java.util.ArrayList;
 public class ModeleAccueil {
 	ConnexionMySQL laConnexion;
 	Statement st;
-
+	/**
+	 * Constructeur qui va creer le modele et gerer les récuperation de donnees
+	 * @param ConnexionMySQL permet l'acces a la base de donnees
+	 */
 	ModeleAccueil(ConnexionMySQL laConnexion){
 	this.laConnexion=laConnexion;
 	try{
@@ -23,7 +26,11 @@ public class ModeleAccueil {
 	  st=null;
 	}
   }
-
+	/**
+	 * Méthode qui va recuperer le role de l'utilisateur en fonction du login et du mot de passe
+	 * @param String,String le login et mot de passe de l'utilisateur
+	 * @return le role de l'utilisateur
+	 */
 	int VerifBD(String log, String mdp){
 		try{
       // execution de la requête
@@ -40,6 +47,11 @@ public class ModeleAccueil {
         return -1;
       }
    }
+	 /**
+ 	 * Méthode qui va recuperer le nom et le prenom de l'utilisateur en fonction du login et du mot de passe
+ 	 * @param String,String le login et mot de passe de l'utilisateur
+ 	 * @return la liste avec le nom et le prenom de l'utilisateur
+ 	 */
 	 ArrayList<String> getInfoUtilisateur(String log, String mdp){
 		 ArrayList<String> liste = new ArrayList<String>();
 				try{
