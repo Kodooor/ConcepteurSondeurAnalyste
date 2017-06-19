@@ -12,15 +12,55 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
+/**
+ * @author weber
+ *	Cette classe permet de crée le panel du haut de l'application.
+ */
 @SuppressWarnings("serial")
 public class VueEnTete extends JPanel {
+	/**
+	 * Cette variable est le titre de la page.
+	 */
 	private String titre;
+	/**
+	 * Cette variable est le role de la personne connecté.
+	 */
 	String role;
+	/**
+	 * Cette variable est le nom de la personne qui sera connecter.
+	 */
 	String nom;
+	/**
+	 * Cette variable est le prenom de la personne qui sera connecter.
+	 */
 	String prenom;
-	private ControleurDeco cc;
+	/**
+	 * Cette variable permet de récupérer la couleur, la taille de la fenetre et 
+	 * d'utiliser les controleur.
+	 */
 	EasySond sond;
+	/**
+	 * Cette variable est le controleur qui gere le bouton de déconnection.
+	 */
+	private ControleurDeco cc;
+	
+	/**
+	 * Cette variable est le controleur qui gere le bouton home qui permet de revenir à
+	 * la page d'accueil du module en cour.
+	 */
 	ControleurMaison cm;
+	
+	/**
+	 * @param sond est de type Easysond.Cette variable permet de récupérer la couleur, 
+	 * la taille de la fenetre et d'utiliser les controleur
+	 * @param titre est de type String. Cette variable est le role de la personne connecté.
+	 * @param role est de type String. Cette variable est le role de la personne 
+	 * qui sera connecter.
+	 * @param nom est de type String. Cette variable est le nom de la personne qui 
+	 * sera connecter.
+	 * @param prenom est de type String. Cette variable est le prenom de la personne qui 
+	 * sera connecter.
+	 */
 	VueEnTete(EasySond sond,String titre,String role,String nom,String prenom){
 		super();
 		this.sond=sond;
@@ -33,6 +73,10 @@ public class VueEnTete extends JPanel {
 		this.cm= new ControleurMaison(this.sond);
 		enTete();
 	}
+	
+	/**
+	 * Cette méthode crée tout le visuel du panel
+	 */
 	private void enTete(){
 		
 		// Le panel haut

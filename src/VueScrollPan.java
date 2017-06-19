@@ -8,12 +8,25 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 
+/**
+ * @author weber
+ *	Cette classe permet de créer un panel scrollable avec un titre
+ */
 @SuppressWarnings("serial")
 public class VueScrollPan extends JPanel {
 
+	/**
+	 * Cette variable est un String, ce sera le titre d'afficher. 
+	 */
 	private String titre;
+	/**
+	 * Cette variable est un JPanel, ce sera le panel scrollable
+	 */
 	private JPanel jp;
-
+	/**
+	 * C'est le constructeur de la classe
+	 * @param titre, c'est un String et permet de rentré un titre au choix
+	 */
 	VueScrollPan(String titre){
 		super();
 		this.setBackground(new Color(78,217,255));
@@ -23,6 +36,9 @@ public class VueScrollPan extends JPanel {
 		this.jp.setBackground(new Color(78,217,255));
 		body();
 	}
+	/**
+	 * Méthode qui crée le visuel
+	 */
 	private void body(){
 		JLabel titreSection = new JLabel(this.titre);
 		Font font = new Font("Arial",Font.BOLD,24);
@@ -36,6 +52,9 @@ public class VueScrollPan extends JPanel {
 	    this.add(js);
 	}
 
+	/**
+	 * @return JPanel, permet d'accéder au panel.
+	 */
 	public JPanel getPanel(){
 		return this.jp;
 	}

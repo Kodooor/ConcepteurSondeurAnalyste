@@ -15,13 +15,36 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 
+/**
+ * @author weber
+ * Cette classe est la vue de la page d'accueil de l'analyste, elle hérite de JPanel.
+ */
 @SuppressWarnings("serial")
 public class VueAccueilAnalyste extends JPanel {
+	/**
+	 * C'est un modele, cela permet de récupérer toute les informations neccessaire 
+	 * au page de l'analyste.
+	 */
 	ModeleAnalyste modele;
+	/**
+	 * C'est un controleur qui gere les boutons créer de la page.
+	 */
 	ControleurCreerAnalyste cca;
+	/**
+	 * C'est la vue de la page après avoir cliquer sur le bouton créer.
+	 */
 	VueCreerAnalyse vueCreerAnalyse;
+	/**
+	 * C'est la variable qui permet de récupérer la base de donnée.
+	 */
 	EasySond sond;
+	/**
+	 * Cette liste contient la liste des questionnaires de l'analyste
+	 */
 	ArrayList<Questionnaire> listeQuestionnaire;
+	/**
+	 * @param sond est la variable qui permet de récupérer la base de donnée.
+	 */
 	public VueAccueilAnalyste(EasySond sond) {
 		super();
 		cca=new ControleurCreerAnalyste(this);
@@ -32,11 +55,17 @@ public class VueAccueilAnalyste extends JPanel {
 		body();
 	}
 	
+	/**
+	 * Méthode qui permet de crée le panel du haut et à l'ajouter a la fenetre.
+	 */
 	private void enTete(){
 		VueEnTete haut=new VueEnTete(this.sond,"Accueil Analyste    ","Analyste",this.sond.Nom,this.sond.Prenom);
 		this.add(haut,"North");
 	}
 	
+	/**
+	 * Méthode qui permet de crée tout le visuel de la page.
+	 */
 	private void body(){
 		JPanel principal= new JPanel();
 		principal.setLayout(new BoxLayout(principal,BoxLayout.Y_AXIS));
@@ -57,6 +86,15 @@ public class VueAccueilAnalyste extends JPanel {
         panneauGauche.add(bidon2);
         this.add(panneauGauche,"West");
     }
+	/**
+	 * @param p est de type JPanel, permet de rajouter a ce panel un panel, sert pour 
+	 * les panels scrollable.
+	 * @param label est de type String, permet de mettre un titre au panel. Ici le titre
+	 * du questionnaire.
+	 * @param bouton est de type String, permet de mettre un nom au bouton.
+	 * @param idQ est de type int, permet de mettre le numéro du questionnaire en tant 
+	 * que nom sur les bouton.
+	 */
 	private void scroll(JPanel p,String label,String bouton,int idQ){
 		
 		JPanel c=new JPanel();
@@ -76,6 +114,10 @@ public class VueAccueilAnalyste extends JPanel {
     	c.setBorder(BorderFactory.createLineBorder(Color.black));
         p.add(c);
 	}
+	/**
+	 * @param nomBouton est de type String et permet de récupérer le nom du bouton, qui est
+	 * l'idQ
+	 */
 	void afficherVueCreerAnalyse(String nomBouton){
 		Container cont = this.sond.getContentPane();
 		cont.removeAll();
