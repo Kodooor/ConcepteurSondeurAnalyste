@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 public class ControleurEtudeQuestion implements ActionListener{
 	
 	VueCreerAnalyse vueCreerAnalyste;
+	
 	/**
 	 * Constructeur qui donne un acces a la vue de l'accueil d'un module en fonction du
 	 * role de l'utilisateur
