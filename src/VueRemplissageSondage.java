@@ -46,6 +46,9 @@ public class VueRemplissageSondage extends JPanel{
 	*/
 	VueAccueilSondeur vueAccueilSondeur;
 
+	/**
+	*vue qui gere le chargement de l'en tête
+	*/
 	VueEnTete vueEnTete;
 
 	/**
@@ -84,6 +87,7 @@ public class VueRemplissageSondage extends JPanel{
 	*Actualise la page des question en passant à la suivant ou à la précédante
 	*/
 	void questionChangement(int e){
+
 		this.numeroQuestion+=e;
 		refresh();
 	}
@@ -215,7 +219,7 @@ public class VueRemplissageSondage extends JPanel{
 								}
 
 							break;
-			//réponse
+			//réponse libre
 			case "l":JTextField maZone=new JTextField(100);
 							 panelQuestion.add(maZone);
 							break;
