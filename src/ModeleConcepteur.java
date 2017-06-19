@@ -65,4 +65,39 @@ public class ModeleConcepteur {
 		  }
 		  return null;
 		  }
+			public ArrayList<Question> getQuestion(int numQ){
+				ArrayList<Question> liste = new ArrayList<Question>();
+				try{
+					ResultSet rs = st.executeQuery("Select * from QUESTION where idQ = '" + numQ + "'");
+					while(rs.next()){
+						Question c = new Question(rs.getInt(1), rs.getInt(2),rs.getString(3), rs.getInt(4), rs.getString(5));
+						liste.add(c);
+					}
+					rs.close();
+					return liste;
+				}
+				catch(SQLException e){
+					System.out.println(e);
+				}
+				return null;
+				}
+
+				int insererJoueur( Joueur j){
+			     int nouveauNum = maxNumJoueur()+1;
+		       try{
+		         String texte = "Insert into JOUEUR values(" + nouveauNum + ","
+		         + j.getNumLicence() + ",'" + j.getNom() + "','"+  j.getPrenom()+ "','"+ j.getDateNaissance()
+		         + "',"+  j.getIdEquipe()+ ",'"+  j.getRole()+"')";
+		         st.executeUpdate(texte);
+		       }
+		       catch(SQLException e){
+		         System.out.println("Problème insertion du joueur ");
+		         System.out.println("Voici le message SQL: "+e.getMessage());
+		       }
+		    return 0;
+		    }
+
+
+
+
 }

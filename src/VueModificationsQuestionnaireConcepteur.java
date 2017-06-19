@@ -35,7 +35,12 @@ public class VueModificationsQuestionnaireConcepteur extends JPanel{
   JPanel cont;
   int choixvoulu;
   JTextField textnb;
-
+  ModeleConcepteur BDConcepteur;
+  ArrayList<JRadioButton> listeBouton;
+  ArrayList<JTextField> listeJtext;
+  ArrayList<JTextField> listeTextNote;
+  JTextField note;
+  JTextArea texte;
 
   public VueModificationsQuestionnaireConcepteur(EasySond sond, int numQ) {
 		super();
@@ -45,6 +50,7 @@ public class VueModificationsQuestionnaireConcepteur extends JPanel{
     this.cc = new ControleurModificationsQuestionnaireConcepteur(this);
     this.setLayout(new BorderLayout());
     this.numeroQuestion=this.sond.basededonnes.BDQuestion.getNumQuestionActuel(this.numQ);
+    this.BDConcepteur = this.sond.basededonnes.BDConcepteur;
     this.cont = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		this.add(hautt(),"North");
     this.add(milieu(),"Center");
@@ -53,7 +59,7 @@ public class VueModificationsQuestionnaireConcepteur extends JPanel{
 }
 
   Component hautt(){
-    VueEnTete haut=new VueEnTete(this.sond,"Accueil Concepteur > Société n°? > Modification questionnaire","Concepteur",this.sond.Nom,this.sond.Prenom);
+    VueEnTete haut=new VueEnTete(this.sond,"Question","Concepteur",this.sond.Nom,this.sond.Prenom);
     return haut;
 }
   Component milieu(){
@@ -127,39 +133,78 @@ public class VueModificationsQuestionnaireConcepteur extends JPanel{
     milieumilieu.add(cont);
     panelReponse(this.choixvoulu, 8);
   }
+  void libre(){
+    cont.removeAll();
+    this.texte = new JTextArea(8,96);
+    this.texte.setBackground(Color.white);
+    this.texte.setLineWrap(true);
+    this.texte.setWrapStyleWord(true);
+    cont.add(this.texte);
+    cont.setBorder(new TitledBorder("Réponses :"));
+    cont.validate();
+    cont.repaint();
+  }
+  void note(){
+    cont.removeAll();
+    this.note = new JTextField(5);
+    cont.add(this.note);
+    cont.setBorder(new TitledBorder("Réponses :"));
+    cont.validate();
+    cont.repaint();
+  }
+  void valider(){
+    if(this.choixvoulu == 0){
+      this.BDConcepteur.ajouteChoixM(this.listeBouton,this.listeJtext);
+    }
+    else if(this.choixvoulu == 1){
+      this.BDConcepteur.ajouteChoixU(this.listeBouton,this.listeJtext);
+    }
+    else if(this.choixvoulu == 3){
+      this.BDConcepteur.ajouteChoixU(this.listeLabel,this.listeJtext);
+    }
+    else if(this.choixvoulu == 2){
+      this.BDConcepteur.ajouteChoixL(this.texte);
+    }
+    else{
+      this.BDConcepteur.ajouteChoixL(this.note);
+    }
+  }
+
   void panelReponse(int nom, int nbChoix){
+
     cont.removeAll();
     if(nom == 0){
+      listeBouton = new ArrayList<JRadioButton>();
+      listeJtext = new ArrayList<JTextField>();
       for(int i =0; i <nbChoix; ++i){
-        JRadioButton  choix=new JRadioButton("Choix " + i);
-        cont.add(choix);
+        JRadioButton  choix=new JRadioButton();
+        listeBouton.add(choix);
+        JTextField text = new JTextField("Rentrez votre réponse");
+        listeJtext.add(text);
+        cont.add(choix);cont.add(text);
       }
     }
     else if(nom == 1){
+      listeBouton = new ArrayList<JRadioButton>();
+      listeJtext = new ArrayList<JTextField>();
       ButtonGroup  choixOption=new ButtonGroup ();
       for(int i =0; i <nbChoix; ++i){
-        JRadioButton  choix=new JRadioButton("Choix " + i);
+        JRadioButton  choix=new JRadioButton();
+        listeBouton.add(choix);
         choixOption.add(choix);
-        cont.add(choix);
+        JTextField text = new JTextField("Rentrez votre réponse");
+        listeJtext.add(text);
+        cont.add(choix);cont.add(text);
+
       }
-    }
-    else if(nom == 2){
-      JTextArea texte = new JTextArea(8,96);
-      texte.setLineWrap(true);
-      texte.setWrapStyleWord(true);
-      cont.add(texte);
     }
     else if(nom == 3){
+      listeTextNote = new ArrayList<JTextField>();
       for(int i=0; i<nbChoix; ++i){
-        JLabel choix1 = new JLabel("Choix" + i);
-        JTextField texte1 = new JTextField(20);
-        cont.add(choix1);
+        JTextField texte1 = new JTextField("Rentrez votre réponse");
+        listeTextNote.add(texte1);
         cont.add(texte1);
       }
-    }
-    else{
-      JTextField note = new JTextField(5);
-      cont.add(note);
     }
     cont.setBorder(new TitledBorder("Réponses :"));
     cont.validate();

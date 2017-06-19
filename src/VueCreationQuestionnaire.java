@@ -28,19 +28,22 @@ public class VueCreationQuestionnaire extends JPanel{
 	EasySond sond;
 	int numQ;
 	JPanel bidon4;
-	JPanel milieumilieu;
+	//JPanel milieumilieu;
 	Client c;
 	ControleurCreationQuestionnaire cc;
   VueModificationsQuestionnaireConcepteur vueModificationsQuestionnaireConcepteur;
-
+  ModeleConcepteur BDConcepteur;
+  VueScrollPan milieumilieu;
 
   public VueCreationQuestionnaire(EasySond sond, int numQ) {
 		super();
 		this.sond=sond;
     this.numQ=numQ;
     this.cc = new ControleurCreationQuestionnaire(this);
-    this.c = this.sond.basededonnes.BDConcepteur.getClient(this.numQ);
+    this.BDConcepteur = this.sond.basededonnes.BDConcepteur;
+    this.c = this.BDConcepteur.getClient(this.numQ);
     this.setLayout(new BorderLayout());
+    this.milieumilieu= new VueScrollPan("Liste question");
 		this.add(hautt(),"North");
     this.add(milieu(),"Center");
 }
@@ -53,7 +56,7 @@ public class VueCreationQuestionnaire extends JPanel{
     cont.repaint();
   }
   Component hautt(){
-    VueEnTete haut=new VueEnTete(this.sond,"Accueil Concepteur > Société n°? > Création questionnaire","Concepteur",this.sond.Nom,this.sond.Prenom);
+    VueEnTete haut=new VueEnTete(this.sond,"Questionnaire","Concepteur",this.sond.Nom,this.sond.Prenom);
     return haut;
 }
 
@@ -61,8 +64,8 @@ public class VueCreationQuestionnaire extends JPanel{
     JPanel milieu = new JPanel(new BorderLayout());
     milieu.setBackground(this.sond.couleur);
     this.add(milieu,"Center");
-    JPanel milieumilieu = new JPanel();
-    milieumilieu.setLayout(new BoxLayout(milieumilieu,BoxLayout.Y_AXIS));
+    //JPanel milieumilieu = new JPanel();
+    //milieumilieu.setLayout(new BoxLayout(milieumilieu,BoxLayout.Y_AXIS));
     milieumilieu.setBackground(Color.WHITE);
     informations(milieumilieu);
     milieu.add(milieumilieu,"Center");
@@ -105,11 +108,18 @@ public class VueCreationQuestionnaire extends JPanel{
     bouton.add(bout2);
     bidon4.add(bouton);
   }
-  private void informations(JPanel milieumilieu){
-    JPanel LesQ = new JPanel(new FlowLayout(FlowLayout.LEFT));
-    LesQ.setBorder(new TitledBorder("Liste des Questions : "));
-    JLabel text4 = new JLabel(c.getVille() + c.getAdresse1());
-    LesQ.add(text4);
-    milieumilieu.add(LesQ);
+  private void informations(VueScrollPan milieumilieu){
+    ArrayList<Question> listeQuestion = this.BDConcepteur.getQuestion(this.numQ);
+    if(listeQuestion.size() != 0){
+      for(int i = 0; i < listeQuestion.size(); ++i){
+        JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        panel.setBorder(BorderFactory.createLineBorder(Color.black));
+        JLabel titreQuestion = new JLabel("Question " + i+1 +  " :");
+        JLabel texte = new JLabel(listeQuestion.get(i).getTexteQuestion());
+        panel.add(titreQuestion);
+        panel.add(texte);
+        milieumilieu.getPanel().add(panel);
+      }
+    }
   }
-  }
+}

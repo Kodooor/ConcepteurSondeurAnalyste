@@ -26,7 +26,7 @@ public class ControleurModificationsQuestionnaireConcepteur implements ActionLis
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
     if(((JButton) arg0.getSource()).getText().equals("Retour")){
-			int retour = JOptionPane.showOptionDialog(this.vueModificationsQuestionnaireConcepteur.sond, "Voulez - vous vraiment quitter ?","Attention !!",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null, null, null);
+			int retour = JOptionPane.showOptionDialog(this.vueModificationsQuestionnaireConcepteur.sond, "Voulez - vous vraiment quitter ?","Attention !",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null, null, null);
 			if(retour==0){
       	this.vueModificationsQuestionnaireConcepteur.sond.vueAccueilConcepteur.vuecreationConcepteur.afficherVueCreationQuestionnaire(this.vueModificationsQuestionnaireConcepteur.sond,this.vueModificationsQuestionnaireConcepteur.numQ);
     }
@@ -35,7 +35,9 @@ public class ControleurModificationsQuestionnaireConcepteur implements ActionLis
 		this.vueModificationsQuestionnaireConcepteur.panelReponse(this.vueModificationsQuestionnaireConcepteur.choixvoulu,Integer.parseInt(this.vueModificationsQuestionnaireConcepteur.textnb.getText()));
 	}
 		else if(((JButton) arg0.getSource()).getText().equals("Valider")){
-			JOptionPane.showMessageDialog(this.vueModificationsQuestionnaireConcepteur.sond, "nique ta race petit fdp !");
-		}
+			int retour = JOptionPane.showOptionDialog(this.vueModificationsQuestionnaireConcepteur.sond, "Voulez - vous vraiment valider la question ?","Attention !",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null, null, null);
+			if(retour==0){
+				this.vueModificationsQuestionnaireConcepteur.valider();
+    }		}
 }
 }
