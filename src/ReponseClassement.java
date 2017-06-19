@@ -6,4 +6,10 @@ public class ReponseClassement implements Reponse{
     this.listeReponseClasse=listeReponseClasse;
     this.typeReponse="c";
   }
+  public ArrayList<String> getReponse(){
+	  return this.listeReponseClasse;
+  }
+  public String getType(){
+	  return this.typeReponse;
+  }
 }

@@ -6,4 +6,10 @@ public class ReponseChoixMultiple implements Reponse{
     this.listeReponse=listeReponse;
     this.typeReponse="m";
   }
+  public ArrayList<Integer> getReponse(){
+	  return this.listeReponse;
+  }
+  public String getType(){
+	  return this.typeReponse;
+  }
 }
