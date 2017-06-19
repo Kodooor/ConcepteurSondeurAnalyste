@@ -82,7 +82,7 @@ public class ModeleConcepteur {
 				return null;
 				}
 
-				int insererJoueur( Joueur j){
+				/*int insererJoueur( Joueur j){
 			     int nouveauNum = maxNumJoueur()+1;
 		       try{
 		         String texte = "Insert into JOUEUR values(" + nouveauNum + ","
@@ -95,7 +95,7 @@ public class ModeleConcepteur {
 		         System.out.println("Voici le message SQL: "+e.getMessage());
 		       }
 		    return 0;
-		    }
+		    }*/
 
 
 

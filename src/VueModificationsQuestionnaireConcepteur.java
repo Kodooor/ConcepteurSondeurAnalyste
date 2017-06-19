@@ -152,7 +152,7 @@ public class VueModificationsQuestionnaireConcepteur extends JPanel{
     cont.validate();
     cont.repaint();
   }
-  void valider(){
+  /*void valider(){
     if(this.choixvoulu == 0){
       this.BDConcepteur.ajouteChoixM(this.listeBouton,this.listeJtext);
     }
@@ -168,7 +168,7 @@ public class VueModificationsQuestionnaireConcepteur extends JPanel{
     else{
       this.BDConcepteur.ajouteChoixL(this.note);
     }
-  }
+  }*/
 
   void panelReponse(int nom, int nbChoix){
 
