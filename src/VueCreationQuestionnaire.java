@@ -114,10 +114,18 @@ public class VueCreationQuestionnaire extends JPanel{
       for(int i = 0; i < listeQuestion.size(); ++i){
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         panel.setBorder(BorderFactory.createLineBorder(Color.black));
-        JLabel titreQuestion = new JLabel("Question " + i+1 +  " :");
+        JLabel titreQuestion = new JLabel("Question " + listeQuestion.get(i).getIdQuestion() +  " :");
         JLabel texte = new JLabel(listeQuestion.get(i).getTexteQuestion());
+        JButton modif = new JButton("Modifier");
+        modif.setName("" + listeQuestion.get(i).getIdQuestion());
+        JButton suppr = new JButton("Supprimer");
+        suppr.setName("" + listeQuestion.get(i).getIdQuestion());
+        modif.addActionListener(this.cc);
+        suppr.addActionListener(this.cc);
         panel.add(titreQuestion);
         panel.add(texte);
+        panel.add(modif);
+        panel.add(suppr);
         milieumilieu.getPanel().add(panel);
       }
     }

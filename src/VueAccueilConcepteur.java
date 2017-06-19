@@ -10,16 +10,6 @@ import java.util.ArrayList;
 import java.awt.*;
 
 import javax.swing.*;
-import javax.swing.BoxLayout;
-import javax.swing.DefaultListModel;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 
 /**
  * Vue permettant l'affichage de l'accueil Concepteur
@@ -32,6 +22,7 @@ public class VueAccueilConcepteur extends JPanel {
 	ArrayList<Questionnaire> listequestionnaire;
 	EasySond sond;
 	VueCreationConcepteur vuecreationConcepteur;
+	VueCreationQuestionnaire vueCreationQuestionnaire;
 	/**
 	 * Constructeur de l'accueil Concepteur
 	 */
@@ -57,6 +48,14 @@ public class VueAccueilConcepteur extends JPanel {
 		cont.validate();
 		cont.repaint();
 	}
+	void afficherVueCreationQuestionnaire(EasySond sond, int num){
+		Container cont=this.sond.getContentPane();
+		cont.removeAll();
+		this.vueCreationQuestionnaire = new VueCreationQuestionnaire(this.sond,num);
+		cont.add(vueCreationQuestionnaire);
+		cont.validate();
+		cont.repaint();
+	}
 	/**
 	 * Méthode qui va ajouter la vue 
 	 */
@@ -74,15 +73,14 @@ public class VueAccueilConcepteur extends JPanel {
 		principal.add(scroll1);
 		principal.add(scroll2);
 		for(Questionnaire q:listequestionnaire){
-			scroll(scroll1.getPanel(),q.getTitreQuestionnaire(), q.getNumeroQuestionnaire(),"créer");
+			System.out.println(this.sond.basededonnes.BDConcepteur.vide(q));
+			if(this.sond.basededonnes.BDConcepteur.vide(q)){
+			scroll(scroll1.getPanel(),q.getTitreQuestionnaire(), q.getNumeroQuestionnaire(),"Creer");
+			}
+			else{
+				scroll(scroll2.getPanel(),q.getTitreQuestionnaire(), q.getNumeroQuestionnaire(),"Modifier");
+			}
 		}
-        /* Test
-        scroll(scroll1.getPanel(),"Test","créer");
-
-
-        // Test
-        scroll(scroll2.getPanel(),"salut","créer");
-        scroll(scroll2.getPanel(),"Test","créer");*/
 
         this.add(principal,"Center");
     }

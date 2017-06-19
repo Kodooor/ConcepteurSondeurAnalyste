@@ -26,22 +26,29 @@ public class ControleurCreationQuestionnaire implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		EasySond fenetrePrincipale=this.vueCreationQuestionnaire.sond;
-    if(((JButton) arg0.getSource()).getText().equals("Quitter")){
-			int retour = JOptionPane.showOptionDialog(fenetrePrincipale, "Voulez - vous vraiment quitter ?","Attention !!",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null, null, null);
+	    if(((JButton) arg0.getSource()).getText().equals("Quitter")){
+	    	int retour = JOptionPane.showOptionDialog(fenetrePrincipale, "Voulez - vous vraiment quitter ?","Attention !!",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null, null, null);
 			if(retour==0){
 				fenetrePrincipale.afficherVueModule(1,fenetrePrincipale.Nom,fenetrePrincipale.Prenom);
 			}
-    }
-		else if(((JButton) arg0.getSource()).getText().equals("Ajouter Question")){
-      this.vueCreationQuestionnaire.afficherVueModificationsQuestionnaireConcepteur(fenetrePrincipale,this.vueCreationQuestionnaire.numQ);
-    }
+	    }
+	    else if(((JButton) arg0.getSource()).getText().equals("Ajouter Question")){
+	    	this.vueCreationQuestionnaire.afficherVueModificationsQuestionnaireConcepteur(fenetrePrincipale,this.vueCreationQuestionnaire.numQ);
+	    }
 		else if(((JButton) arg0.getSource()).getText().equals("Publier")){
-      int retour = JOptionPane.showOptionDialog(fenetrePrincipale, "Voulez - vous vraiment publier votre Questionnaire  ?", "Publication",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null, null, null);
+			int retour = JOptionPane.showOptionDialog(fenetrePrincipale, "Voulez - vous vraiment publier votre Questionnaire  ?", "Publication",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null, null, null);
 			if(retour==0){
 				fenetrePrincipale.afficherVueModule(1,fenetrePrincipale.Nom,fenetrePrincipale.Prenom);
 			}
 		}
+		else if(((JButton) arg0.getSource()).getText().equals("Supprimer")){
+			vueCreationQuestionnaire.BDConcepteur.supprimerQuestion(vueCreationQuestionnaire.numQ,Integer.parseInt(((JButton) arg0.getSource()).getName()));
+		}
+		else if(((JButton) arg0.getSource()).getText().equals("Modifier")){
+			JOptionPane.showMessageDialog(fenetrePrincipale, "Pas encore fait... !");
+		}
 		else{
-			JOptionPane.showMessageDialog(fenetrePrincipale, "nique ta race !");
+			JOptionPane.showMessageDialog(fenetrePrincipale, "TOUT A BIEN ETE SAUVEGARDER GROS !");
+		}
+    }
 }
-}}

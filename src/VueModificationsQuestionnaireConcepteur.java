@@ -41,6 +41,8 @@ public class VueModificationsQuestionnaireConcepteur extends JPanel{
   ArrayList<JTextField> listeTextNote;
   JTextField note;
   JTextArea texte;
+  JTextArea texteQ;
+
 
   public VueModificationsQuestionnaireConcepteur(EasySond sond, int numQ) {
 		super();
@@ -106,11 +108,11 @@ public class VueModificationsQuestionnaireConcepteur extends JPanel{
   }
   private void informations(JPanel milieumilieu){
     JPanel enonce = new JPanel(new FlowLayout(FlowLayout.LEFT));
-    JTextArea texte = new JTextArea(8,96);
-    texte.setLineWrap(true);
-    texte.setWrapStyleWord(true);
+    this.texteQ = new JTextArea(8,96);
+    this.texteQ.setLineWrap(true);
+    this.texteQ.setWrapStyleWord(true);
     enonce.setBorder(new TitledBorder("Énoncé : "));
-    enonce.add(texte);
+    enonce.add(this.texteQ);
 		milieumilieu.add(enonce);
 
 		JPanel type = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -152,23 +154,23 @@ public class VueModificationsQuestionnaireConcepteur extends JPanel{
     cont.validate();
     cont.repaint();
   }
-  /*void valider(){
+  void valider(){
     if(this.choixvoulu == 0){
-      this.BDConcepteur.ajouteChoixM(this.listeBouton,this.listeJtext);
+      this.sond.basededonnes.BDQuestion.ajouteChoixM(this);
     }
-    else if(this.choixvoulu == 1){
-      this.BDConcepteur.ajouteChoixU(this.listeBouton,this.listeJtext);
+    /*else if(this.choixvoulu == 1){
+    	this.sond.basededonnes.BDQuestion.ajouteChoixU(this);
     }
     else if(this.choixvoulu == 3){
-      this.BDConcepteur.ajouteChoixU(this.listeLabel,this.listeJtext);
+    	this.sond.basededonnes.BDQuestion.ajouteChoixU(this);
     }
     else if(this.choixvoulu == 2){
-      this.BDConcepteur.ajouteChoixL(this.texte);
+    	this.sond.basededonnes.BDQuestion.ajouteChoixL(this);
     }
     else{
-      this.BDConcepteur.ajouteChoixL(this.note);
-    }
-  }*/
+    	this.sond.basededonnes.BDQuestion.ajouteChoixL(this);
+    }*/
+  }
 
   void panelReponse(int nom, int nbChoix){
 

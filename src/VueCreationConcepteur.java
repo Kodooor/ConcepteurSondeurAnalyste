@@ -34,6 +34,7 @@ public class VueCreationConcepteur extends JPanel {
 	Client c;
 	ControleurConcepteurCreation cc;
   VueCreationQuestionnaire vueCreationQuestionnaire;
+  
 	public VueCreationConcepteur(EasySond sond,int numQ) {
 		super();
 		this.sond=sond;
@@ -53,7 +54,7 @@ public class VueCreationConcepteur extends JPanel {
 		cont.repaint();
 	}
 	Component hautt(){
-		VueEnTete haut=new VueEnTete(this.sond,"Accueil Concepteur > Société ","Concepteur",this.sond.Nom,this.sond.Prenom);
+		VueEnTete haut=new VueEnTete(this.sond,"Société ","Concepteur",this.sond.Nom,this.sond.Prenom);
 		return haut;
 }
 	Component milieu(){

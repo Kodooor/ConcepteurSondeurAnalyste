@@ -26,6 +26,11 @@ public class ControleurConcepteur implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		vueAccueilConcepteur.afficherVueInfoQuestionnaire(Integer.parseInt(((JButton) arg0.getSource()).getName()));
+		if((((JButton) arg0.getSource()).getText()).equals("Modifier")){
+			vueAccueilConcepteur.afficherVueCreationQuestionnaire(vueAccueilConcepteur.sond, Integer.parseInt(((JButton) arg0.getSource()).getName()));
+		}
+		else{
+			vueAccueilConcepteur.afficherVueInfoQuestionnaire(Integer.parseInt(((JButton) arg0.getSource()).getName()));			
+		}
 	}
 }

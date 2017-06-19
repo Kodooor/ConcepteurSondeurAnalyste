@@ -1,6 +1,9 @@
 import java.io.*;
 import java.util.ArrayList;
 import java.sql.*;
+
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 /**
  * Model du jeu motus
  * @author IUT'O dpt Informatique
@@ -81,21 +84,30 @@ public class ModeleConcepteur {
 				}
 				return null;
 				}
-
-				/*int insererJoueur( Joueur j){
-			     int nouveauNum = maxNumJoueur()+1;
-		       try{
-		         String texte = "Insert into JOUEUR values(" + nouveauNum + ","
-		         + j.getNumLicence() + ",'" + j.getNom() + "','"+  j.getPrenom()+ "','"+ j.getDateNaissance()
-		         + "',"+  j.getIdEquipe()+ ",'"+  j.getRole()+"')";
-		         st.executeUpdate(texte);
-		       }
-		       catch(SQLException e){
-		         System.out.println("Problème insertion du joueur ");
-		         System.out.println("Voici le message SQL: "+e.getMessage());
-		       }
-		    return 0;
-		    }*/
+			public boolean vide(Questionnaire q) {
+				try{
+					ResultSet rs = st.executeQuery("select count(*) FROM QUESTION where idQ = '" + q.getNumeroQuestionnaire() + "'");
+					rs.next();
+					int res = rs.getInt(1);
+					rs.close();
+					if(res == 0){
+						return true;
+					}
+				}
+				catch(SQLException e){
+					System.out.println(e);
+				}
+				return false;
+			}
+			public void supprimerQuestion(int idQ, int i) {
+			      try{
+			          st.executeUpdate("delete from VALPOSSIBLE where idQ = " + idQ+ " and numQ = "+i);
+			          st.executeUpdate("delete from QUESTION where idQ = " + idQ+ " and numQ = "+i);
+			        }
+			        catch(SQLException e){
+			          System.out.println("Voici le message SQL: "+e.getMessage());
+			        }
+			}
 
 
 
