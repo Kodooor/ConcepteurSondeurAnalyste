@@ -1,13 +1,21 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -16,7 +24,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
-import javax.swing.text.html.HTMLDocument.Iterator;
 
 
 @SuppressWarnings("serial")
@@ -28,10 +35,19 @@ public class VueEtudeQuestion extends JPanel {
 	
 	ModeleAnalyste modeleAnalyste;
 	
+	ControleurAnalyseQuestion controleurB;
+
+	JPanel centre;
+	
+	JPanel panelGeneral;
+	
 	VueEtudeQuestion(EasySond easySond, Question q){
 		this.easySond = easySond;
 		this.question = q;
+		this.controleurB = new ControleurAnalyseQuestion(this);
 		this.modeleAnalyste = new ModeleAnalyste(easySond.basededonnes);
+		this.centre = new JPanel();
+		this.panelGeneral = new JPanel();
 		enTete();
 		corps();
 	}
@@ -42,10 +58,8 @@ public class VueEtudeQuestion extends JPanel {
 	}
 	
 	private void corps(){
-		JPanel panelGeneral = new JPanel();
 		JPanel haut = new JPanel();
 		JPanel gauche = new JPanel();
-		JPanel centre = new JPanel();
 		JPanel droite = new JPanel();
 		JPanel bas = new JPanel();
 		
@@ -63,12 +77,7 @@ public class VueEtudeQuestion extends JPanel {
 		infoQuestion.add(new JLabel(this.question.getTexteQuestion()));
 		centre.add(infoQuestion);
 		
-		JTable tableMilieu = genererTableau();
-		
-		JScrollPane panelScrolling = new JScrollPane(tableMilieu,
-				JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		centre.add(panelScrolling);
+		genererTableau();
 		
 		bas.setLayout(new BoxLayout(bas,BoxLayout.Y_AXIS));
 		JLabel titreBas1 = new JLabel("Représentation :");
@@ -79,6 +88,10 @@ public class VueEtudeQuestion extends JPanel {
 		JButton bouton2 = new JButton("Camembert");
 		JButton bouton3 = new JButton("Graphique");
 		JButton bouton4 = new JButton("Brut");
+		bouton1.addActionListener(this.controleurB);
+		bouton2.addActionListener(this.controleurB);
+		bouton3.addActionListener(this.controleurB);
+		bouton4.addActionListener(this.controleurB);
 		panelBoutons1.add(bouton1);
 		panelBoutons1.add(bouton2);
 		panelBoutons1.add(bouton3);
@@ -112,8 +125,9 @@ public class VueEtudeQuestion extends JPanel {
 		this.add(panelGeneral,"Center");
 	}
 	
-	private JTable genererTableau(){
-		ArrayList<String> colonneGauche = new ArrayList<String>();
+	void genererTableau(){
+		this.panelGeneral.remove(centre);
+		this.centre = new JPanel();
 		ArrayList<Tranche> listeTranches = this.modeleAnalyste.getTranches();
 		ArrayList<String> listeStr = new ArrayList<String>();
 		listeStr.add("");
@@ -121,12 +135,10 @@ public class VueEtudeQuestion extends JPanel {
 			listeStr.add("" + elem.getValeurDebut() + "-" + elem.getValeurFin() + " ans");
 		}
 		listeStr.add("Total");
-		System.out.println(listeStr);
 		String[] enTete = new String[listeStr.size()];
 		enTete = listeStr.toArray(enTete);
 		
 		HashMap<String,String> dico = this.modeleAnalyste.genererColonneGauche(this.question);
-		System.out.println(dico);
 		String[][] listeCorpsTableau = new String[dico.size()][listeStr.size()];
 		int i=0;
 		for (Map.Entry mapentry : dico.entrySet()) {
@@ -138,6 +150,87 @@ public class VueEtudeQuestion extends JPanel {
 			}
 		    i++;
 		}
-		return new JTable(listeCorpsTableau,enTete);
+		
+		JScrollPane panelScrolling = new JScrollPane(new JTable(listeCorpsTableau,enTete),
+				JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		this.centre.add(panelScrolling);
+		this.panelGeneral.setPreferredSize(new Dimension(1000,700));
+		this.panelGeneral.setBorder(BorderFactory.createLineBorder(Color.black));
+		this.panelGeneral.add(centre);
+		this.panelGeneral.validate();
+		
+	}
+	void genererGraphique(){
+		this.panelGeneral.remove(centre);
+		this.centre = new JPanel();
+		
+		JFreeChart chart = ChartFactory.createStackedBarChart("Graphique", "Nombre de réponses", "réponse", createDataset(), PlotOrientation.VERTICAL, true, true, false);
+		
+		ChartPanel general = new ChartPanel(chart);
+		
+		this.centre.add(general);
+		this.centre.setPreferredSize(new Dimension(500,700));
+		this.panelGeneral.add(centre,"Center");
+		this.panelGeneral.validate();
+	}
+	
+	void genererBatons(){
+		this.panelGeneral.remove(centre);
+		this.centre = new JPanel();
+		
+		JFreeChart chart = ChartFactory.createBarChart("Graphique en bâtons", "nombre de personnes", "réponse", createDataset(), PlotOrientation.VERTICAL, true, true, false);
+
+		ChartPanel general = new ChartPanel(chart);
+		
+		this.centre.add(general);
+		this.centre.setPreferredSize(new Dimension(500,700));
+		this.panelGeneral.add(centre,"Center");
+		this.panelGeneral.validate();
+	}
+	
+	private CategoryDataset createDataset( ) { 
+	      final DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
+	      //dataset.addValue(nombre,tranche,valeur)
+	      //dataset.addVAlue(14,"20-29 ans","rouge")
+	      
+	      HashMap<String,String> dico = this.modeleAnalyste.genererColonneGauche(this.question);
+	      ArrayList<Tranche> listeTranches = this.modeleAnalyste.getTranches();
+	      for (Map.Entry mapentry : dico.entrySet()) {
+	    	  for (Tranche tranche:listeTranches){
+		    	  dataset.addValue(this.modeleAnalyste.getNbpersonnes(mapentry.getKey()+"", 
+		    			  												tranche.getValeurDebut(), 
+		    			  												tranche.getValeurFin(),
+		    			  												this.question,dico),
+		    			  			tranche.getValeurDebut()+"-"+tranche.getValeurFin()+" ans",
+		    			  			""+mapentry.getKey());
+	    		  }
+			}
+
+	      return dataset; 
+	   }
+	
+	void genererCamembert(){
+		this.panelGeneral.remove(centre);
+		this.centre = new JPanel();
+		DefaultPieDataset graphe = new DefaultPieDataset();
+
+		HashMap<String,String> dico = this.modeleAnalyste.genererColonneGauche(this.question);
+		ArrayList<Tranche> listeTranches = this.modeleAnalyste.getTranches();
+		for (Map.Entry mapentry : dico.entrySet()) {
+			int cpt = 0;
+			for (Tranche tranche:listeTranches){
+				cpt+=this.modeleAnalyste.getNbpersonnes(mapentry.getKey()+"", tranche.getValeurDebut(), tranche.getValeurFin(),this.question,dico);
+			}
+			graphe.setValue(""+mapentry.getKey(), cpt);
+		}
+		JFreeChart osef1 = ChartFactory.createPieChart3D("Graphique en camembert",graphe,true,true,false);
+		
+		ChartPanel chart = new ChartPanel(osef1);
+		
+		this.centre.add(chart);
+		this.centre.setPreferredSize(new Dimension(500,700));
+		this.panelGeneral.add(centre,"Center");
+		this.panelGeneral.validate();
 	}
 }
