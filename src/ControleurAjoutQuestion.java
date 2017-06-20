@@ -31,12 +31,12 @@ public class ControleurAjoutQuestion implements ActionListener{
 	public void actionPerformed(ActionEvent arg0) {
 		EasySond fenetrePrincipale=(EasySond) vue.getRootPane().getParent();
 	    if(((JButton) arg0.getSource()).getText().equals("Retour")){
-	    	vue.sond.afficherVueModule(vue.sond.role, vue.sond.Nom, vue.sond.Prenom);
+	    	vue.sond.afficherVueModule(vue.sond.role,vue.sond.idU, vue.sond.Nom, vue.sond.Prenom);
 	    }
 	    else{
 	    	vue.ajouter();
 	    	JOptionPane.showMessageDialog(fenetrePrincipale, "Le Questionnaire à bien été ajouté !");
-	    	vue.sond.afficherVueModule(vue.sond.role, vue.sond.Nom, vue.sond.Prenom);
+	    	vue.sond.afficherVueModule(vue.sond.role,vue.sond.idU, vue.sond.Nom, vue.sond.Prenom);
 	    }
 	}
 

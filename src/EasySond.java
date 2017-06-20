@@ -46,6 +46,8 @@ public class EasySond extends JFrame {
    * Role de l'utilisateur
    */
   int role;
+  int idU;
+
   /**
    * COULEUR DE L APPLI
    */
@@ -96,10 +98,16 @@ public class EasySond extends JFrame {
   * Remplace les vue par les vue d'accueil pour chaque module
   * @param Int,String,String le role, le nom et le prenom de l'utilisateur
   */
-	void afficherVueModule(int role, String nom, String prenom){
+	void afficherVueModule(int utilisateur,int role, String nom, String prenom){
     this.Nom = nom;
     this.Prenom = prenom;
     this.role = role;
+    this.idU = utilisateur;
+    System.out.println(this.Nom);
+    System.out.println(this.Prenom);
+    System.out.println(this.role);
+    System.out.println(this.idU);
+
 		if(role == 1){
 			Container cont=this.getContentPane();
 			cont.removeAll();

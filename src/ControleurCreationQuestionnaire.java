@@ -33,7 +33,7 @@ public class ControleurCreationQuestionnaire implements ActionListener{
 	    if(((JButton) arg0.getSource()).getText().equals("Quitter")){
 	    	int retour = JOptionPane.showOptionDialog(fenetrePrincipale, "Voulez - vous vraiment quitter ?","Attention !!",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null, null, null);
 			if(retour==0){
-				fenetrePrincipale.afficherVueModule(1,fenetrePrincipale.Nom,fenetrePrincipale.Prenom);
+				fenetrePrincipale.afficherVueModule(fenetrePrincipale.role, fenetrePrincipale.idU,fenetrePrincipale.Nom,fenetrePrincipale.Prenom);
 			}
 	    }
 	    else if(((JButton) arg0.getSource()).getText().equals("Ajouter Question")){
@@ -43,7 +43,7 @@ public class ControleurCreationQuestionnaire implements ActionListener{
 			int retour = JOptionPane.showOptionDialog(fenetrePrincipale, "Voulez - vous vraiment publier votre Questionnaire  ?", "Publication",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null, null, null);
 			if(retour==0){
 				vueCreationQuestionnaire.BDConcepteur.EnvoyerQuestionnaire(vueCreationQuestionnaire.numQ);
-				fenetrePrincipale.afficherVueModule(1,fenetrePrincipale.Nom,fenetrePrincipale.Prenom);
+				fenetrePrincipale.afficherVueModule(fenetrePrincipale.role, fenetrePrincipale.idU,fenetrePrincipale.Nom,fenetrePrincipale.Prenom);
 			}
 		}
 		else if(((JButton) arg0.getSource()).getText().equals("Supprimer")){
@@ -52,7 +52,7 @@ public class ControleurCreationQuestionnaire implements ActionListener{
 		}
 		else{
 			JOptionPane.showMessageDialog(fenetrePrincipale, "Votre questionnaire à bien été sauvegarder !");
-			vueCreationQuestionnaire.sond.afficherVueModule(vueCreationQuestionnaire.sond.role, vueCreationQuestionnaire.sond.Nom, vueCreationQuestionnaire.sond.Prenom);
+			vueCreationQuestionnaire.sond.afficherVueModule(fenetrePrincipale.role, fenetrePrincipale.idU, fenetrePrincipale.Nom, fenetrePrincipale.Prenom);
 		}
     }
 }

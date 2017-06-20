@@ -33,7 +33,6 @@ public class VueCreationConcepteur extends JPanel {
 	public VueCreationConcepteur(EasySond sond,int numQ) {
 		super();
 		this.sond=sond;
-		System.out.println("COUCOU0");
 		this.numQ=numQ;
 		this.cc = new ControleurConcepteurCreation(this);
 		this.c = this.sond.basededonnes.BDConcepteur.getClient(this.numQ);
@@ -112,10 +111,8 @@ private void bouton(JPanel bidon4){
  * Méthodes qui vont ajouter la vue 
  */
 private void informations(JPanel milieumilieu){
-		JPanel informations = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		JLabel text1 = new JLabel("Informations : ");
-		informations.add(text1);
-		milieumilieu.add(informations);
+	milieumilieu.setBorder(new TitledBorder("Informations : "));
+
 
 		JPanel nomSociete = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JLabel text2 = new JLabel("Nom Societe : ");
@@ -123,7 +120,21 @@ private void informations(JPanel milieumilieu){
     nomSociete.add(text2);
 		nomSociete.add(nom);
 		milieumilieu.add(nomSociete);
-
+		
+		JPanel idClient = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		JLabel text23 = new JLabel("ID Societe : ");
+		JLabel id = new JLabel(""+c.getNumeroClient());
+		idClient.add(text23);
+		idClient.add(id);
+		milieumilieu.add(idClient);
+		
+		JPanel numTel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		JLabel text13 = new JLabel("Numéro de Téléphone : ");
+		JLabel numtel = new JLabel(c.getNumeroTelephone());
+		numTel.add(text13);
+		numTel.add(numtel);
+		milieumilieu.add(numTel);
+		
 		JPanel nomDirecteur = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JLabel text3 = new JLabel("Addresse Mail : ");
 		JLabel nomDir = new JLabel(c.getEmail());
@@ -132,8 +143,9 @@ private void informations(JPanel milieumilieu){
 		milieumilieu.add(nomDirecteur);
 
 		JPanel texteDemande = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		texteDemande.setBorder(new TitledBorder("Description de la demande : "));
-		JLabel text4 = new JLabel(c.getVille() + c.getAdresse1());
+		JLabel text54 = new JLabel("Addresse : ");
+		JLabel text4 = new JLabel(c.getAdresse1() + " - " + c.getVille() + " - " + c.getCodePostal());
+		texteDemande.add(text54);
 		texteDemande.add(text4);
 		milieumilieu.add(texteDemande);
 }

@@ -33,7 +33,7 @@ public class VueAccueilConcepteur extends JPanel {
 		this.setLayout(new BorderLayout());
 		this.sond = sond;
 		this.cc = new ControleurConcepteur(this);
-		this.listequestionnaire = this.sond.basededonnes.BDConcepteur.listeDesQuestionnaires();
+		this.listequestionnaire = this.sond.basededonnes.BDConcepteur.listeDesQuestionnaires(this.sond.idU);
 		enTete();
 		body();
 

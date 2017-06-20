@@ -33,10 +33,10 @@ public class ModeleConcepteur {
 	 * Méthode qui va recuperer la liste des questionnaire
 	 * @return la liste des questionnaire
 	 */
-  public ArrayList<Questionnaire> listeDesQuestionnaires(){
+  public ArrayList<Questionnaire> listeDesQuestionnaires(int idUtilisateur){
 	      ArrayList<Questionnaire> listeQuestionnaire= new ArrayList<Questionnaire>();
 	  try{
-	    ResultSet rs = st.executeQuery("Select * from QUESTIONNAIRE where Etat = \'C\'");
+	    ResultSet rs = st.executeQuery("Select * from QUESTIONNAIRE where idU = " + idUtilisateur);
 	    while(rs.next()){
 	      Questionnaire q = new Questionnaire(rs.getInt(1), rs.getString(2),
 	      rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6));

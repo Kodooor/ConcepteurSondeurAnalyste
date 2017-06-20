@@ -18,7 +18,7 @@ public class ControleurMaison implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		this.easysond.afficherVueModule(this.easysond.role, this.easysond.Nom, this.easysond.Prenom);
+		this.easysond.afficherVueModule(this.easysond.role,this.easysond.idU, this.easysond.Nom, this.easysond.Prenom);
 	}
 
 }
