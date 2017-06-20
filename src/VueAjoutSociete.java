@@ -67,7 +67,7 @@ public class VueAjoutSociete extends JPanel{
 	 * Méthodes qui vont ajouter la vue 
 	 */
   Component hautt(){
-    VueEnTete haut=new VueEnTete(this.sond,"Question","Concepteur",this.sond.Nom,this.sond.Prenom);
+    VueEnTete haut=new VueEnTete(this.sond,"Ajout Société","Concepteur",this.sond.Nom,this.sond.Prenom);
     return haut;
 }
 	/**

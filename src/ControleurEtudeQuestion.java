@@ -3,21 +3,15 @@ import java.awt.event.*;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-/**
- * Controleur de la page Creer une Analyse
- * @author Hugo, Warren et Chloé
- *
- */
-
- public class ControleurEtudeQuestion implements ActionListener{
-
+public class ControleurEtudeQuestion implements ActionListener{
+	
 	VueCreerAnalyse vueCreerAnalyste;
-
+	
 	/**
-	 * Constructeur qui donne un acces a la vue de l'etude d'une question
-	 * @param vueCreerAnalyste de type VueCreerAnalyse est la vue de la création d'une analyste
+	 * Constructeur qui donne un acces a la vue de l'accueil d'un module en fonction du
+	 * role de l'utilisateur
+	 * @param VueAccueil la vue de l'accueil
 	 */
-
 	public ControleurEtudeQuestion(VueCreerAnalyse vueCreerAnalyste) {
 		super();
 		this.vueCreerAnalyste = vueCreerAnalyste;

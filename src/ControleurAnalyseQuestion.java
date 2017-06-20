@@ -3,21 +3,16 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-/**
- * Controleur de la page Analyse d'une question
- * @author Hugo, Warren et Chloé
- *
- */
 
 public class ControleurAnalyseQuestion implements ActionListener{
-
+	
 	VueEtudeQuestion vueEtudeQuestion;
-
+	
 	/**
-	 * Constructeur qui donne un acces a la vue de l'analyse d'une question d'un questionnaire
-	 * @param vueEtudeQuestion de type VueEtudeQuestion est la vue de l'analyse d'une question d'un questionnaire
+	 * Constructeur qui donne un acces a la vue de l'accueil d'un module en fonction du
+	 * role de l'utilisateur
+	 * @param VueAccueil la vue de l'accueil
 	 */
-
 	public ControleurAnalyseQuestion(VueEtudeQuestion vueEtudeQuestion) {
 		super();
 		this.vueEtudeQuestion = vueEtudeQuestion;
@@ -37,6 +32,6 @@ public class ControleurAnalyseQuestion implements ActionListener{
 		else if(((JButton)arg0.getSource()).getText().equals("Graphique")){
 			vueEtudeQuestion.genererGraphique();
 		}
-	}
+	}	
 
 }
