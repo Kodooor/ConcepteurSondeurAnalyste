@@ -38,17 +38,17 @@ public class ControleurCreationQuestionnaire implements ActionListener{
 		else if(((JButton) arg0.getSource()).getText().equals("Publier")){
 			int retour = JOptionPane.showOptionDialog(fenetrePrincipale, "Voulez - vous vraiment publier votre Questionnaire  ?", "Publication",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null, null, null);
 			if(retour==0){
+				vueCreationQuestionnaire.BDConcepteur.EnvoyerQuestionnaire(vueCreationQuestionnaire.numQ);
 				fenetrePrincipale.afficherVueModule(1,fenetrePrincipale.Nom,fenetrePrincipale.Prenom);
 			}
 		}
 		else if(((JButton) arg0.getSource()).getText().equals("Supprimer")){
 			vueCreationQuestionnaire.BDConcepteur.supprimerQuestion(vueCreationQuestionnaire.numQ,Integer.parseInt(((JButton) arg0.getSource()).getName()));
-		}
-		else if(((JButton) arg0.getSource()).getText().equals("Modifier")){
-			JOptionPane.showMessageDialog(fenetrePrincipale, "Pas encore fait... !");
+			vueCreationQuestionnaire.sond.vueAccueilConcepteur.afficherVueCreationQuestionnaire(vueCreationQuestionnaire.sond,vueCreationQuestionnaire.numQ);
 		}
 		else{
-			JOptionPane.showMessageDialog(fenetrePrincipale, "TOUT A BIEN ETE SAUVEGARDER GROS !");
+			JOptionPane.showMessageDialog(fenetrePrincipale, "Votre questionnaire à bien été sauvegarder !");
+			vueCreationQuestionnaire.sond.afficherVueModule(vueCreationQuestionnaire.sond.role, vueCreationQuestionnaire.sond.Nom, vueCreationQuestionnaire.sond.Prenom);
 		}
     }
 }

@@ -22,7 +22,9 @@ public class VueAccueilConcepteur extends JPanel {
 	ArrayList<Questionnaire> listequestionnaire;
 	EasySond sond;
 	VueCreationConcepteur vuecreationConcepteur;
+	VueAjoutSociete vueAjoutSociete;
 	VueCreationQuestionnaire vueCreationQuestionnaire;
+	VueAjoutQuestionnaire vueAjoutQuestionnaire;
 	/**
 	 * Constructeur de l'accueil Concepteur
 	 */
@@ -56,6 +58,22 @@ public class VueAccueilConcepteur extends JPanel {
 		cont.validate();
 		cont.repaint();
 	}
+	void afficherVueAjoutSociete(EasySond sond){
+		Container cont=this.sond.getContentPane();
+		cont.removeAll();
+		this.vueAjoutSociete = new VueAjoutSociete(this.sond);
+		cont.add(vueAjoutSociete);
+		cont.validate();
+		cont.repaint();
+	}
+	public void afficherVueAjoutQuestionnaire(EasySond sond2) {
+		Container cont=this.sond.getContentPane();
+		cont.removeAll();
+		this.vueAjoutQuestionnaire = new VueAjoutQuestionnaire(this.sond);
+		cont.add(vueAjoutQuestionnaire);
+		cont.validate();
+		cont.repaint();
+	}
 	/**
 	 * Méthode qui va ajouter la vue 
 	 */
@@ -73,7 +91,6 @@ public class VueAccueilConcepteur extends JPanel {
 		principal.add(scroll1);
 		principal.add(scroll2);
 		for(Questionnaire q:listequestionnaire){
-			System.out.println(this.sond.basededonnes.BDConcepteur.vide(q));
 			if(this.sond.basededonnes.BDConcepteur.vide(q)){
 			scroll(scroll1.getPanel(),q.getTitreQuestionnaire(), q.getNumeroQuestionnaire(),"Creer");
 			}
@@ -81,8 +98,27 @@ public class VueAccueilConcepteur extends JPanel {
 				scroll(scroll2.getPanel(),q.getTitreQuestionnaire(), q.getNumeroQuestionnaire(),"Modifier");
 			}
 		}
-
+		JPanel master = new JPanel();
+		
+		JPanel ajout = new JPanel();
+		ajout.setBackground(this.sond.couleur);
+		JButton ajouter = new JButton("Ajouter Client");
+		ajouter.setName("ajout");
+		ajouter.addActionListener(this.cc);
+		ajout.add(ajouter);
+		master.add(ajout, "East");
+		
+		JPanel ajoutq = new JPanel();
+		ajoutq.setBackground(this.sond.couleur);
+		JButton ajouterq = new JButton("Ajouter Questionnaire");
+		ajouterq.setName("ajoutq");
+		ajouterq.addActionListener(this.cc);
+		ajoutq.add(ajouterq);
+		master.add(ajoutq, "East");
+		master.setBackground(this.sond.couleur);
+		principal.add(master);
         this.add(principal,"Center");
+
     }
 	private void scroll(JPanel p,String label,int num, String bouton){
 		JPanel c=new JPanel();
@@ -97,4 +133,5 @@ public class VueAccueilConcepteur extends JPanel {
 				p.setBackground(this.sond.couleur);
         p.add(c);
 	}
+
 }

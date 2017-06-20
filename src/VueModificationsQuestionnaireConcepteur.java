@@ -150,7 +150,7 @@ public class VueModificationsQuestionnaireConcepteur extends JPanel{
     cont.removeAll();
     this.note = new JTextField(5);
     cont.add(this.note);
-    cont.setBorder(new TitledBorder("Réponses :"));
+    cont.setBorder(new TitledBorder("Valeur Maximale"));
     cont.validate();
     cont.repaint();
   }
@@ -158,18 +158,18 @@ public class VueModificationsQuestionnaireConcepteur extends JPanel{
     if(this.choixvoulu == 0){
       this.sond.basededonnes.BDQuestion.ajouteChoixM(this);
     }
-    /*else if(this.choixvoulu == 1){
+    else if(this.choixvoulu == 1){
     	this.sond.basededonnes.BDQuestion.ajouteChoixU(this);
     }
     else if(this.choixvoulu == 3){
-    	this.sond.basededonnes.BDQuestion.ajouteChoixU(this);
+    	this.sond.basededonnes.BDQuestion.ajouteChoixC(this);
     }
     else if(this.choixvoulu == 2){
     	this.sond.basededonnes.BDQuestion.ajouteChoixL(this);
     }
     else{
-    	this.sond.basededonnes.BDQuestion.ajouteChoixL(this);
-    }*/
+    	this.sond.basededonnes.BDQuestion.ajouteChoixN(this);
+    }
   }
 
   void panelReponse(int nom, int nbChoix){

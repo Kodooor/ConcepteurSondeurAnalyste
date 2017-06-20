@@ -33,7 +33,6 @@ public class ModeleQuestion {
       int num = rs.getInt(1);
       rs.close();
       ++num;
-      System.out.println(num);
 	    return num;
 
 	  }
@@ -43,11 +42,11 @@ public class ModeleQuestion {
 	  return -1;
 	  }
 
-	public int ajouteChoixM(VueModificationsQuestionnaireConcepteur vueC) {
+	public void ajouteChoixM(VueModificationsQuestionnaireConcepteur vueC) {
 		  int questionactuel = vueC.numeroQuestion;
 		  ArrayList<JTextField> listerep = vueC.listeJtext;
 		  try{
-			  String texte = "insert into QUESTION values(" + vueC.numQ + ","+ questionactuel + ",'" + vueC.texteQ.getText() + "','"+  10 + "','"+ 'm' +"')";
+			  String texte = "insert into QUESTION values(" + vueC.numQ + ","+ questionactuel + ",'" + vueC.texteQ.getText() + "',null,'"+ 'm' +"')";
 		      st.executeUpdate(texte);
 		      for(int i = 0; i<listerep.size();++i){
 		    	  String req = "insert into VALPOSSIBLE values(" + vueC.numQ + ","+ questionactuel + ",'" + i+1 + "','"+  listerep.get(i).getText() +"')";
@@ -58,7 +57,61 @@ public class ModeleQuestion {
 		         System.out.println("Problème insertion du joueur ");
 		         System.out.println("Voici le message SQL: "+e.getMessage());
 		   }
-		   return 0;
+	}
+	public void ajouteChoixU(VueModificationsQuestionnaireConcepteur vueC) {
+		int questionactuel = vueC.numeroQuestion;
+		ArrayList<JTextField> listerep = vueC.listeJtext;
+		try{
+			String texte = "insert into QUESTION values(" + vueC.numQ + ","+ questionactuel + ",'" + vueC.texteQ.getText() + "',null,'"+ 'u' +"')";
+		    st.executeUpdate(texte);
+		    for(int i = 0; i<listerep.size();++i){
+		    	String req = "insert into VALPOSSIBLE values(" + vueC.numQ + ","+ questionactuel + ",'" + i+1 + "','"+  listerep.get(i).getText() +"')";
+			    st.executeUpdate(req);
+		    }
+		}
+	    catch(SQLException e){
+	    	System.out.println("Problème insertion du joueur ");
+		    System.out.println("Voici le message SQL: "+e.getMessage());
+		}
+	}
+	public void ajouteChoixC(VueModificationsQuestionnaireConcepteur vueC) {
+		int questionactuel = vueC.numeroQuestion;
+		ArrayList<JTextField> listeTextNote = vueC.listeTextNote;
+		try{
+			String texte = "insert into QUESTION values(" + vueC.numQ + ","+ questionactuel + ",'" + vueC.texteQ.getText() + "',null,'"+ 'c' +"')";
+		    st.executeUpdate(texte);
+		    for(int i = 0; i<listeTextNote.size();++i){
+		    	int num = i +1;
+		    	String req = "insert into VALPOSSIBLE values(" + vueC.numQ + ","+ questionactuel + "," + num + ",'"+  listeTextNote.get(i).getText() +"')";
+			    st.executeUpdate(req);
+		    }
+		}
+	    catch(SQLException e){
+	    	System.out.println("Problème insertion du joueur ");
+		    System.out.println("Voici le message SQL: "+e.getMessage());
+		}
+	}
+	public void ajouteChoixL(VueModificationsQuestionnaireConcepteur vueC) {
+		int questionactuel = vueC.numeroQuestion;
+		try{
+			String texte = "insert into QUESTION values(" + vueC.numQ + ","+ questionactuel + ",'" + vueC.texteQ.getText() + "',null,'"+ 'l' +"')";
+		    st.executeUpdate(texte);
+		}
+	    catch(SQLException e){
+	    	System.out.println("Problème insertion du joueur ");
+		    System.out.println("Voici le message SQL: "+e.getMessage());
+		}
+	}
+	public void ajouteChoixN(VueModificationsQuestionnaireConcepteur vueC) {
+		int questionactuel = vueC.numeroQuestion;
+		try{
+			String texte = "insert into QUESTION values(" + vueC.numQ + ","+ questionactuel + ",'" + vueC.texteQ.getText() + "',"+ Integer.parseInt(vueC.note.getText())+",'"+ 'n' +"')";
+		    st.executeUpdate(texte);
+		}
+	    catch(SQLException e){
+	    	System.out.println("Problème insertion du joueur ");
+		    System.out.println("Voici le message SQL: "+e.getMessage());
+		}
 	}
 }
 

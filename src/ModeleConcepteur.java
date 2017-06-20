@@ -108,7 +108,43 @@ public class ModeleConcepteur {
 			          System.out.println("Voici le message SQL: "+e.getMessage());
 			        }
 			}
-
+			public void EnvoyerQuestionnaire(int numQ) {
+			      try{
+					  ResultSet rs = st.executeQuery("Select * from QUESTIONNAIRE where idQ = '" + numQ + "'");
+					  rs.next();
+				      Questionnaire q = new Questionnaire(rs.getInt(1), rs.getString(2),rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6));
+				      rs.close();
+				      q.setEtatQuestionnaire("A");
+					  PreparedStatement ps = laConnexion.mysql.prepareStatement("update QUESTIONNAIRE set Titre=?, Etat=?, numC=?, idU=?, idPan=? where idQ = "+ numQ);
+			          ps.setString(1, q.getTitreQuestionnaire());
+			          ps.setString(2, q.getEtatQuestionnaire());
+			          ps.setInt(3, q.getNumClient());
+			          ps.setInt(4, q.getIdentifiantUtilisateur());
+			          ps.setInt(5, q.getIdentifiantPanel());
+			          ps.executeUpdate();
+			        }
+			        catch(SQLException e){
+			          System.out.println("Voici le message SQL: "+e.getMessage());
+			        }
+			      }
+			public void ajouterClient(int num, String raison, String ad1, String ad2, int codePost, String ville, String tele, String mail) {
+			      try{
+					  String texte = "insert into CLIENT values(" + num + ",'"+ raison + "','" + ad1 + "', '"+ ad2+"'," + codePost + ", '"+ville+"', '" +tele + "', '"+ mail+"')" ;
+				      st.executeUpdate(texte);
+			        }
+			        catch(SQLException e){
+			          System.out.println("Voici le message SQL: "+e.getMessage());
+			        }
+			     }
+			public void ajouterQuestionnaire(int idQ, String Titre, int numC,int role, int idPan){
+			      try{
+					  String texte = "insert into QUESTIONNAIRE values(" + idQ + ",'"+ Titre + "',\'C\', "+ numC+"," + role + ", "+idPan+")" ;
+				      st.executeUpdate(texte);
+			        }
+			        catch(SQLException e){
+			          System.out.println("Voici le message SQL: "+e.getMessage());
+			        }
+			     }
 
 
 

@@ -29,6 +29,12 @@ public class ControleurConcepteur implements ActionListener{
 		if((((JButton) arg0.getSource()).getText()).equals("Modifier")){
 			vueAccueilConcepteur.afficherVueCreationQuestionnaire(vueAccueilConcepteur.sond, Integer.parseInt(((JButton) arg0.getSource()).getName()));
 		}
+		else if((((JButton) arg0.getSource()).getName()).equals("ajout")){
+			vueAccueilConcepteur.afficherVueAjoutSociete(vueAccueilConcepteur.sond);
+		}
+		else if((((JButton) arg0.getSource()).getName()).equals("ajoutq")){
+			vueAccueilConcepteur.afficherVueAjoutQuestionnaire(vueAccueilConcepteur.sond);
+		}
 		else{
 			vueAccueilConcepteur.afficherVueInfoQuestionnaire(Integer.parseInt(((JButton) arg0.getSource()).getName()));			
 		}
