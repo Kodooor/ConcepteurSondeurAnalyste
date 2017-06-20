@@ -135,7 +135,7 @@ public class ModeleConcepteur {
 					  rs.next();
 				      Questionnaire q = new Questionnaire(rs.getInt(1), rs.getString(2),rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6));
 				      rs.close();
-				      q.setEtatQuestionnaire("A");
+				      q.setEtatQuestionnaire("S");
 					  PreparedStatement ps = laConnexion.mysql.prepareStatement("update QUESTIONNAIRE set Titre=?, Etat=?, numC=?, idU=?, idPan=? where idQ = "+ numQ);
 			          ps.setString(1, q.getTitreQuestionnaire());
 			          ps.setString(2, q.getEtatQuestionnaire());
