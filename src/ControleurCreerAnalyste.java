@@ -4,14 +4,21 @@ import java.awt.event.*;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
+/**
+ * Controleur de la page Creer une Analyse
+ * @author Hugo, Warren et Chloé
+ *
+ */
+
 public class ControleurCreerAnalyste implements ActionListener{
-	
+
 	VueAccueilAnalyste vueAccueilAnalyste;
+
 	/**
-	 * Constructeur qui donne un acces a la vue de l'accueil d'un module en fonction du
-	 * role de l'utilisateur
-	 * @param VueAccueil la vue de l'accueil
+	 * Constructeur qui donne un acces a la vue de l'accueil de l'analyste ainsi qu'a la vue de la création d'une analyse
+	 * @param vueAccueilAnalyste de type VueAccueilAnalyste est la vue de l'accueil de l'analyste
 	 */
+
 	public ControleurCreerAnalyste(VueAccueilAnalyste vueAccueilAnalyste) {
 		super();
 		this.vueAccueilAnalyste = vueAccueilAnalyste;
