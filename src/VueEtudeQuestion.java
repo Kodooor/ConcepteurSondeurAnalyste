@@ -41,9 +41,12 @@ public class VueEtudeQuestion extends JPanel {
 	
 	JPanel panelGeneral;
 	
+	String texte;
+	
 	VueEtudeQuestion(EasySond easySond, Question q){
 		this.easySond = easySond;
 		this.question = q;
+		this.texte = "";
 		this.controleurB = new ControleurAnalyseQuestion(this);
 		this.modeleAnalyste = new ModeleAnalyste(easySond.basededonnes);
 		this.centre = new JPanel();
