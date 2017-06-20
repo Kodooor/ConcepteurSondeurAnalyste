@@ -7,22 +7,15 @@ import java.awt.List;
 import java.awt.ScrollPane;
 import java.util.ArrayList;
 
-import javax.swing.BoxLayout;
-import javax.swing.DefaultListModel;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.ImageIcon;
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.border.TitledBorder;
 
-
+/**
+ * Vue permettant l'affichage des informations du Questionnaire
+ * @author Sofiane et Lucas
+ *
+ */
 
 public class VueCreationConcepteur extends JPanel {
 	JButton bout;
@@ -34,10 +27,13 @@ public class VueCreationConcepteur extends JPanel {
 	Client c;
 	ControleurConcepteurCreation cc;
   VueCreationQuestionnaire vueCreationQuestionnaire;
-  
+	/**
+	 * Constructeur des informations d'un Questionnaire
+	 */
 	public VueCreationConcepteur(EasySond sond,int numQ) {
 		super();
 		this.sond=sond;
+		System.out.println("COUCOU0");
 		this.numQ=numQ;
 		this.cc = new ControleurConcepteurCreation(this);
 		this.c = this.sond.basededonnes.BDConcepteur.getClient(this.numQ);
@@ -45,6 +41,10 @@ public class VueCreationConcepteur extends JPanel {
 		this.add(hautt(),"North");
 		this.add(milieu(),"Center");
 	}
+	/**
+	 * Méthode qui change la vue actuel par celle de l'acceuil du Questionnaire
+	 * @param EasySond, int l'application et le numéro du Questionnaire
+	 */
 	void afficherVueCreationQuestionnaire(EasySond sond, int num){
 		Container cont=this.sond.getContentPane();
 		cont.removeAll();
@@ -53,10 +53,16 @@ public class VueCreationConcepteur extends JPanel {
 		cont.validate();
 		cont.repaint();
 	}
+	/**
+	 * Méthodes qui vont ajouter la vue 
+	 */
 	Component hautt(){
 		VueEnTete haut=new VueEnTete(this.sond,"Société ","Concepteur",this.sond.Nom,this.sond.Prenom);
 		return haut;
 }
+	/**
+	 * Méthodes qui vont ajouter la vue 
+	 */
 	Component milieu(){
 		JPanel milieu = new JPanel(new BorderLayout());
 		milieu.setBackground(this.sond.couleur);
@@ -89,6 +95,9 @@ public class VueCreationConcepteur extends JPanel {
 		milieu.add(bidon4,"South");
 		return milieu;
 }
+	/**
+	 * Méthodes qui vont ajouter la vue 
+	 */
 private void bouton(JPanel bidon4){
 		JPanel bouton = new JPanel(new FlowLayout());
 		JButton bout1 = new JButton("Retour");
@@ -99,6 +108,9 @@ private void bouton(JPanel bidon4){
 		bouton.add(bout2);
 		bidon4.add(bouton);
 }
+/**
+ * Méthodes qui vont ajouter la vue 
+ */
 private void informations(JPanel milieumilieu){
 		JPanel informations = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JLabel text1 = new JLabel("Informations : ");

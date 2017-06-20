@@ -21,7 +21,11 @@ import javax.swing.ImageIcon;
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.border.TitledBorder;
-
+/**
+ * Vue permettant l'affichage de l'accueil du Questionnaire
+ * @author Sofiane et Lucas
+ *
+ */
 public class VueCreationQuestionnaire extends JPanel{
   JButton bout;
 	JButton boutt;
@@ -34,7 +38,9 @@ public class VueCreationQuestionnaire extends JPanel{
   VueModificationsQuestionnaireConcepteur vueModificationsQuestionnaireConcepteur;
   ModeleConcepteur BDConcepteur;
   VueScrollPan milieumilieu;
-
+	/**
+	 * Constructeur de l'accueil d'un Questionnaire
+	 */
   public VueCreationQuestionnaire(EasySond sond, int numQ) {
 		super();
 		this.sond=sond;
@@ -47,6 +53,10 @@ public class VueCreationQuestionnaire extends JPanel{
 		this.add(hautt(),"North");
     this.add(milieu(),"Center");
 }
+	/**
+	 * Méthode qui change la vue actuel par celle de l'ajout de Questions
+	 * @param EasySond, int l'application et le numéro du Questionnaire
+	 */
   void afficherVueModificationsQuestionnaireConcepteur(EasySond sond, int num){
     Container cont=this.sond.getContentPane();
     cont.removeAll();
@@ -55,11 +65,16 @@ public class VueCreationQuestionnaire extends JPanel{
     cont.validate();
     cont.repaint();
   }
+	/**
+	 * Méthodes qui vont ajouter la vue 
+	 */
   Component hautt(){
     VueEnTete haut=new VueEnTete(this.sond,"Questionnaire","Concepteur",this.sond.Nom,this.sond.Prenom);
     return haut;
 }
-
+	/**
+	 * Méthodes qui vont ajouter la vue 
+	 */
   Component milieu(){
     JPanel milieu = new JPanel(new BorderLayout());
     milieu.setBackground(this.sond.couleur);
@@ -92,6 +107,9 @@ public class VueCreationQuestionnaire extends JPanel{
     milieu.add(bidon4,"South");
     return milieu;
   }
+	/**
+	 * Méthodes qui vont ajouter la vue 
+	 */
   private void bouton(JPanel bidon4){
     JPanel bouton = new JPanel(new FlowLayout());
     JButton bout1 = new JButton("Quitter");
@@ -108,6 +126,9 @@ public class VueCreationQuestionnaire extends JPanel{
     bouton.add(bout2);
     bidon4.add(bouton);
   }
+	/**
+	 * Méthodes qui vont ajouter la vue 
+	 */
   private void informations(VueScrollPan milieumilieu){
     ArrayList<Question> listeQuestion = this.BDConcepteur.getQuestion(this.numQ);
     if(listeQuestion.size() != 0){

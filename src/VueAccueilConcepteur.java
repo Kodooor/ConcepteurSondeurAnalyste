@@ -50,6 +50,10 @@ public class VueAccueilConcepteur extends JPanel {
 		cont.validate();
 		cont.repaint();
 	}
+	/**
+	 * Méthode qui va modifier la vue avec la vue de l'accueil du Questionnaire en fonction d'un questionnaire
+	 * @param EasySond, Int L'application, l'identifiant du questionnaire
+	 */
 	void afficherVueCreationQuestionnaire(EasySond sond, int num){
 		Container cont=this.sond.getContentPane();
 		cont.removeAll();
@@ -58,6 +62,10 @@ public class VueAccueilConcepteur extends JPanel {
 		cont.validate();
 		cont.repaint();
 	}
+	/**
+	 * Méthode qui va modifier la vue avec la vue de l'ajout d'un Client
+	 * @param EasySond, Int L'application, l'identifiant du questionnaire
+	 */
 	void afficherVueAjoutSociete(EasySond sond){
 		Container cont=this.sond.getContentPane();
 		cont.removeAll();
@@ -66,6 +74,10 @@ public class VueAccueilConcepteur extends JPanel {
 		cont.validate();
 		cont.repaint();
 	}
+	/**
+	 * Méthode qui va modifier la vue avec la vue de l'ajout d'un Questionnaire
+	 * @param EasySond, Int L'application, l'identifiant du questionnaire
+	 */
 	public void afficherVueAjoutQuestionnaire(EasySond sond2) {
 		Container cont=this.sond.getContentPane();
 		cont.removeAll();
@@ -75,13 +87,15 @@ public class VueAccueilConcepteur extends JPanel {
 		cont.repaint();
 	}
 	/**
-	 * Méthode qui va ajouter la vue 
+	 * Méthodes qui vont ajouter la vue 
 	 */
 	private void enTete(){
 		VueEnTete haut=new VueEnTete(this.sond, "Accueil Concepteur","Concepteur",this.sond.Nom,this.sond.Prenom);
 		this.add(haut,"North");
 	}
-
+	/**
+	 * Méthodes qui vont ajouter la vue 
+	 */
 	private void body(){
 		JPanel principal= new JPanel();
 		principal.setLayout(new BoxLayout(principal,BoxLayout.Y_AXIS));
@@ -120,6 +134,9 @@ public class VueAccueilConcepteur extends JPanel {
         this.add(principal,"Center");
 
     }
+	/**
+	 * Méthodes qui vont ajouter la vue 
+	 */
 	private void scroll(JPanel p,String label,int num, String bouton){
 		JPanel c=new JPanel();
 		c.setPreferredSize(new Dimension(50,50));

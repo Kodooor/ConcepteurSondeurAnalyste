@@ -5,8 +5,8 @@ import java.sql.*;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 /**
- * Model du jeu motus
- * @author IUT'O dpt Informatique
+ * Model de l'ajout d'informations dans la base de données
+ * @author Sofiane et Lucas
  *
  */
 
@@ -26,6 +26,11 @@ public class ModeleQuestion {
 	  st=null;
 	}
   }
+	/**
+	 * Méthode qui va recuperer le numéro de la derniere question
+	 * @param Int l'identifiant du questionnaire
+	 * @return int le numéro de la nouvelle question 
+	 */
   public int getNumQuestionActuel(int idQ){
 	  try{
 	    ResultSet rs = st.executeQuery("Select IFNULL(MAX(numQ), 0) from QUESTION where idQ = " + idQ);
@@ -41,7 +46,10 @@ public class ModeleQuestion {
 	  }
 	  return -1;
 	  }
-
+	/**
+	 * Méthode qui va ajouter toutes les informations pour le type Choix Multiples
+	 * @param VueModificationsQuestionnaireConcepteur la vue de l'ajout de question
+	 */
 	public void ajouteChoixM(VueModificationsQuestionnaireConcepteur vueC) {
 		  int questionactuel = vueC.numeroQuestion;
 		  ArrayList<JTextField> listerep = vueC.listeJtext;
@@ -58,6 +66,10 @@ public class ModeleQuestion {
 		         System.out.println("Voici le message SQL: "+e.getMessage());
 		   }
 	}
+	/**
+	 * Méthode qui va ajouter toutes les informations pour le type Choix Unique
+	 * @param VueModificationsQuestionnaireConcepteur la vue de l'ajout de question
+	 */
 	public void ajouteChoixU(VueModificationsQuestionnaireConcepteur vueC) {
 		int questionactuel = vueC.numeroQuestion;
 		ArrayList<JTextField> listerep = vueC.listeJtext;
@@ -74,6 +86,10 @@ public class ModeleQuestion {
 		    System.out.println("Voici le message SQL: "+e.getMessage());
 		}
 	}
+	/**
+	 * Méthode qui va ajouter toutes les informations pour le type Classement
+	 * @param VueModificationsQuestionnaireConcepteur la vue de l'ajout de question
+	 */
 	public void ajouteChoixC(VueModificationsQuestionnaireConcepteur vueC) {
 		int questionactuel = vueC.numeroQuestion;
 		ArrayList<JTextField> listeTextNote = vueC.listeTextNote;
@@ -91,6 +107,10 @@ public class ModeleQuestion {
 		    System.out.println("Voici le message SQL: "+e.getMessage());
 		}
 	}
+	/**
+	 * Méthode qui va ajouter toutes les informations pour le type Libre
+	 * @param VueModificationsQuestionnaireConcepteur la vue de l'ajout de question
+	 */
 	public void ajouteChoixL(VueModificationsQuestionnaireConcepteur vueC) {
 		int questionactuel = vueC.numeroQuestion;
 		try{
@@ -102,6 +122,10 @@ public class ModeleQuestion {
 		    System.out.println("Voici le message SQL: "+e.getMessage());
 		}
 	}
+	/**
+	 * Méthode qui va ajouter toutes les informations pour le type Note
+	 * @param VueModificationsQuestionnaireConcepteur la vue de l'ajout de question
+	 */
 	public void ajouteChoixN(VueModificationsQuestionnaireConcepteur vueC) {
 		int questionactuel = vueC.numeroQuestion;
 		try{

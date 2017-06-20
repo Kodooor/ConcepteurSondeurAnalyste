@@ -10,19 +10,23 @@ import javax.swing.*;
 public class ControleurCreationQuestionnaire implements ActionListener{
 
 	/**
-	 * acces a la vue accueil
+	 * acces a la vue de création d'un Questionnaire
 	 */
 	private VueCreationQuestionnaire vueCreationQuestionnaire;
 
 	/**
-	 * Constructeur qui donne un acces a la vue de l'accueil d'un module en fonction du
-	 * role de l'utilisateur
-	 * @param VueAccueil la vue de l'accueil
+	 * Constructeur qui donne un acces a la vue de l'ajout de Question
+	 * vue Acceuil du Questionnaire
+	 * @param vueCreationQuestionnaire la vue de création d'un Questionnaire
 	 */
 	public ControleurCreationQuestionnaire(VueCreationQuestionnaire vueCreationQuestionnaire) {
 		super();
 		this.vueCreationQuestionnaire = vueCreationQuestionnaire;
 	}
+	/**
+	 * method qui en fontion du bouton préssé fait une action
+	 * @param arg0 le bouton préssé
+	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		EasySond fenetrePrincipale=this.vueCreationQuestionnaire.sond;

@@ -21,7 +21,11 @@ import javax.swing.ImageIcon;
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.border.TitledBorder;
-
+/**
+ * Vue permettant l'affichage de l'ajout de questionnaire
+ * @author Sofiane et Lucas
+ *
+ */
 public class VueAjoutQuestionnaire extends JPanel{
   JButton bout;
   JButton boutt;
@@ -43,7 +47,9 @@ public class VueAjoutQuestionnaire extends JPanel{
 
 
 
-
+	/**
+	 * Constructeur de l'ajout de l'ajout de questionnaire
+	 */
   public VueAjoutQuestionnaire(EasySond sond) {
 	super();
 	this.sond=sond;
@@ -55,14 +61,22 @@ public class VueAjoutQuestionnaire extends JPanel{
     this.add(milieu(),"Center");
 
 }
-
+	/**
+	 * Méthodes qui vont ajouter la vue 
+	 */
   Component hautt(){
     VueEnTete haut=new VueEnTete(this.sond,"Question","Concepteur",this.sond.Nom,this.sond.Prenom);
     return haut;
 }
+	/**
+	 * Méthode qui va appeler le modele afin d'ajouter le questionnaire 
+	 */
   void ajouter(){
 	  BDConcepteur.ajouterQuestionnaire(Integer.parseInt(textNum.getText()), texteRaison.getText(),Integer.parseInt(texteAD2.getText()),this.sond.role,Integer.parseInt(texteCP.getText()));
   }
+	/**
+	 * Méthodes qui vont ajouter la vue 
+	 */
   Component milieu(){
     JPanel milieu = new JPanel(new BorderLayout());
     milieu.setBackground(Color.RED);
@@ -95,6 +109,9 @@ public class VueAjoutQuestionnaire extends JPanel{
     milieu.add(bidon4,"South");
     return milieu;
   }
+	/**
+	 * Méthodes qui vont ajouter la vue 
+	 */
   private void bouton(JPanel bidon4){
     JPanel bouton = new JPanel(new FlowLayout());
     JButton bout1 = new JButton("Retour");
@@ -104,7 +121,10 @@ public class VueAjoutQuestionnaire extends JPanel{
     bout2.addActionListener(this.cc);
     bouton.add(bout2);
     bidon4.add(bouton);
-  }
+  }	
+  /**
+  * Méthodes qui vont ajouter la vue 
+  */
   private void informations(JPanel milieumilieu){
 	JPanel num = new JPanel(new FlowLayout(FlowLayout.LEFT));
 	this.textNum = new JTextArea(4,96);

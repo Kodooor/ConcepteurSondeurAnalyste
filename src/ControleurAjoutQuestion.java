@@ -11,19 +11,22 @@ import javax.swing.JOptionPane;
 public class ControleurAjoutQuestion implements ActionListener{
 
 	/**
-	 * acces a la vue Chargement
+	 * acces a la vue Ajout Questionnaire
 	 */
 	private VueAjoutQuestionnaire vue;
 	
 	/**
-	 * Constructeur qui donne un acces a la vue de l'accueil
-	 * @param vueChargement la vue du chargement
+	 * Constructeur qui donne un acces a la vue de l'ajout de Questionnaire
+	 * @param VueAjoutQuestionnaire la vue de l'ajout de Questionnaire
 	 */
 	public ControleurAjoutQuestion(VueAjoutQuestionnaire vue) {
 		super();
 		this.vue = vue;
 	}
-
+	/**
+	 * method qui en fontion du bouton préssé fait une action
+	 * @param arg0 le bouton préssé
+	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		EasySond fenetrePrincipale=(EasySond) vue.getRootPane().getParent();

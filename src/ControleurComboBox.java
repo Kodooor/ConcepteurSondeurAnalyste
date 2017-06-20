@@ -10,19 +10,23 @@ import javax.swing.*;
 public class ControleurComboBox implements ActionListener{
 
 	/**
-	 * acces a la vue accueil
+	 * acces a la vue d'ajout de question d'un Questionnaire
 	 */
 	private VueModificationsQuestionnaireConcepteur vueModificationsQuestionnaireConcepteur;
 
 	/**
-	 * Constructeur qui donne un acces a la vue de l'accueil d'un module en fonction du
-	 * role de l'utilisateur
-	 * @param VueAccueil la vue de l'accueil
+	 * Constructeur qui donne un acces a la vue de l'ajout de Question
+	 * Ou l'accueil d'un Questionnaire
+	 * @param vueModificationsQuestionnaireConcepteur la vue de L'ajout de Question
 	 */
 	public ControleurComboBox(VueModificationsQuestionnaireConcepteur vueModificationsQuestionnaireConcepteur) {
 		super();
 		this.vueModificationsQuestionnaireConcepteur = vueModificationsQuestionnaireConcepteur;
 	}
+	/**
+	 * method qui en fontion du bouton préssé fait une action
+	 * @param arg0 le bouton préssé
+	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
    if(((String)(((JComboBox) arg0.getSource()).getSelectedItem())).equals("Choix simple")){

@@ -22,7 +22,10 @@ public class ControleurAccueil implements ActionListener{
 		super();
 		this.vueAccueil = vueAccueil;
 	}
-
+	/**
+	 * method qui en fontion du bouton préssé fait une action
+	 * @param arg0 le bouton préssé
+	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		EasySond fenetrePrincipale=(EasySond) vueAccueil.getRootPane().getParent();

@@ -16,6 +16,10 @@ public class ControleurDeco implements ActionListener{
 		super();
 		this.vueEnTete = vueEnTete;
 	}
+	/**
+	 * method qui en fontion du bouton préssé fait une action
+	 * @param arg0 le bouton préssé
+	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		EasySond fenetrePrincipale=(EasySond) vueEnTete.getRootPane().getParent();
