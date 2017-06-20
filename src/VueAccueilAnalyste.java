@@ -71,7 +71,7 @@ public class VueAccueilAnalyste extends JPanel {
 		principal.setLayout(new BoxLayout(principal,BoxLayout.Y_AXIS));
 		VueScrollPan scroll1=new VueScrollPan("A créer");
 		principal.add(scroll1);
-		this.listeQuestionnaire=this.modele.listeDesQuestionnaires();
+		this.listeQuestionnaire=this.modele.listeDesQuestionnaires(this.sond.idU);
 		for(Questionnaire q:this.listeQuestionnaire){
 			scroll(scroll1.getPanel(),q.getTitreQuestionnaire(),"Créer",q.getNumeroQuestionnaire());
 		}
