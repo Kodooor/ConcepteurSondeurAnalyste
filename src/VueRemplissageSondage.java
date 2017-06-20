@@ -50,7 +50,27 @@ public class VueRemplissageSondage extends JPanel{
 	*vue qui gere le chargement de l'en tête
 	*/
 	VueEnTete vueEnTete;
-
+	
+	/**
+	*liste des réponse
+	*/
+	ArrayList<Repondre> listeResponse;
+	
+	/**
+	*liste des question prêt a être répondu
+	*/
+	ArrayList<VueRemplissageQuestion> listeRemplissageQuestion;
+	
+	/**
+	*Caractéristique du sondé
+	*/
+	Caracteristique caracteristique;
+	
+	
+	
+	
+	
+	
 	/**
 	 * Constructeur qui permet de fixer la vue
 	 * @param sond permet d'accéder au conteneur principal
@@ -59,6 +79,8 @@ public class VueRemplissageSondage extends JPanel{
 	 */
 	VueRemplissageSondage(EasySond sond, Questionnaire q, Sonde s){
 		super();
+		this.listeResponse= new ArrayList<Repondre>();
+		this.listeRemplissageQuestion= new ArrayList<VueRemplissageQuestion>();
 		this.sond=sond;
 		this.controleur= new ControleurRemplissageSondage(this);
 		this.setVisible(true);
@@ -70,9 +92,9 @@ public class VueRemplissageSondage extends JPanel{
 		pageGenerator();
 	}
 
-/**
-*Affiche la page liée a VueAccueilSondeur
-*/
+	/**
+	*Affiche la page liée a VueAccueilSondeur
+	*/
 	void refreshAccueil(){
 		Container cont=this.sond.getContentPane();
 		cont.removeAll();
@@ -87,7 +109,44 @@ public class VueRemplissageSondage extends JPanel{
 	*Actualise la page des question en passant à la suivant ou à la précédante
 	*/
 	void questionChangement(int e){
-
+		for(VueRemplissageQuestion v:listeRemplissageQuestion){
+		switch(v.getType()){
+			//choix unique
+		case "u":for(JRadioButton r:v.buttonGroup){
+				if(r.isSelected()){
+			Repondre rep = new Repondre(this.questionnaire.getNumeroQuestionnaire(),this.numeroQuestion,this.sonde.getIdentifiantCaracteristique(),r.getText());
+			this.listeResponse.add(rep);
+					}	
+				}
+					break;
+		//choix multiple
+		case "m":for(JCheckBox r:v.checkBoxs){
+			if(r.isSelected()){
+			Repondre rep = new Repondre(this.questionnaire.getNumeroQuestionnaire(),this.numeroQuestion,this.sonde.getIdentifiantCaracteristique(),r.getText());
+			this.listeResponse.add(rep);
+				}	
+			}
+					break;
+		//classement
+		case "c":for(JComboBox<String> r:v.comboList){
+			String s;
+			s = ""+r.getSelectedItem();
+			Repondre rep = new Repondre(this.questionnaire.getNumeroQuestionnaire(),this.numeroQuestion,this.sonde.getIdentifiantCaracteristique(),s);
+			this.listeResponse.add(rep);
+			}
+					break;
+		//réponse libre
+		case "l":Repondre rep = new Repondre(this.questionnaire.getNumeroQuestionnaire(),this.numeroQuestion,this.sonde.getIdentifiantCaracteristique(),v.text.getText());
+				 this.listeResponse.add(rep);
+					break;
+		//note
+		case "n":String s;
+				 s = ""+v.combo.getSelectedItem();
+				 Repondre rep1 = new Repondre(this.questionnaire.getNumeroQuestionnaire(),this.numeroQuestion,this.sonde.getIdentifiantCaracteristique(),s);
+				 this.listeResponse.add(rep1);
+					break;
+		}
+		}
 		this.numeroQuestion+=e;
 		refresh();
 	}
@@ -185,59 +244,19 @@ public class VueRemplissageSondage extends JPanel{
 		//intitulé
 		question.setBorder(new TitledBorder("Réponse"));
 		//réponses
-		JPanel panelQuestion= new JPanel();
-		ButtonGroup panelChoix=new ButtonGroup();
 		Question questionActuelle = this.listeQuestion.get(this.numeroQuestion);
 		String typeQuestion = questionActuelle.getIdTypeQuestion();
 		int maxValeur = questionActuelle.getMaxValeur();
 		ArrayList<ValeurPossible>  listeValeur= this.sond.basededonnes.BDaccueilSondeur.GetListeValeurPossible(questionActuelle.getNumeroQuestionnaire(),questionActuelle.getIdQuestion());
-
-		switch(typeQuestion){
-			//choix unique
-			case "u": for(int i=0; i < listeValeur.size() ; i++){
-								 JRadioButton c =new JRadioButton("" + listeValeur.get(i).getValeur());
-								 panelQuestion.add(c);
-								 panelChoix.add(c);
-							 }
-							break;
-			//choix multiple
-			case "m": for(int i=0;i < listeValeur.size() ; i++){
-								 JCheckBox  c =new JCheckBox(listeValeur.get(i).getValeur());
-								 panelQuestion.add(c);
-							 }
-							break;
-			//classement
-			case "c": 	for (int i = 1 ; i <= maxValeur ; i++){
-									JLabel label = new JLabel("Numéro "+i);
-									panelQuestion.add(label);
-									String [] liste2= new String[listeValeur.size()];
-									for (int j = 0 ; j < listeValeur.size(); ++j){
-										liste2[j] = listeValeur.get(j).getValeur();
-									}
-									JComboBox <String> maListe2=new JComboBox <String> (liste2);
-									panelQuestion.add(maListe2);
-								}
-
-							break;
-			//réponse libre
-			case "l":JTextField maZone=new JTextField(100);
-							 panelQuestion.add(maZone);
-							break;
-			//note
-			case "n":String [] liste2= new String[maxValeur+1];
-							 for (int i=0; i <= maxValeur ; i++){
-								 liste2[i] = ""+i;
-							 }
-							 JComboBox <String> maListe2=new JComboBox <String> (liste2);
-							 panelQuestion.add(maListe2);
-							break;
-		}
-		question.add(panelQuestion);
+		
+		VueRemplissageQuestion vueRemplissageQuestion = new VueRemplissageQuestion(typeQuestion,listeValeur,maxValeur);
+		this.listeRemplissageQuestion.add(vueRemplissageQuestion);
+		question.add(vueRemplissageQuestion);
 		return question;
 	}
 
 	/**
-	*Renvoie lie les bouton à ControleurRemplissageSondage et les renvoies
+	*Lie les bouton à ControleurRemplissageSondage et les renvoies
 	*/
 	JPanel boutons(){
 		JPanel panelBoutons= new JPanel();
