@@ -103,11 +103,6 @@ public class EasySond extends JFrame {
     this.Prenom = prenom;
     this.role = role;
     this.idU = utilisateur;
-    System.out.println(this.Nom);
-    System.out.println(this.Prenom);
-    System.out.println(this.role);
-    System.out.println(this.idU);
-
 		if(role == 1){
 			Container cont=this.getContentPane();
 			cont.removeAll();

@@ -65,7 +65,7 @@ public class VueAjoutQuestionnaire extends JPanel{
 	 * Méthodes qui vont ajouter la vue 
 	 */
   Component hautt(){
-    VueEnTete haut=new VueEnTete(this.sond,"Question","Concepteur",this.sond.Nom,this.sond.Prenom);
+    VueEnTete haut=new VueEnTete(this.sond,"Ajout Questionnaire","Concepteur",this.sond.Nom,this.sond.Prenom);
     return haut;
 }
 	/**
