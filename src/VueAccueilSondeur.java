@@ -89,7 +89,6 @@ public class VueAccueilSondeur extends JPanel{
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 			//niveau 1, Annonce la page.
 		JPanel lv1= new JPanel();
-		lv1.setLayout(new FlowLayout(FlowLayout.LEFT));
 		lv1.add(nomPage());
 		this.add(lv1);
 

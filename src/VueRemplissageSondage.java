@@ -155,6 +155,9 @@ public class VueRemplissageSondage extends JPanel{
 	*Actualise la page
 	*/
 	void refresh(){
+		for (Repondre reponse : listeResponse){
+			this.sond.basededonnes.BDaccueilSondeur.insererRepondre(reponse);
+		}
 		Container cont=this.sond.getContentPane();
 		this.removeAll();
 		pageGenerator();
@@ -170,7 +173,6 @@ public class VueRemplissageSondage extends JPanel{
 
 			//niveau 1
 		JPanel lv1= new JPanel();
-		lv1.setLayout(new FlowLayout(FlowLayout.LEFT));
 		nomPage(lv1);
 		this.add(lv1);
 
