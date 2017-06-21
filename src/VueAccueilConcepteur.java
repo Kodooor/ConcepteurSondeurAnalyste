@@ -146,7 +146,11 @@ public class VueAccueilConcepteur extends JPanel {
     	JButton jbouton = new JButton(bouton);
 			jbouton.setName("" + num);
     	jbouton.addActionListener(this.cc);
+    	JButton jboutons = new JButton("Supprimer");
+    	jboutons.setName("" + num);
+    	jboutons.addActionListener(this.cc);
     	c.add(new JPanel().add(jbouton));
+    	c.add(new JPanel().add(jboutons));
 				p.setBackground(this.sond.couleur);
         p.add(c);
 	}

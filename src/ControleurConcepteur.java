@@ -30,8 +30,16 @@ public class ControleurConcepteur implements ActionListener{
 	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		EasySond fenetrePrincipale=(EasySond) vueAccueilConcepteur.getRootPane().getParent();
 		if((((JButton) arg0.getSource()).getText()).equals("Modifier")){
 			vueAccueilConcepteur.afficherVueCreationQuestionnaire(vueAccueilConcepteur.sond, Integer.parseInt(((JButton) arg0.getSource()).getName()));
+		}
+		else if((((JButton) arg0.getSource()).getText()).equals("Supprimer")){
+			int retour = JOptionPane.showOptionDialog(fenetrePrincipale, "Voulez - vous vraiment supprimer le questionnaire ?", "Attention !",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null, null, null);
+			if(retour==0){
+				vueAccueilConcepteur.sond.basededonnes.BDConcepteur.supprimerQuestionnaire(Integer.parseInt((((JButton) arg0.getSource()).getName())));
+			}
+			vueAccueilConcepteur.sond.afficherVueModule(vueAccueilConcepteur.sond.idU, vueAccueilConcepteur.sond.role, vueAccueilConcepteur.sond.Nom, vueAccueilConcepteur.sond.Prenom);
 		}
 		else if((((JButton) arg0.getSource()).getName()).equals("ajout")){
 			vueAccueilConcepteur.afficherVueAjoutSociete(vueAccueilConcepteur.sond);

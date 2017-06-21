@@ -36,7 +36,7 @@ public class ModeleConcepteur {
   public ArrayList<Questionnaire> listeDesQuestionnaires(int idUtilisateur){
 	      ArrayList<Questionnaire> listeQuestionnaire= new ArrayList<Questionnaire>();
 	  try{
-	    ResultSet rs = st.executeQuery("Select * from QUESTIONNAIRE where idU = " + idUtilisateur);
+	    ResultSet rs = st.executeQuery("Select * from QUESTIONNAIRE where Etat = \'C\' and idU = " + idUtilisateur);
 	    while(rs.next()){
 	      Questionnaire q = new Questionnaire(rs.getInt(1), rs.getString(2),
 	      rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6));
@@ -175,6 +175,17 @@ public class ModeleConcepteur {
 			          System.out.println("Voici le message SQL: "+e.getMessage());
 			        }
 			     }
+			public void supprimerQuestionnaire(int numQ) {
+			      try{
+			          st.executeUpdate("delete from VALPOSSIBLE where idQ = " + numQ);
+			          st.executeUpdate("delete from QUESTION where idQ = " + numQ);
+			          st.executeUpdate("delete from QUESTIONNAIRE where idQ = " + numQ);
+			        }
+			        catch(SQLException e){
+			          System.out.println("Voici le message SQL: "+e.getMessage());
+			        }
+			}
+
 
 
 
