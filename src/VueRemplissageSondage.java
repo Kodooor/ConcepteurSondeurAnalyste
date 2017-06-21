@@ -4,7 +4,7 @@ import javax.swing.border.TitledBorder;
 import java.util.ArrayList;
 
 /**
-*Vue de la page d'accueil du Sondeur
+*Vue de la page de remplissage du Sondeur
 *@author Romain et Zéphyr
 *
 */
@@ -25,6 +25,11 @@ public class VueRemplissageSondage extends JPanel{
 	*questionnaire en cours
 	*/
 	Questionnaire questionnaire;
+	
+	/**
+	 * ArrayList des sondés
+	 */
+	 ArrayList<Sonde> listeSonde;
 
 	/**
 	*information du sondé
@@ -70,14 +75,13 @@ public class VueRemplissageSondage extends JPanel{
 	
 	
 	
-	
 	/**
 	 * Constructeur qui permet de fixer la vue
 	 * @param sond permet d'accéder au conteneur principal
 	 * @param q questionnaire en cours
 	 * @param s sondage en cours
 	 */
-	VueRemplissageSondage(EasySond sond, Questionnaire q, Sonde s){
+	VueRemplissageSondage(EasySond sond, Questionnaire q, ArrayList<Sonde> listeSonde){
 		super();
 		this.listeResponse= new ArrayList<Repondre>();
 		this.listeRemplissageQuestion= new ArrayList<VueRemplissageQuestion>();
@@ -85,10 +89,11 @@ public class VueRemplissageSondage extends JPanel{
 		this.controleur= new ControleurRemplissageSondage(this);
 		this.setVisible(true);
 		this.questionnaire = q;
-		this.sonde = s;
+		this.sonde = listeSonde.get(0);
 		this.listeQuestion = this.sond.basededonnes.BDaccueilSondeur.GetListeQuestion(this.questionnaire.getNumeroQuestionnaire());
 		this.numeroQuestion = 0;
 		this.vueEnTete = new VueEnTete(this.sond,"Remplissage Sondage", "Sondeur", this.sond.Nom, this.sond.Prenom);
+		this.listeSonde = listeSonde;
 		pageGenerator();
 	}
 
@@ -96,9 +101,14 @@ public class VueRemplissageSondage extends JPanel{
 	*Affiche la page liée a VueAccueilSondeur
 	*/
 	void refreshAccueil(){
+		for (Repondre reponse : this.listeResponse){
+			this.sond.basededonnes.BDaccueilSondeur.insererRepondre(reponse);
+		}
+		this.listeResponse = new ArrayList<Repondre>();
 		Container cont=this.sond.getContentPane();
 		cont.removeAll();
-		vueAccueilSondeur = new VueAccueilSondeur(this.sond);
+		this.listeSonde.remove(0);
+		vueAccueilSondeur = new VueAccueilSondeur(this.sond,this.listeSonde);
 		cont.add(vueAccueilSondeur);
 		cont.setBackground(new Color(78,217,255));
 		cont.validate();
@@ -155,9 +165,6 @@ public class VueRemplissageSondage extends JPanel{
 	*Actualise la page
 	*/
 	void refresh(){
-		for (Repondre reponse : listeResponse){
-			this.sond.basededonnes.BDaccueilSondeur.insererRepondre(reponse);
-		}
 		Container cont=this.sond.getContentPane();
 		this.removeAll();
 		pageGenerator();
@@ -264,7 +271,7 @@ public class VueRemplissageSondage extends JPanel{
 		JPanel panelBoutons= new JPanel();
 		JButton b1= new JButton("<-------");
 		b1.addActionListener(this.controleur);
-		JButton b2= new JButton("Racrocher");
+		JButton b2= new JButton("Raccrocher");
 		b2.addActionListener(this.controleur);
 		JButton b3= new JButton("------->");
 		b3.addActionListener(this.controleur);
