@@ -22,7 +22,10 @@ public class ControleurAccueil implements ActionListener{
 		super();
 		this.vueAccueil = vueAccueil;
 	}
-
+	/**
+	 * method qui en fontion du bouton préssé fait une action
+	 * @param arg0 le bouton préssé
+	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		EasySond fenetrePrincipale=(EasySond) vueAccueil.getRootPane().getParent();
@@ -32,7 +35,7 @@ public class ControleurAccueil implements ActionListener{
 		else{
 			String login = vueAccueil.textfield.getLogin();
 			String motdepasse = new String(vueAccueil.textfield.getMdp());
-			fenetrePrincipale.afficherVueModule(fenetrePrincipale.basededonnes.BDaccueil.VerifBD(login,motdepasse),fenetrePrincipale.basededonnes.BDaccueil.getInfoUtilisateur(login,motdepasse).get(0),fenetrePrincipale.basededonnes.BDaccueil.getInfoUtilisateur(login,motdepasse).get(1));
+			fenetrePrincipale.afficherVueModule(Integer.parseInt(fenetrePrincipale.basededonnes.BDaccueil.getInfoUtilisateur(login,motdepasse).get(2)),Integer.parseInt(fenetrePrincipale.basededonnes.BDaccueil.getInfoUtilisateur(login,motdepasse).get(3)),fenetrePrincipale.basededonnes.BDaccueil.getInfoUtilisateur(login,motdepasse).get(0),fenetrePrincipale.basededonnes.BDaccueil.getInfoUtilisateur(login,motdepasse).get(1));
 		}
 	}
 }

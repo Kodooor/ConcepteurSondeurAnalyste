@@ -10,19 +10,22 @@ import javax.swing.*;
 public class ControleurConcepteurCreation implements ActionListener{
 
 	/**
-	 * acces a la vue accueil
+	 * acces a la vue accueil d'un Questionnaire
 	 */
 	private VueCreationConcepteur vueCreationConcepteur;
 
 	/**
-	 * Constructeur qui donne un acces a la vue de l'accueil d'un module en fonction du
-	 * role de l'utilisateur
-	 * @param VueAccueil la vue de l'accueil
+	 * Constructeur qui donne un acces a la vue de l'accueil d'un Questionnaire
+	 * @param vueCreationConcepteur la vue de l'accueil de Creation d'un Questionnaire
 	 */
 	public ControleurConcepteurCreation(VueCreationConcepteur vueCreationConcepteur) {
 		super();
 		this.vueCreationConcepteur = vueCreationConcepteur;
 	}
+	/**
+	 * method qui en fontion du bouton préssé fait une action
+	 * @param arg0 le bouton préssé
+	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
     if(((JButton) arg0.getSource()).getText().equals("Retour")){

@@ -65,7 +65,15 @@ public class ModeleAccueil {
 					 rss.next();
 					 String prenom=rss.getString(1);
 					 rss.close();
-					 liste.add(nom);liste.add(prenom);
+					 ResultSet id=st.executeQuery("SELECT idU from UTILISATEUR WHERE login = '" + log + "' and motdepasse = '" + mdp+"'");
+					 id.next();
+					 int nombre =id.getInt(1);
+					 id.close();
+					 ResultSet role=st.executeQuery("SELECT idR from UTILISATEUR WHERE login = '" + log + "' and motdepasse = '" + mdp+"'");
+					 role.next();
+					 int roleU =role.getInt(1);
+					 role.close();
+					 liste.add(nom);liste.add(prenom);liste.add(""+nombre);liste.add(""+roleU);
 					 return liste;
 				}
 				catch(SQLException e){

@@ -1,9 +1,12 @@
 import java.io.*;
 import java.util.ArrayList;
 import java.sql.*;
+
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 /**
- * Model du jeu motus
- * @author IUT'O dpt Informatique
+ * Model du Concepteur
+ * @author Sofiane et Lucas
  *
  */
 
@@ -30,10 +33,10 @@ public class ModeleConcepteur {
 	 * Méthode qui va recuperer la liste des questionnaire
 	 * @return la liste des questionnaire
 	 */
-  public ArrayList<Questionnaire> listeDesQuestionnaires(){
+  public ArrayList<Questionnaire> listeDesQuestionnaires(int idUtilisateur){
 	      ArrayList<Questionnaire> listeQuestionnaire= new ArrayList<Questionnaire>();
 	  try{
-	    ResultSet rs = st.executeQuery("Select * from QUESTIONNAIRE where Etat = \'C\'");
+	    ResultSet rs = st.executeQuery("Select * from QUESTIONNAIRE where Etat = \'C\' and idU = " + idUtilisateur);
 	    while(rs.next()){
 	      Questionnaire q = new Questionnaire(rs.getInt(1), rs.getString(2),
 	      rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6));
@@ -48,7 +51,7 @@ public class ModeleConcepteur {
 	  return null;
 	  }
 		/**
-		 * Méthode qui va recuperer le clien en fonction d'un questionnaire
+		 * Méthode qui va recuperer le client en fonction d'un questionnaire
 		 * @param Int l'identifiant du questionnaire
 		 * @return le Client
 		 */
@@ -65,6 +68,11 @@ public class ModeleConcepteur {
 		  }
 		  return null;
 		  }
+		 /**
+		 * Méthode qui va recuperer la liste des question en fonction d'un Questionnaire
+	 	 * @param int le numéro du questionnaire
+	 	 * @return la liste des questions
+	 	 */
 			public ArrayList<Question> getQuestion(int numQ){
 				ArrayList<Question> liste = new ArrayList<Question>();
 				try{
@@ -81,21 +89,102 @@ public class ModeleConcepteur {
 				}
 				return null;
 				}
-
-				/*int insererJoueur( Joueur j){
-			     int nouveauNum = maxNumJoueur()+1;
-		       try{
-		         String texte = "Insert into JOUEUR values(" + nouveauNum + ","
-		         + j.getNumLicence() + ",'" + j.getNom() + "','"+  j.getPrenom()+ "','"+ j.getDateNaissance()
-		         + "',"+  j.getIdEquipe()+ ",'"+  j.getRole()+"')";
-		         st.executeUpdate(texte);
-		       }
-		       catch(SQLException e){
-		         System.out.println("Problème insertion du joueur ");
-		         System.out.println("Voici le message SQL: "+e.getMessage());
-		       }
-		    return 0;
-		    }*/
+			
+			 /**
+			 * Méthode qui va vérifier si le Questionnaire à déjà des Questions
+		 	 * @param Questionnaire le questionnaire
+		 	 * @return false, true (non vide / vide)
+		 	 */
+			public boolean vide(Questionnaire q) {
+				try{
+					ResultSet rs = st.executeQuery("select count(*) FROM QUESTION where idQ = '" + q.getNumeroQuestionnaire() + "'");
+					rs.next();
+					int res = rs.getInt(1);
+					rs.close();
+					if(res == 0){
+						return true;
+					}
+				}
+				catch(SQLException e){
+					System.out.println(e);
+				}
+				return false;
+			}
+			
+			 /**
+			 * Méthode qui va supprimer une question d'un Questionnaire
+		 	 * @param int, int l'iD du Questionnaire, L'id de la question
+		 	 */
+			public void supprimerQuestion(int idQ, int i) {
+			      try{
+			          st.executeUpdate("delete from VALPOSSIBLE where idQ = " + idQ+ " and numQ = "+i);
+			          st.executeUpdate("delete from QUESTION where idQ = " + idQ+ " and numQ = "+i);
+			        }
+			        catch(SQLException e){
+			          System.out.println("Voici le message SQL: "+e.getMessage());
+			        }
+			}
+			
+			 /**
+			 * Méthode qui va envoyer le Questionnaire aux sondeurs
+		 	 * @param int l'iD questionnaire
+		 	 */
+			public void EnvoyerQuestionnaire(int numQ) {
+			      try{
+					  ResultSet rs = st.executeQuery("Select * from QUESTIONNAIRE where idQ = '" + numQ + "'");
+					  rs.next();
+				      Questionnaire q = new Questionnaire(rs.getInt(1), rs.getString(2),rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6));
+				      rs.close();
+				      q.setEtatQuestionnaire("S");
+					  PreparedStatement ps = laConnexion.mysql.prepareStatement("update QUESTIONNAIRE set Titre=?, Etat=?, numC=?, idU=?, idPan=? where idQ = "+ numQ);
+			          ps.setString(1, q.getTitreQuestionnaire());
+			          ps.setString(2, q.getEtatQuestionnaire());
+			          ps.setInt(3, q.getNumClient());
+			          ps.setInt(4, q.getIdentifiantUtilisateur());
+			          ps.setInt(5, q.getIdentifiantPanel());
+			          ps.executeUpdate();
+			        }
+			        catch(SQLException e){
+			          System.out.println("Voici le message SQL: "+e.getMessage());
+			        }
+			      }
+			
+			 /**
+			 * Méthode qui va ajouter un Client
+		 	 * @param int, String, String, String, int, String, String, String les informations du Client
+		 	 */
+			public void ajouterClient(int num, String raison, String ad1, String ad2, int codePost, String ville, String tele, String mail) {
+			      try{
+					  String texte = "insert into CLIENT values(" + num + ",'"+ raison + "','" + ad1 + "', '"+ ad2+"'," + codePost + ", '"+ville+"', '" +tele + "', '"+ mail+"')" ;
+				      st.executeUpdate(texte);
+			        }
+			        catch(SQLException e){
+			          System.out.println("Voici le message SQL: "+e.getMessage());
+			        }
+			     }
+			 /**
+			 * Méthode qui va ajouter un Questionnaire
+		 	 * @param int, String, int, int, int les informations du Questionnaire
+		 	 */
+			public void ajouterQuestionnaire(int idQ, String Titre, int numC,int role, int idPan){
+			      try{
+					  String texte = "insert into QUESTIONNAIRE values(" + idQ + ",'"+ Titre + "',\'C\', "+ numC+"," + role + ", "+idPan+")" ;
+				      st.executeUpdate(texte);
+			        }
+			        catch(SQLException e){
+			          System.out.println("Voici le message SQL: "+e.getMessage());
+			        }
+			     }
+			public void supprimerQuestionnaire(int numQ) {
+			      try{
+			          st.executeUpdate("delete from VALPOSSIBLE where idQ = " + numQ);
+			          st.executeUpdate("delete from QUESTION where idQ = " + numQ);
+			          st.executeUpdate("delete from QUESTIONNAIRE where idQ = " + numQ);
+			        }
+			        catch(SQLException e){
+			          System.out.println("Voici le message SQL: "+e.getMessage());
+			        }
+			}
 
 
 

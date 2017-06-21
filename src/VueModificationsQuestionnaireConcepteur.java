@@ -21,7 +21,11 @@ import javax.swing.ImageIcon;
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.border.TitledBorder;
-
+/**
+ * Vue permettant l'affichage de l'ajout de Question
+ * @author Sofiane et Lucas
+ *
+ */
 public class VueModificationsQuestionnaireConcepteur extends JPanel{
   JButton bout;
 	JButton boutt;
@@ -41,7 +45,11 @@ public class VueModificationsQuestionnaireConcepteur extends JPanel{
   ArrayList<JTextField> listeTextNote;
   JTextField note;
   JTextArea texte;
+  JTextArea texteQ;
 
+	/**
+	 * Constructeur de l'ajout d'une Question
+	 */
   public VueModificationsQuestionnaireConcepteur(EasySond sond, int numQ) {
 		super();
 		this.sond=sond;
@@ -57,11 +65,17 @@ public class VueModificationsQuestionnaireConcepteur extends JPanel{
     this.choixvoulu = 0;
 
 }
+	/**
+	 * Méthodes qui vont ajouter la vue 
+	 */
 
   Component hautt(){
     VueEnTete haut=new VueEnTete(this.sond,"Question","Concepteur",this.sond.Nom,this.sond.Prenom);
     return haut;
 }
+	/**
+	 * Méthodes qui vont ajouter la vue 
+	 */
   Component milieu(){
     JPanel milieu = new JPanel(new BorderLayout());
     milieu.setBackground(Color.RED);
@@ -94,6 +108,9 @@ public class VueModificationsQuestionnaireConcepteur extends JPanel{
     milieu.add(bidon4,"South");
     return milieu;
   }
+	/**
+	 * Méthodes qui vont ajouter la vue 
+	 */
   private void bouton(JPanel bidon4){
     JPanel bouton = new JPanel(new FlowLayout());
     JButton bout1 = new JButton("Retour");
@@ -104,13 +121,16 @@ public class VueModificationsQuestionnaireConcepteur extends JPanel{
     bouton.add(bout2);
     bidon4.add(bouton);
   }
+	/**
+	 * Méthodes qui vont ajouter la vue 
+	 */
   private void informations(JPanel milieumilieu){
     JPanel enonce = new JPanel(new FlowLayout(FlowLayout.LEFT));
-    JTextArea texte = new JTextArea(8,96);
-    texte.setLineWrap(true);
-    texte.setWrapStyleWord(true);
+    this.texteQ = new JTextArea(8,96);
+    this.texteQ.setLineWrap(true);
+    this.texteQ.setWrapStyleWord(true);
     enonce.setBorder(new TitledBorder("Énoncé : "));
-    enonce.add(texte);
+    enonce.add(this.texteQ);
 		milieumilieu.add(enonce);
 
 		JPanel type = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -133,6 +153,9 @@ public class VueModificationsQuestionnaireConcepteur extends JPanel{
     milieumilieu.add(cont);
     panelReponse(this.choixvoulu, 8);
   }
+	/**
+	 * Méthodes qui vont ajouter la vue 
+	 */
   void libre(){
     cont.removeAll();
     this.texte = new JTextArea(8,96);
@@ -144,32 +167,40 @@ public class VueModificationsQuestionnaireConcepteur extends JPanel{
     cont.validate();
     cont.repaint();
   }
+	/**
+	 * Méthodes qui vont ajouter la vue 
+	 */
   void note(){
     cont.removeAll();
     this.note = new JTextField(5);
     cont.add(this.note);
-    cont.setBorder(new TitledBorder("Réponses :"));
+    cont.setBorder(new TitledBorder("Valeur Maximale"));
     cont.validate();
     cont.repaint();
   }
-  /*void valider(){
+	/**
+	 * Méthode qui va appeler le Modeles avec les informations de la vue
+	 */
+  void valider(){
     if(this.choixvoulu == 0){
-      this.BDConcepteur.ajouteChoixM(this.listeBouton,this.listeJtext);
+      this.sond.basededonnes.BDQuestion.ajouteChoixM(this);
     }
     else if(this.choixvoulu == 1){
-      this.BDConcepteur.ajouteChoixU(this.listeBouton,this.listeJtext);
+    	this.sond.basededonnes.BDQuestion.ajouteChoixU(this);
     }
     else if(this.choixvoulu == 3){
-      this.BDConcepteur.ajouteChoixU(this.listeLabel,this.listeJtext);
+    	this.sond.basededonnes.BDQuestion.ajouteChoixC(this);
     }
     else if(this.choixvoulu == 2){
-      this.BDConcepteur.ajouteChoixL(this.texte);
+    	this.sond.basededonnes.BDQuestion.ajouteChoixL(this);
     }
     else{
-      this.BDConcepteur.ajouteChoixL(this.note);
+    	this.sond.basededonnes.BDQuestion.ajouteChoixN(this);
     }
-  }*/
-
+  }
+	/**
+	 * Méthodes qui vont ajouter la vue 
+	 */
   void panelReponse(int nom, int nbChoix){
 
     cont.removeAll();
@@ -211,3 +242,4 @@ public class VueModificationsQuestionnaireConcepteur extends JPanel{
     cont.repaint();
 }
 }
+

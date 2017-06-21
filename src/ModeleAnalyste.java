@@ -24,10 +24,10 @@ public class ModeleAnalyste {
 	  st=null;
 	}
   }
-	public ArrayList<Questionnaire> listeDesQuestionnaires(){
+	public ArrayList<Questionnaire> listeDesQuestionnaires(int idUtil){
 	      ArrayList<Questionnaire> listeQuestionnaire= new ArrayList<Questionnaire>();
 	  try{
-	    ResultSet rs = st.executeQuery("Select * from QUESTIONNAIRE where Etat = \'A\'");
+	    ResultSet rs = st.executeQuery("Select * from QUESTIONNAIRE where idU = " + idUtil);
 	    while(rs.next()){
 	      Questionnaire q = new Questionnaire(rs.getInt(1), rs.getString(2),
 	      rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6));
