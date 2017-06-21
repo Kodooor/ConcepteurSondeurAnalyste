@@ -1,4 +1,3 @@
-import java.awt.Container;
 import java.awt.event.*;
 
 import javax.swing.JButton;
@@ -20,17 +19,7 @@ public class ControleurEtudeQuestion implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		if(((JButton)arg0.getSource()).getText().equals("Annuler")){
-			Container cont = this.vueCreerAnalyste.vaa.sond.getContentPane();
-			cont.removeAll();
-			this.vueCreerAnalyste.vaa.afficherVueCreerAnalyse(((JButton)arg0.getSource()).getName());
-			cont.add(this.vueCreerAnalyste.vaa);
-			cont.validate();
-			cont.repaint();
-		}
-		if(((JButton)arg0.getSource()).getText().equals("Selectionner")){
-			vueCreerAnalyste.afficherVueEtudeQuestion(((JButton)arg0.getSource()).getName());
-		}
+		vueCreerAnalyste.afficherVueEtudeQuestion(((JButton)arg0.getSource()).getName());
 	}
 
 }
