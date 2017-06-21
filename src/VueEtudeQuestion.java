@@ -41,10 +41,16 @@ public class VueEtudeQuestion extends JPanel {
 	
 	JPanel panelGeneral;
 	
+	ControleurEtudeQuestion ceq;
+	
+	VueCreerAnalyse vca;
+	
 	VueEtudeQuestion(EasySond easySond, Question q){
 		this.easySond = easySond;
 		this.question = q;
+		this.vca = new VueCreerAnalyse(""+this.question.getNumeroQuestionnaire(),this.easySond.vueAccueilAnalyste);
 		this.controleurB = new ControleurAnalyseQuestion(this);
+		this.ceq = new ControleurEtudeQuestion(this.vca);
 		this.modeleAnalyste = new ModeleAnalyste(easySond.basededonnes);
 		this.centre = new JPanel();
 		this.panelGeneral = new JPanel();
@@ -107,6 +113,8 @@ public class VueEtudeQuestion extends JPanel {
 		JPanel panelBoutons2 = new JPanel();
 		JButton bouton5 = new JButton("Annuler");
 		JButton bouton6 = new JButton("Valider");
+		bouton5.setName(""+this.question.getNumeroQuestionnaire());
+		bouton5.addActionListener(this.ceq);
 		panelBoutons2.add(bouton5);
 		panelBoutons2.add(bouton6);
 		

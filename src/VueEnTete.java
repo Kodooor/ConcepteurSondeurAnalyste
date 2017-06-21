@@ -98,7 +98,7 @@ public class VueEnTete extends JPanel {
 		//Panel image
 		JPanel panelImage=new JPanel();
 		panelImage.setBackground(this.sond.couleur);
-		JLabel image = new JLabel(new ImageIcon("LogoPetit.png"));
+		JLabel image = new JLabel(new ImageIcon("../LogoPetit.png"));
 		image.setSize(panelImage.getWidth(),panelImage.getHeight());
 		panelImage.add(image);
 		panelImage.repaint();
