@@ -41,42 +41,16 @@ public class VueEtudeQuestion extends JPanel {
 	
 	JPanel panelGeneral;
 	
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-	String texte;
-=======
-	ControleurEtudeQuestion ceq;
-	
-	VueCreerAnalyse vca;
->>>>>>> warren/master
-=======
 	JTextArea zoneTexte;
->>>>>>> hugo/master
 	
 	VueCreerAnalyse vca;
-=======
-	String texte;
->>>>>>> warren/master
 	
 	VueEtudeQuestion(EasySond easySond, Question q, VueCreerAnalyse vca, String s){
 		this.easySond = easySond;
 		this.question = q;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-		this.texte = "";
-=======
-		this.vca = new VueCreerAnalyse(""+this.question.getNumeroQuestionnaire(),this.easySond.vueAccueilAnalyste);
->>>>>>> warren/master
-=======
 		this.zoneTexte = new JTextArea(5,1);
 		this.zoneTexte.setText(s);
 		this.vca = vca;
->>>>>>> hugo/master
-=======
-		this.texte = "";
->>>>>>> warren/master
 		this.controleurB = new ControleurAnalyseQuestion(this);
 		this.modeleAnalyste = new ModeleAnalyste(easySond.basededonnes);
 		this.centre = new JPanel();
@@ -139,16 +113,8 @@ public class VueEtudeQuestion extends JPanel {
 		JPanel panelBoutons2 = new JPanel();
 		JButton bouton5 = new JButton("Annuler");
 		JButton bouton6 = new JButton("Valider");
-<<<<<<< HEAD
-<<<<<<< HEAD
-		bouton5.setName(""+this.question.getNumeroQuestionnaire());
-		bouton5.addActionListener(this.ceq);
-=======
 		bouton5.addActionListener(this.controleurB);
 		bouton6.addActionListener(this.controleurB);
->>>>>>> hugo/master
-=======
->>>>>>> warren/master
 		panelBoutons2.add(bouton5);
 		panelBoutons2.add(bouton6);
 		
