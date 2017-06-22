@@ -42,21 +42,33 @@ public class VueEtudeQuestion extends JPanel {
 	JPanel panelGeneral;
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 	String texte;
 =======
 	ControleurEtudeQuestion ceq;
 	
 	VueCreerAnalyse vca;
 >>>>>>> warren/master
+=======
+	JTextArea zoneTexte;
+>>>>>>> hugo/master
 	
-	VueEtudeQuestion(EasySond easySond, Question q){
+	VueCreerAnalyse vca;
+	
+	VueEtudeQuestion(EasySond easySond, Question q, VueCreerAnalyse vca, String s){
 		this.easySond = easySond;
 		this.question = q;
+<<<<<<< HEAD
 <<<<<<< HEAD
 		this.texte = "";
 =======
 		this.vca = new VueCreerAnalyse(""+this.question.getNumeroQuestionnaire(),this.easySond.vueAccueilAnalyste);
 >>>>>>> warren/master
+=======
+		this.zoneTexte = new JTextArea(5,1);
+		this.zoneTexte.setText(s);
+		this.vca = vca;
+>>>>>>> hugo/master
 		this.controleurB = new ControleurAnalyseQuestion(this);
 		this.ceq = new ControleurEtudeQuestion(this.vca);
 		this.modeleAnalyste = new ModeleAnalyste(easySond.basededonnes);
@@ -114,15 +126,19 @@ public class VueEtudeQuestion extends JPanel {
 		JLabel titreBas2 = new JLabel("Commenter :");
 		titreBas2.setFont(new Font("Arial",Font.BOLD,30));
 		
-		JTextArea zoneTexte = new JTextArea(5,1);
 		zoneTexte.setLineWrap(true);
 		zoneTexte.setWrapStyleWord(true);
 		
 		JPanel panelBoutons2 = new JPanel();
 		JButton bouton5 = new JButton("Annuler");
 		JButton bouton6 = new JButton("Valider");
+<<<<<<< HEAD
 		bouton5.setName(""+this.question.getNumeroQuestionnaire());
 		bouton5.addActionListener(this.ceq);
+=======
+		bouton5.addActionListener(this.controleurB);
+		bouton6.addActionListener(this.controleurB);
+>>>>>>> hugo/master
 		panelBoutons2.add(bouton5);
 		panelBoutons2.add(bouton6);
 		
@@ -240,7 +256,7 @@ public class VueEtudeQuestion extends JPanel {
 			}
 			graphe.setValue(""+mapentry.getKey(), cpt);
 		}
-		JFreeChart osef1 = ChartFactory.createPieChart3D("Graphique en camembert",graphe,true,true,false);
+		JFreeChart osef1 = ChartFactory.createPieChart("Graphique en camembert",graphe,true,true,false);
 		
 		ChartPanel chart = new ChartPanel(osef1);
 		
@@ -248,5 +264,9 @@ public class VueEtudeQuestion extends JPanel {
 		this.centre.setPreferredSize(new Dimension(500,700));
 		this.panelGeneral.add(centre,"Center");
 		this.panelGeneral.validate();
+	}
+	
+	String getTexte(){
+		return this.zoneTexte.getText();
 	}
 }

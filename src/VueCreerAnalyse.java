@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -23,25 +24,39 @@ public class VueCreerAnalyse extends JPanel{
 	VueEtudeQuestion vueEtudeQuestion;
 	ControleurEtudeQuestion ceq;
 	ControleurCreerAnalyste cca;
+	HashMap<Integer,String> map;
 	VueCreerAnalyse(String idQ,VueAccueilAnalyste vaa){
 		super();
 		this.idQ=idQ;
 		this.vaa=vaa;
+		this.map = new HashMap<Integer,String>();
 		this.ceq=new ControleurEtudeQuestion(this);
 		this.cca=new ControleurCreerAnalyste(this.vaa);
 		this.modele=new ModeleAnalyste(this.vaa.sond.basededonnes);
 		this.listeQuestion=this.modele.listeDesQuestion(Integer.parseInt(this.idQ));
+		creerFenetre();
+		remplirMap();
+	}
+	
+	public void creerFenetre(){
+		Container cont = this.vaa.sond.getContentPane();
+		cont.removeAll();
 		this.setLayout(new BorderLayout());
 		this.add(enTete(),"North");
 		this.add(corps(),"Center");
 		this.add(boutonsBas(),"South");
-
+		cont.add(this);
+		cont.validate();
+		cont.repaint();
 	}
+	
+	
 	private Component enTete(){
 		// Le panel haut
 		VueEnTete haut = new VueEnTete(this.vaa.sond,"Création d'une analyse","Analyste",this.vaa.sond.Nom,this.vaa.sond.Prenom);
 		return haut;
 	}
+	
 	
 	private Component corps(){
 		int i=0;
@@ -107,9 +122,19 @@ public class VueCreerAnalyse extends JPanel{
 		Container cont = this.vaa.sond.getContentPane();
 		cont.removeAll();
 		Question temp =this.modele.getQuestion(Integer.parseInt(idQ), Integer.parseInt(nom));
-		this.vueEtudeQuestion = new VueEtudeQuestion(this.vaa.sond,temp);
+		this.vueEtudeQuestion = new VueEtudeQuestion(this.vaa.sond,temp,this,this.map.get(temp.getIdQuestion()));
 		cont.add(vueEtudeQuestion);
 		cont.validate();
 		cont.repaint();
+	}
+	
+	void remplirMap(){
+		for(Question elem:this.listeQuestion){
+			this.map.put(elem.getIdQuestion()," ");
+		}
+	}
+	
+	void setMap(String s,Integer i){
+		this.map.replace(i,s);
 	}
 }
