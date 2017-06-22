@@ -41,12 +41,16 @@ public class VueEtudeQuestion extends JPanel {
 	
 	JPanel panelGeneral;
 	
-	String texte;
+	JTextArea zoneTexte;
 	
-	VueEtudeQuestion(EasySond easySond, Question q){
+	VueCreerAnalyse vca;
+	
+	VueEtudeQuestion(EasySond easySond, Question q, VueCreerAnalyse vca, String s){
 		this.easySond = easySond;
 		this.question = q;
-		this.texte = "";
+		this.zoneTexte = new JTextArea(5,1);
+		this.zoneTexte.setText(s);
+		this.vca = vca;
 		this.controleurB = new ControleurAnalyseQuestion(this);
 		this.modeleAnalyste = new ModeleAnalyste(easySond.basededonnes);
 		this.centre = new JPanel();
@@ -103,13 +107,14 @@ public class VueEtudeQuestion extends JPanel {
 		JLabel titreBas2 = new JLabel("Commenter :");
 		titreBas2.setFont(new Font("Arial",Font.BOLD,30));
 		
-		JTextArea zoneTexte = new JTextArea(5,1);
 		zoneTexte.setLineWrap(true);
 		zoneTexte.setWrapStyleWord(true);
 		
 		JPanel panelBoutons2 = new JPanel();
 		JButton bouton5 = new JButton("Annuler");
 		JButton bouton6 = new JButton("Valider");
+		bouton5.addActionListener(this.controleurB);
+		bouton6.addActionListener(this.controleurB);
 		panelBoutons2.add(bouton5);
 		panelBoutons2.add(bouton6);
 		
@@ -227,7 +232,7 @@ public class VueEtudeQuestion extends JPanel {
 			}
 			graphe.setValue(""+mapentry.getKey(), cpt);
 		}
-		JFreeChart osef1 = ChartFactory.createPieChart3D("Graphique en camembert",graphe,true,true,false);
+		JFreeChart osef1 = ChartFactory.createPieChart("Graphique en camembert",graphe,true,true,false);
 		
 		ChartPanel chart = new ChartPanel(osef1);
 		
@@ -235,5 +240,9 @@ public class VueEtudeQuestion extends JPanel {
 		this.centre.setPreferredSize(new Dimension(500,700));
 		this.panelGeneral.add(centre,"Center");
 		this.panelGeneral.validate();
+	}
+	
+	String getTexte(){
+		return this.zoneTexte.getText();
 	}
 }

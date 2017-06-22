@@ -32,6 +32,13 @@ public class ControleurAnalyseQuestion implements ActionListener{
 		else if(((JButton)arg0.getSource()).getText().equals("Graphique")){
 			vueEtudeQuestion.genererGraphique();
 		}
+		else if(((JButton)arg0.getSource()).getText().equals("Annuler")){
+			this.vueEtudeQuestion.vca.creerFenetre();
+		}
+		else if(((JButton)arg0.getSource()).getText().equals("Valider")){
+			this.vueEtudeQuestion.vca.setMap(this.vueEtudeQuestion.getTexte(),this.vueEtudeQuestion.question.getIdQuestion());
+			this.vueEtudeQuestion.vca.creerFenetre();
+		}
 	}	
 
 }
