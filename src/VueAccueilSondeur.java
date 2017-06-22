@@ -57,14 +57,28 @@ public class VueAccueilSondeur extends JPanel{
 		pageGenerator(false);
 		this.setVisible(true); //affiche le tout
 	}
-
+	
+	/**
+	 *Constructeur qui prend une ArrayList de Sondé en paramètre
+	 */
+	VueAccueilSondeur(EasySond sond, ArrayList<Sonde> savListeSonde){
+		super();
+		this.sond = sond;
+		this.actionBoutons = new ControleurAccueilSondeur(this);
+		this.questionnaire = this.sond.basededonnes.BDaccueilSondeur.GetQuestionnaire();
+		this.listeSonde = savListeSonde;
+		this.vueEnTete = new VueEnTete(this.sond,"Accueil Sondeur","Sondeur",this.sond.Nom,this.sond.Prenom);
+		pageGenerator(false);
+		this.setVisible(true); //affiche le tout
+	}
+		
 	/**
 	*change la page par VueRemplissageSondage
 	*/
 	void refreshRemplissage(){
 		Container cont=this.sond.getContentPane();
 		cont.removeAll();
-		vueRemplissageSondage = new VueRemplissageSondage(this.sond,this.questionnaire,this.listeSonde.get(0));
+		vueRemplissageSondage = new VueRemplissageSondage(this.sond,this.questionnaire,this.listeSonde);
 		cont.add(vueRemplissageSondage);
 		cont.setBackground(new Color(78,217,255));
 		cont.validate();
@@ -89,7 +103,6 @@ public class VueAccueilSondeur extends JPanel{
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 			//niveau 1, Annonce la page.
 		JPanel lv1= new JPanel();
-		lv1.setLayout(new FlowLayout(FlowLayout.LEFT));
 		lv1.add(nomPage());
 		this.add(lv1);
 

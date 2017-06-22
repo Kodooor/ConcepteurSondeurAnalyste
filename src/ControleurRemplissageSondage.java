@@ -38,7 +38,7 @@ public class ControleurRemplissageSondage implements ActionListener{
 		{
 			case "<-------"  :vueRemplissageSondage.questionChangement(-1);
 													break;
-			case "Racrocher"  :vueRemplissageSondage.refreshAccueil();
+			case "Raccrocher"  :vueRemplissageSondage.refreshAccueil();
 													break;
       case "------->"  :vueRemplissageSondage.questionChangement(1);
              	 						break;
