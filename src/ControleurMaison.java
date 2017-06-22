@@ -18,7 +18,10 @@ public class ControleurMaison implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		this.easysond.afficherVueModule(this.easysond.role,this.easysond.idU, this.easysond.Nom, this.easysond.Prenom);
+		int retour = JOptionPane.showOptionDialog(this.easysond, "Voulez-vous revenir à la page d'accueil du module? Aucune donnée ne sera sauvegardée!", "Attention !",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null, null, null);
+		if(retour==0){
+			this.easysond.afficherVueModule(this.easysond.role,this.easysond.idU, this.easysond.Nom, this.easysond.Prenom);
+		}
 	}
 
 }
