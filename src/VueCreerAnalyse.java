@@ -99,6 +99,7 @@ public class VueCreerAnalyse extends JPanel{
 			conteneurGeneral.add(cGeneral);
 		}
 		bidonGauche.add(new JLabel("                          "));
+		bidonGauche.setBackground(new Color(78,217,255));
 		retour.add(bidonGauche, "West");
 		retour.add(scrollerQuestions, "Center");
 		return retour;
@@ -113,9 +114,12 @@ public class VueCreerAnalyse extends JPanel{
 		
 		contB2.add(quitter);
 		contB4.add(new JButton("Envoyer"));
+		contB2.setBackground(new Color(78,217,255));
+		contB4.setBackground(new Color(78,217,255));
 		
 		conteneurBoutons.add(contB2);
 		conteneurBoutons.add(contB4);
+		conteneurBoutons.setBackground(new Color(78,217,255));
 		return conteneurBoutons;
 	}
 	public void afficherVueEtudeQuestion(String nom) {

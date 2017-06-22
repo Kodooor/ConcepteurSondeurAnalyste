@@ -2,6 +2,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 
 public class ControleurAnalyseQuestion implements ActionListener{
@@ -19,6 +20,7 @@ public class ControleurAnalyseQuestion implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		EasySond fenetrePrincipale=(EasySond) vueEtudeQuestion.getRootPane().getParent();
 		// TODO Auto-generated method stub
 		if(((JButton)arg0.getSource()).getText().equals("Brut")){
 			vueEtudeQuestion.genererTableau();
@@ -33,11 +35,17 @@ public class ControleurAnalyseQuestion implements ActionListener{
 			vueEtudeQuestion.genererGraphique();
 		}
 		else if(((JButton)arg0.getSource()).getText().equals("Annuler")){
-			this.vueEtudeQuestion.vca.creerFenetre();
+			int retour = JOptionPane.showOptionDialog(fenetrePrincipale, "Voulez-vous vraiment annuler votre analyse?", "Attention !",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null, null, null);
+			if(retour==0){
+				this.vueEtudeQuestion.vca.creerFenetre();
+			}
 		}
 		else if(((JButton)arg0.getSource()).getText().equals("Valider")){
-			this.vueEtudeQuestion.vca.setMap(this.vueEtudeQuestion.getTexte(),this.vueEtudeQuestion.question.getIdQuestion());
-			this.vueEtudeQuestion.vca.creerFenetre();
+			int retour = JOptionPane.showOptionDialog(fenetrePrincipale, "Voulez-vous vraiment valider votre analyse?", "Attention !",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null, null, null);
+			if(retour==0){
+				this.vueEtudeQuestion.vca.setMap(this.vueEtudeQuestion.getTexte(),this.vueEtudeQuestion.question.getIdQuestion());
+				this.vueEtudeQuestion.vca.creerFenetre();
+			}
 		}
 	}	
 

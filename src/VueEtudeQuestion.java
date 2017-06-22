@@ -55,6 +55,7 @@ public class VueEtudeQuestion extends JPanel {
 		this.modeleAnalyste = new ModeleAnalyste(easySond.basededonnes);
 		this.centre = new JPanel();
 		this.panelGeneral = new JPanel();
+		this.setBackground(new Color(78,217,255));
 		enTete();
 		corps();
 	}
@@ -103,9 +104,15 @@ public class VueEtudeQuestion extends JPanel {
 		panelBoutons1.add(bouton2);
 		panelBoutons1.add(bouton3);
 		panelBoutons1.add(bouton4);
-
+		
+		JPanel contTitre1 = new JPanel();
+		contTitre1.setLayout(new FlowLayout(FlowLayout.LEFT));
 		JLabel titreBas2 = new JLabel("Commenter :");
 		titreBas2.setFont(new Font("Arial",Font.BOLD,30));
+		contTitre1.add(titreBas1);
+		JPanel contTitre2 = new JPanel();
+		contTitre2.setLayout(new FlowLayout(FlowLayout.LEFT));
+		contTitre2.add(titreBas2);
 		
 		zoneTexte.setLineWrap(true);
 		zoneTexte.setWrapStyleWord(true);
@@ -118,9 +125,9 @@ public class VueEtudeQuestion extends JPanel {
 		panelBoutons2.add(bouton5);
 		panelBoutons2.add(bouton6);
 		
-		bas.add(titreBas1);
+		bas.add(contTitre1);
 		bas.add(panelBoutons1);
-		bas.add(titreBas2);
+		bas.add(contTitre2);
 		bas.add(zoneTexte);
 		bas.add(panelBoutons2);
 		
@@ -130,6 +137,7 @@ public class VueEtudeQuestion extends JPanel {
 		panelGeneral.add(droite,"East");
 		panelGeneral.add(centre,"Center");
 		panelGeneral.add(bas,"South");
+		panelGeneral.setBackground(new Color(78,217,255));
 		this.add(panelGeneral,"Center");
 	}
 	

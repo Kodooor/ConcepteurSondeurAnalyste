@@ -18,17 +18,21 @@ public class ControleurCreerAnalyste implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		EasySond fenetrePrincipale=this.vueAccueilAnalyste.sond;
 		// TODO Auto-generated method stub
 		if(((JButton)arg0.getSource()).getText().equals("Créer")){
 			this.vueAccueilAnalyste.afficherVueCreerAnalyse(((JButton)arg0.getSource()).getName());
 		}
 		if(((JButton)arg0.getSource()).getText().equals("Retour")){
-			Container cont = this.vueAccueilAnalyste.sond.getContentPane();
-			cont.removeAll();
-			this.vueAccueilAnalyste = new VueAccueilAnalyste(this.vueAccueilAnalyste.sond);
-			cont.add(this.vueAccueilAnalyste);
-			cont.validate();
-			cont.repaint();
+			int retour = JOptionPane.showOptionDialog(fenetrePrincipale, "Voulez-vous vraiment annuler votre analyse, aucune donnée ne sera sauvegardée!", "Attention !",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null, null, null);
+			if(retour==0){
+				Container cont = this.vueAccueilAnalyste.sond.getContentPane();
+				cont.removeAll();
+				this.vueAccueilAnalyste = new VueAccueilAnalyste(this.vueAccueilAnalyste.sond);
+				cont.add(this.vueAccueilAnalyste);
+				cont.validate();
+				cont.repaint();
+			}
 		}
 	}
 }
